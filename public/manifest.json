@@ -1,0 +1,17 @@
+{
+  "name": "CV Chechu Castro - Frontend UI Web Developer",
+  "short_name": "Chechu CV",
+  "description": "Curriculum Vitae of Chechu Castro, a Frontend UI Web developer specialized in VueJS, Nuxt, Quasar framework and TailwindCSS.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}
