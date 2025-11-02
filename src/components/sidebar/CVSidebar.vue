@@ -4,7 +4,7 @@
     aria-label="Sidebar with contact and skills"
   >
     <div
-      class="rounded-2xl bg-white/95 p-4 shadow-xl backdrop-blur-sm transition-all duration-300 sm:p-6 lg:p-8 lg:shadow-2xl dark:border dark:border-neutral-800 dark:bg-neutral-900/95 dark:shadow-2xl dark:shadow-black/30"
+      class="rounded-2xl bg-white/95 p-4 shadow-xl backdrop-blur-sm transition-all duration-300 sm:p-6 lg:p-6 lg:shadow-2xl dark:border dark:border-neutral-800 dark:bg-neutral-900/95 dark:shadow-2xl dark:shadow-black/30"
     >
       <div class="relative">
         <SkillsSection :skills="skills" />

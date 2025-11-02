@@ -24,7 +24,7 @@ test.describe('Responsive Design', () => {
 
     // Content should still be accessible
     await expect(page.getByRole('heading', { name: /Chechu Castro/i })).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Skills' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: /Skills/i })).toBeVisible()
   })
 
   test('should display correctly on mobile', async ({ page }) => {
@@ -61,7 +61,7 @@ test.describe('Responsive Design', () => {
     await page.goto('/')
 
     await expect(page.getByRole('heading', { name: /Chechu Castro/i })).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Skills' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: /Skills/i })).toBeVisible()
 
     await context.close()
   })
@@ -80,7 +80,9 @@ test.describe('Responsive Design', () => {
     await page.goto('/')
 
     await expect(page.getByRole('heading', { name: /Chechu Castro/i })).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Employment history' })).toBeVisible()
+    await expect(
+      page.getByRole('heading', { name: /Employment history|Historial de empleo|Historique/i }),
+    ).toBeVisible()
 
     await context.close()
   })

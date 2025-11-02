@@ -1,15 +1,33 @@
 import { describe, it, expect } from 'vitest'
+import { mount } from '@vue/test-utils'
+import { defineComponent } from 'vue'
 import { useFormatters } from '../useFormatters'
 import type { LanguageLevel, HierarchyMode } from '@/types'
 
+const TestComponent = defineComponent({
+  setup() {
+    return useFormatters()
+  },
+  template: '<div></div>',
+})
+
 describe('useFormatters', () => {
-  const { formatDate, formatHierarchyMode, getLanguageLevelNumber, getLanguageLevelColor } =
-    useFormatters()
+  let formatDate: (iso: string | undefined) => string
+  let formatHierarchyMode: (mode: HierarchyMode) => string
+  let getLanguageLevelNumber: (level: LanguageLevel) => number
+  let getLanguageLevelColor: (level: LanguageLevel) => string
+
+  const wrapper = mount(TestComponent)
+  formatDate = wrapper.vm.formatDate
+  formatHierarchyMode = wrapper.vm.formatHierarchyMode
+  getLanguageLevelNumber = wrapper.vm.getLanguageLevelNumber
+  getLanguageLevelColor = wrapper.vm.getLanguageLevelColor
 
   describe('formatDate', () => {
     it('should format valid ISO date', () => {
       const result = formatDate('2023-06-15')
-      expect(result).toMatch('jun 2023')
+      expect(result).toMatch(/jun|junio|June/i)
+      expect(result).toContain('2023')
     })
 
     it('should return empty string for undefined', () => {
@@ -24,7 +42,8 @@ describe('useFormatters', () => {
 
     it('should handle different date formats', () => {
       const result = formatDate('2020-01-01')
-      expect(result).toMatch('ene 2020')
+      expect(result.toLowerCase()).toMatch(/jan|ene|enero|january/i)
+      expect(result).toContain('2020')
     })
   })
 

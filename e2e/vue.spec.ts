@@ -3,9 +3,10 @@ import { test, expect } from '@playwright/test'
 test.describe('Vue App', () => {
   test('visits the app root url', async ({ page }) => {
     await page.goto('/')
+    await page.waitForLoadState('networkidle')
 
     // Check that the page loads correctly
-    await expect(page).toHaveTitle(/CV/)
+    await expect(page).toHaveTitle(/CV|Chechu/i)
 
     // Check that the main heading exists
     await expect(page.getByRole('heading', { name: /Chechu Castro/i })).toBeVisible()

@@ -1,10 +1,13 @@
 <template>
-  <article
-    class="group relative rounded-lg border-l-4 border-blue-500 bg-white p-5 shadow-sm transition-all duration-300 hover:shadow-md dark:border dark:border-l-4 dark:border-blue-400 dark:border-neutral-700 dark:bg-neutral-800 dark:shadow-md dark:shadow-black/10"
+  <BaseCard
+    border-color="blue"
+    padding="md"
     aria-label="Employment entry"
+    tag="article"
+    custom-classes="rounded-lg bg-white shadow-sm hover:shadow-md dark:bg-neutral-800 dark:shadow-md dark:shadow-black/10"
   >
     <h4 class="mb-3 text-lg font-semibold text-gray-900 dark:text-white">
-      {{ position.position }}
+      {{ translatedPosition }}
     </h4>
 
     <div class="mb-4 flex items-center gap-2 text-sm text-gray-600 dark:text-gray-200">
@@ -30,31 +33,79 @@
       <span
         v-else
         class="rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900 dark:text-green-200"
-        >Present</span
+        >{{ t('employment.present') }}</span
       >
     </div>
 
-    <ul class="ml-4 space-y-2 text-sm text-gray-700 dark:text-gray-200">
-      <li v-for="(d, dIdx) in position.description" :key="dIdx" class="flex items-start gap-2">
+    <ul v-if="translatedDescription.length > 0" class="ml-4 space-y-2 text-sm text-gray-700 dark:text-gray-200">
+      <li v-for="(d, dIdx) in translatedDescription" :key="dIdx" class="flex items-start gap-2">
         <span
           class="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-blue-500 dark:bg-blue-400"
         ></span>
         <span>{{ d }}</span>
       </li>
     </ul>
-  </article>
+
+    <div v-if="translatedTechStack" class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+      <h5 class="mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">{{ t('employment.techStack') }}:</h5>
+      <p class="text-sm text-gray-600 dark:text-gray-400">{{ translatedTechStack }}</p>
+    </div>
+  </BaseCard>
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import type { EmploymentPosition } from '@/types'
 import { useFormatters } from '@/composables/useFormatters'
+import BaseCard from '@/components/ui/BaseCard.vue'
 
 interface Props {
   position: EmploymentPosition
+  companyKey?: string
+  positionIndex?: number
 }
 
-defineProps<Props>()
-
+const props = defineProps<Props>()
+const { t, tm } = useI18n()
 const { formatDate } = useFormatters()
+
+const translatedPosition = computed(() => {
+  if (props.position.position) {
+    return props.position.position
+  }
+  if (props.companyKey !== undefined && props.positionIndex !== undefined) {
+    return t(`articles.employment.companies.${props.companyKey}.positions.${props.positionIndex}.position`)
+  }
+  return ''
+})
+
+const translatedDescription = computed(() => {
+  if (props.position.description) {
+    return props.position.description
+  }
+  if (props.companyKey !== undefined && props.positionIndex !== undefined) {
+    const translationKey = `articles.employment.companies.${props.companyKey}.positions.${props.positionIndex}.description`
+    try {
+      // Use tm() for returning message objects/arrays in vue-i18n v9
+      const desc = tm(translationKey)
+      return Array.isArray(desc) ? desc : []
+    } catch (error) {
+      console.error('Error fetching description translation:', error, translationKey)
+      return []
+    }
+  }
+  return []
+})
+
+const translatedTechStack = computed(() => {
+  if (props.position.techStack) {
+    return props.position.techStack
+  }
+  if (props.companyKey !== undefined && props.positionIndex !== undefined) {
+    return t(`articles.employment.companies.${props.companyKey}.positions.${props.positionIndex}.techStack`)
+  }
+  return ''
+})
 </script>
 

@@ -42,8 +42,8 @@ export function useIntersectionObserver() {
    */
   const setupScrollReveal = (): void => {
     const observerOptions: IntersectionObserverInit = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px',
+      threshold: 0.05,
+      rootMargin: '0px 0px 0px 0px',
     }
 
     const observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
@@ -57,8 +57,42 @@ export function useIntersectionObserver() {
 
     // Observe all scroll-reveal elements
     nextTick(() => {
-      const revealElements: NodeListOf<Element> = document.querySelectorAll('.scroll-reveal')
-      revealElements.forEach((el: Element) => observer.observe(el))
+      const checkAndObserve = () => {
+        const revealElements: NodeListOf<Element> = document.querySelectorAll('.scroll-reveal')
+        revealElements.forEach((el: Element) => {
+          // Check if element is already in viewport on initial load
+          const rect = el.getBoundingClientRect()
+          const viewportHeight =
+            window.innerHeight || document.documentElement.clientHeight
+          const viewportWidth = window.innerWidth || document.documentElement.clientWidth
+          const isInViewport =
+            rect.top < viewportHeight &&
+            rect.bottom > 0 &&
+            rect.left < viewportWidth &&
+            rect.right > 0
+
+          if (isInViewport && !el.classList.contains('revealed')) {
+            // Immediately reveal elements already in viewport
+            el.classList.add('revealed')
+          } else if (!el.classList.contains('revealed')) {
+            // Observe elements not yet in viewport
+            observer.observe(el)
+          }
+        })
+      }
+
+      // Initial check
+      checkAndObserve()
+
+      // Fallback: reveal all elements after a delay if still not revealed (mobile safety)
+      setTimeout(() => {
+        const revealElements: NodeListOf<Element> = document.querySelectorAll('.scroll-reveal')
+        revealElements.forEach((el: Element) => {
+          if (!el.classList.contains('revealed')) {
+            el.classList.add('revealed')
+          }
+        })
+      }, 1000)
     })
   }
 

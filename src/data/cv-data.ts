@@ -6,12 +6,35 @@ import type { Skill, Language, ArticleSection, ContactInfo } from '@/types'
 export const skills: Skill[] = [
   { name: 'Vue', level: 90 },
   { name: 'Tailwind CSS', level: 75 },
-  { name: 'CSS', level: 95 },
+  { name: 'Sass/Less/Stylus', level: 98 },
   { name: 'JavaScript', level: 85 },
   { name: 'TypeScript', level: 50 },
   { name: 'HTML', level: 95 },
-  { name: 'Sass', level: 98 },
   { name: 'Nuxt', level: 50 },
+  { name: 'Bootstrap', level: 80 },
+  { name: 'Vuetify', level: 75 },
+  { name: 'Responsive Web Design (RWD)', level: 92 },
+  { name: 'UI Implementation', level: 90 },
+  { name: 'Component Libraries', level: 85 },
+  { name: 'Atomic Design', level: 82 },
+  { name: 'SOLID principles', level: 88 },
+  { name: 'Agile Methodologies', level: 85 },
+  { name: 'RESTful APIs', level: 83 },
+  { name: 'Figma', level: 70 },
+  { name: 'Git', level: 90 },
+  { name: 'Unit Testing', level: 75 },
+  { name: 'Cypress', level: 68 },
+  { name: 'Vitest', level: 72 },
+  { name: 'Playwright', level: 65 },
+  { name: 'Vite', level: 85 },
+  { name: 'Axios', level: 82 },
+  { name: 'Mjml', level: 78 },
+  { name: 'Email templates', level: 75 },
+  { name: 'Twig', level: 72 },
+  { name: 'Swagger', level: 70 },
+  { name: 'Jira', level: 88 },
+  { name: 'Jquery', level: 90 },
+  { name: 'Scrum and agile methodologies', level: 85 },
 ]
 
 /**
@@ -31,47 +54,154 @@ export const languages: Language[] = [
 export const articleSections: ArticleSection[] = [
   {
     title: 'Profile',
-    body: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt earum, repudiandae modi dolor veniam temporibus tenetur harum mollitia dolores nisi sunt similique repellat explicabo eveniet, veritatis odit, non sint delectus!',
+    body: 'Front-End Web developer with 15+ years of experience building scalable, high-performance, and responsive web applications. Specialized in Vue 3, Quasar framework, Nuxt 4 and Tailwind CSS/ Bootstrap to develop modern UI systems for enterprise, e-commerce, and SaaS platforms. Skilled in modular front-end architecture, atomic design systems, and cross-functional collaboration with design and backend teams.\n\nDemonstrated success in improving web performance, reducing technical debt, and optimizing developer workflows using modern frameworks, reusable components, and CI/CD pipelines.',
+  },
+  {
+    title: 'Core Competencies',
+    body: 'Front-End Development • Vue.js 2/3 • Nuxt 3/4 • Tailwind CSS • Tailwind variants • Bootstrap • Vuetify • TypeScript • JavaScript (ES6+) • Responsive Web Design (RWD) • UI Implementation • Component Libraries • Atomic Design • SOLID principles • Agile Methodologies • RESTful APIs • Figma • Git • Unit Testing • Cypress • Vitest • Playwright • Vite • Vue Query • Axios • Sass • Less • Stylus • Html • Mjml • Email templates • Twig • AWS/S3 • Lighthouse • Swagger • Jira • Scrum and agile methodologies',
   },
   {
     title: 'Employment history',
     companyHistory: [
       {
-        company: 'Fairlyne',
+        companyKey: 'fairlyne',
+        companyLogo: '/company-logos/fairlyne.webp',
         positions: [
           {
-            position: 'Senior UI Frontend Developer',
-            startDate: '2020-06-01',
-            description: [
-              'Led frontend architecture and migrated legacy codebase to Vue 3 and TypeScript.',
-              'Implemented a design system with Tailwind CSS and component library to increase reusability.',
-              'Improved performance and accessibility across core products, reducing bundle size by 30%.',
-            ],
-          },
-          {
-            position: 'Frontend Architect',
-            startDate: '2016-02-01',
-            endDate: '2020-05-31',
-            description: [
-              'Defined component patterns and coding standards across teams.',
-              'Guided lifts to component-driven development and improved DX for new engineers.',
-            ],
+            startDate: '2023-10-01',
+            endDate: '2025-10-31',
           },
         ],
       },
       {
-        company: 'Freelance / Contract',
+        companyKey: 'prada-group',
+        companyLogo: '/company-logos/prada.webp',
         positions: [
           {
-            position: 'Frontend Engineer',
-            startDate: '2018-01-01',
-            endDate: '2019-09-30',
-            description: [
-              'Delivered multiple SPA projects using Nuxt and Vue.',
-              'Advised clients on accessibility and responsive design best practices.',
-            ],
+            startDate: '2023-03-01',
+            endDate: '2023-07-31',
           },
         ],
+      },
+      {
+        companyKey: 'der-gruene-punkt',
+        companyLogo: '/company-logos/der-gruene-punkt.webp',
+        positions: [
+          {
+            startDate: '2022-04-01',
+            endDate: '2023-02-28',
+          },
+        ],
+      },
+      {
+        companyKey: 'infopro-digital',
+        companyLogo: '/company-logos/infopro-digital.webp',
+        positions: [
+          {
+            startDate: '2019-01-01',
+            endDate: '2021-12-31',
+          },
+        ],
+      },
+      {
+        companyKey: 'saint-gobain',
+        companyLogo: '/company-logos/saint-gobain.webp',
+        positions: [
+          {
+            startDate: '2016-11-01',
+            endDate: '2018-12-31',
+          },
+        ],
+      },
+      {
+        companyKey: 'donkeycode',
+        companyLogo: '/company-logos/donkeycode.webp',
+        positions: [
+          {
+            startDate: '2016-11-01',
+            endDate: '2016-12-31',
+          },
+        ],
+      },
+      {
+        companyKey: 'pixmania-group',
+        companyLogo: '/company-logos/pixmania.webp',
+        positions: [
+          {
+            startDate: '2015-09-01',
+            endDate: '2016-10-31',
+          },
+        ],
+      },
+      {
+        companyKey: 'e-merchant',
+        companyLogo: '/company-logos/e-merchant.webp',
+        positions: [
+          {
+            startDate: '2014-03-01',
+            endDate: '2015-08-31',
+          },
+        ],
+      },
+      {
+        companyKey: 'mazarine-digital',
+        companyLogo: '/company-logos/mazarine.webp',
+        positions: [
+          {
+            startDate: '2013-12-01',
+            endDate: '2014-01-31',
+          },
+        ],
+      },
+      {
+        companyKey: 'loreal',
+        companyLogo: '/company-logos/loreal.webp',
+        positions: [
+          {
+            startDate: '2012-10-01',
+            endDate: '2013-10-31',
+          },
+        ],
+      },
+      {
+        companyKey: 'accor-hotels',
+        companyLogo: '/company-logos/accor.webp',
+        positions: [
+          {
+            startDate: '2009-01-01',
+            endDate: '2012-05-31',
+          },
+        ],
+      },
+      {
+        companyKey: 'wolters-kluwer-france',
+        companyLogo: '/company-logos/wolters-kluwer.webp',
+        positions: [
+          {
+            startDate: '2008-10-01',
+            endDate: '2009-01-31',
+          },
+        ],
+      },
+      {
+        companyKey: 'bouygues-immobilier',
+        companyLogo: '/company-logos/bouygues.webp',
+        positions: [
+          {
+            startDate: '2007-10-01',
+            endDate: '2008-10-31',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: 'Education',
+    education: [
+      {
+        educationKey: 0,
+        startDate: '2005-09-01',
+        endDate: '2008-06-30',
       },
     ],
   },
@@ -102,52 +232,130 @@ export const articleSections: ArticleSection[] = [
     ],
   },
   {
+    title: 'Personal projects',
+    personalProjects: [
+      {
+        projectKey: 0,
+        projectUrl: 'https://example.com/project1',
+        githubUrl: 'https://github.com/chechucastro/project1',
+        startDate: '2023-01-01',
+        endDate: '2023-06-30',
+      },
+      {
+        projectKey: 1,
+        projectUrl: 'https://example.com/project2',
+        githubUrl: 'https://github.com/chechucastro/project2',
+        startDate: '2022-05-01',
+      },
+    ],
+  },
+  {
     title: 'Recommendations',
     recommendations: [
       {
-        name: 'Sarah',
-        surname: 'Johnson',
-        jobPosition: 'Product Manager',
-        postDate: '2023-10-15',
+        name: 'Divya',
+        surname: 'E',
+        postDate: '2023-02-28',
         hierarchyMode: 'client',
-        postComment:
-          'Chechu was an exceptional frontend developer who consistently delivered high-quality work. His attention to detail and ability to translate complex requirements into beautiful, accessible user interfaces was outstanding. He was always proactive in suggesting improvements and went above and beyond to ensure our product met the highest standards.',
+        linkedInUrl: 'https://www.linkedin.com/in/divya-e-talent-acquisition',
       },
       {
-        name: 'Michael',
-        surname: 'Chen',
-        jobPosition: 'Senior Full Stack Developer',
-        postDate: '2023-09-22',
+        name: 'Vasil',
+        surname: 'Yovchev',
+        postDate: '2023-02-28',
         hierarchyMode: 'colleague',
-        postComment:
-          "Working with Chechu on the same team was a fantastic experience. His expertise in Vue.js and TypeScript helped elevate our entire codebase. He's not only technically skilled but also a great team player who always helps others learn and grow. I highly recommend him for any frontend development role.",
+        linkedInUrl: 'https://www.linkedin.com/in/vasil-yovchev-data-engineer',
       },
       {
-        name: 'Elena',
-        surname: 'Rodriguez',
-        jobPosition: 'Engineering Director',
-        postDate: '2023-11-08',
+        name: 'Ante',
+        surname: 'Rukavina',
+        postDate: '2023-02-28',
+        hierarchyMode: 'colleague',
+        linkedInUrl: 'https://www.linkedin.com/in/ante-rukavina-backend',
+      },
+      {
+        name: 'Juliana',
+        surname: 'RALAIVAO',
+        postDate: '2018-10-23',
         hierarchyMode: 'manager',
-        postComment:
-          "I had the pleasure of managing Chechu directly for over two years. He consistently exceeded expectations and was instrumental in our frontend architecture decisions. His leadership in implementing our design system and mentoring junior developers made a significant impact on our team's success. Chechu is a true professional and would be an asset to any organization.",
+        linkedInUrl: 'https://www.linkedin.com/in/juliana-ralaivao-saint-gobain',
       },
       {
-        name: 'David',
-        surname: 'Kim',
-        jobPosition: 'Junior Frontend Developer',
-        postDate: '2023-08-30',
-        hierarchyMode: 'reports_to',
-        postComment:
-          'Chechu was an amazing mentor and technical lead. He took the time to explain complex concepts and always made himself available for questions. Under his guidance, I grew significantly as a developer. His code reviews were thorough and educational, and he created a supportive environment that encouraged learning and experimentation.',
-      },
-      {
-        name: 'Anna',
-        surname: 'Petrov',
-        jobPosition: 'UX Designer',
-        postDate: '2023-12-01',
+        name: 'Antoine',
+        surname: 'Martin',
+        postDate: '2018-10-11',
         hierarchyMode: 'colleague',
-        postComment:
-          'Collaborating with Chechu on design-to-development handoffs was seamless. He has an excellent understanding of design principles and always implemented our designs with pixel-perfect accuracy. His suggestions for improving usability and accessibility were invaluable. Chechu truly understands the intersection of design and development.',
+        linkedInUrl: 'https://www.linkedin.com/in/antoine-martin-java-developer',
+      },
+      {
+        name: 'Alexis',
+        surname: 'Estrade',
+        postDate: '2018-10-11',
+        hierarchyMode: 'manager',
+        linkedInUrl: 'https://www.linkedin.com/in/alexis-estrade-frontend-lead',
+      },
+      {
+        name: 'Frédéric',
+        surname: 'Rodas',
+        postDate: '2015-11-06',
+        hierarchyMode: 'manager',
+        linkedInUrl: 'https://www.linkedin.com/in/frederic-rodas-development',
+      },
+      {
+        name: 'Nicolas',
+        surname: 'Escoffier',
+        postDate: '2015-07-20',
+        hierarchyMode: 'reports_to',
+        linkedInUrl: 'https://www.linkedin.com/in/nicolas-escoffier-software-engineer',
+      },
+      {
+        name: 'Sylvia',
+        surname: 'Moreno',
+        postDate: '2015-05-21',
+        hierarchyMode: 'reports_to',
+        linkedInUrl: 'https://www.linkedin.com/in/sylvia-moreno-frontend-consultant',
+      },
+      {
+        name: 'Bruno',
+        surname: 'Haouli',
+        postDate: '2015-05-21',
+        hierarchyMode: 'reports_to',
+        linkedInUrl: 'https://www.linkedin.com/in/bruno-haouli-web-integrator',
+      },
+      {
+        name: 'Nicolas',
+        surname: 'Delfour',
+        postDate: '2014-11-22',
+        hierarchyMode: 'colleague',
+        linkedInUrl: 'https://www.linkedin.com/in/nicolas-delfour-product-owner',
+      },
+      {
+        name: 'François',
+        surname: 'JULIENNE',
+        postDate: '2014-07-24',
+        hierarchyMode: 'reports_to',
+        linkedInUrl: 'https://www.linkedin.com/in/francois-julienne-frontend-dev',
+      },
+      {
+        name: 'Rudy',
+        surname: 'THIMOTHÉE',
+        postDate: '2012-10-24',
+        hierarchyMode: 'colleague',
+        linkedInUrl: 'https://www.linkedin.com/in/rudy-thimothee-tech-lead',
+      },
+      {
+        name: 'Rudy',
+        surname: 'THIMOTHÉE',
+        postDate: '2012-09-11',
+        hierarchyMode: 'colleague',
+        linkedInUrl: 'https://www.linkedin.com/in/rudy-thimothee-tech-lead',
+      },
+      {
+        name: 'Moez',
+        surname: 'Kacem',
+        postDate: '2012-01-12',
+        hierarchyMode: 'colleague',
+        linkedInUrl: 'https://www.linkedin.com/in/moez-kacem-frontend-lead',
       },
     ],
   },
@@ -174,4 +382,3 @@ export const contactInfo: ContactInfo = {
   country: 'Spain',
   nationality: 'Spanish',
 }
-

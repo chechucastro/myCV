@@ -17,6 +17,5 @@ interface Props {
   sections: ArticleSection[]
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
 </script>
-

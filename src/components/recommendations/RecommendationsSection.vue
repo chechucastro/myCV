@@ -4,6 +4,7 @@
       v-for="(rec, recIdx) in recommendations"
       :key="rec.name + '-' + rec.surname + '-' + recIdx"
       :recommendation="rec"
+      :recommendation-index="recIdx"
     />
   </div>
 </template>

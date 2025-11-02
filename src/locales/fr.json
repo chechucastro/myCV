@@ -1,0 +1,372 @@
+{
+  "nav": {
+    "skipToContent": "Aller au contenu principal"
+  },
+  "sections": {
+    "details": "Détails",
+    "skills": "Compétences",
+    "languages": "Langues",
+    "profile": "Profil",
+    "employment": "Historique professionnel",
+    "certifications": "Licences et certifications",
+    "recommendations": "Recommandations"
+  },
+  "details": {
+    "social": "Réseaux sociaux",
+    "contact": "Contact",
+    "location": "Localisation",
+    "nationality": "Nationalité",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "email": "E-mail",
+    "address": "Adresse",
+    "country": "Pays"
+  },
+  "aria": {
+    "linkedinProfile": "Ouvrir le profil LinkedIn (s'ouvre dans un nouvel onglet)",
+    "githubProfile": "Ouvrir le profil GitHub (s'ouvre dans un nouvel onglet)",
+    "sendEmail": "Envoyer un e-mail",
+    "languageProficiency": "Niveau de {language}: {level}",
+    "levelOutOf": "Niveau {current} sur {total}",
+    "mainLayout": "Mise en page principale",
+    "primaryContent": "Contenu principal",
+    "sidebarContent": "Barre latérale avec contact et compétences"
+  },
+  "languages": {
+    "levels": {
+      "native": "Natif",
+      "fluent": "Courant",
+      "professional": "Professionnel",
+      "conversational": "Conversationnel"
+    }
+  },
+  "theme": {
+    "toggle": "Changer de thème",
+    "light": "Clair",
+    "dark": "Sombre"
+  },
+  "language": {
+    "select": "Sélectionner la langue",
+    "en": "English",
+    "es": "Español",
+    "fr": "Français"
+  },
+  "employment": {
+    "present": "Actuel",
+    "techStack": "Stack Technique"
+  },
+  "hierarchy": {
+    "client": "Chechu était mon client",
+    "colleague": "Nous avons travaillé ensemble dans la même équipe",
+    "manager": "J'ai managé Chechu directement",
+    "reports_to": "J'ai reporté directement à Chechu"
+  },
+  "articles": {
+    "profile": {
+      "title": "Profil",
+      "body": "Développeur Web Front-End avec plus de 15 ans d'expérience dans la construction d'applications web évolutives, performantes et réactives. Spécialisé dans Vue 3, le framework Quasar, Nuxt 4 et Tailwind CSS/ Bootstrap pour développer des systèmes UI modernes pour les plateformes d'entreprise, e-commerce et SaaS. Compétent en architecture front-end modulaire, systèmes de design atomique et collaboration interdisciplinaire avec les équipes de design et backend.\n\nSuccès démontré dans l'amélioration des performances web, la réduction de la dette technique et l'optimisation des flux de travail de développement en utilisant des frameworks modernes, des composants réutilisables et des pipelines CI/CD."
+    },
+    "coreCompetencies": {
+      "title": "Compétences Principales",
+      "body": "Développement Front-End • Vue.js 2/3 • Nuxt 3/4 • Tailwind CSS • Tailwind variants • Bootstrap • Vuetify • TypeScript • JavaScript (ES6+) • Design Web Responsive (RWD) • Implémentation UI • Bibliothèques de Composants • Atomic Design • Principes SOLID • Méthodologies Agiles • RESTful APIs • Figma • Git • Tests Unitaires • Cypress • Vitest • Playwright • Vite • Vue Query • Axios • Sass • Less • Stylus • Html • Mjml • Templates Email • Twig • AWS/S3 • Lighthouse • Swagger • Jira • Scrum et méthodologies agiles"
+    },
+    "employment": {
+      "title": "Historique professionnel",
+      "companies": {
+        "fairlyne": {
+          "name": "Fairlyne",
+          "positions": [
+            {
+              "position": "Développeur Front-End (Vue.js / Nuxt / Quasar framework / Tailwind / Reka UI)",
+              "description": [
+                "Conçu une architecture modulaire partagée avec Nuxt Layers et Vue Query, permettant à 3 applications web d'entreprise de partager plus de 70% du code UI, accélérant les cycles de publication de 40%",
+                "Construit et maintenu un système Atomic Design évolutif avec plus de 100 composants Vue 3 réutilisables, améliorant la cohérence du design et réduisant le retravail entre les équipes produit",
+                "Optimisé les performances UI grâce au lazy loading, au code-splitting et aux variants Tailwind, obtenant des scores Lighthouse supérieurs à 90 et des interactions utilisateur plus rapides",
+                "Collaboré avec les designers et ingénieurs backend pour aligner les objectifs UX/UI avec les exigences métier, améliorant le time-to-market et l'efficacité globale de développement",
+                "Amélioré l'accessibilité et la réactivité sur toutes les plateformes, assurant des expériences pixel-perfect sur mobile et desktop pour des marques comme Transavia, OUIGO et Royal Air Maroc",
+                "Développement de templates email responsives avec Mjml, Node, Litmus, Testi et Amazon SES pour la livraison d'emails",
+                "Intégration avec AWS S3 pour le stockage et la livraison de fichiers"
+              ],
+              "techStack": "Vue 3 • Nuxt 4 • Nuxt Layers • Quasar • Tailwind CSS • Tailwind Variants • Sass • Reka UI • TypeScript • Vue Query • Axios • Vite • i18n • mjml • AWS/S3 • Zod • Swagger • Postman • RESTful APIs • Design Responsive • Git • Figma • Jira • Scrum et méthodologies agiles"
+            }
+          ]
+        },
+        "prada-group": {
+          "name": "Prada Group",
+          "positions": [
+            {
+              "position": "Développeur Front-End Vue",
+              "description": [
+                "Modernisé l'architecture front-end pour miumiu.com et prada.com, migré de Vue 2 vers Vue 3 et amélioré la maintenabilité et l'évolutivité",
+                "Amélioré les performances en optimisant le routage et la livraison d'actifs, réduisant les temps de chargement de 25% et améliorant les scores SEO sur mobile et desktop",
+                "Rétro-ingéniéré le code legacy pour produire une documentation détaillée, favorisant l'intégration plus rapide des nouveaux développeurs et des cycles de maintenance plus fluides",
+                "Partenariat avec les équipes produit et design pour assurer une livraison de composants impeccable alignée avec les spécifications Figma et les standards d'accessibilité"
+              ],
+              "techStack": "Vue 2 • Vue 3 • Vuex • Webpack • i18n • JavaScript (ES6+) • Jira • Figma"
+            }
+          ]
+        },
+        "der-gruene-punkt": {
+          "name": "Der Grüne Punkt – Duales System Deutschland GmbH",
+          "positions": [
+            {
+              "position": "Développeur Front-End Web (Vue 3 / Vite / Bootstrap 5)",
+              "description": [
+                "Développé le Dashboard NV1RO, une plateforme d'analyse en temps réel pour les données de durabilité, améliorant la visibilité opérationnelle pour les utilisateurs internes",
+                "Implémenté des frameworks UI responsives qui ont augmenté la convivialité et l'accessibilité de 35%, validés par des tests avec des utilisateurs finaux",
+                "Intégré des pipelines CI/CD basés sur AWS et des déploiements automatisés, réduisant les erreurs de publication et le temps de déploiement de 20%",
+                "Renforcé la fiabilité du code en introduisant Jest et Vue Test Utils, réduisant les incidents de régression de 25% sur les sprints"
+              ],
+              "techStack": "Vue 3 • Vite • Pinia • Bootstrap Vue • Bootstrap 5 • Sass • HTML5 • ES6+ • AWS S3 • Python • DynamoDB • AWS Lambda • Jest • Vue Test Utils • Vitest • Agile • Kanban"
+            }
+          ]
+        },
+        "infopro-digital": {
+          "name": "Infopro Digital",
+          "positions": [
+            {
+              "position": "Développeur Front-End (Vue.js / Quasar / Vuetify)",
+              "description": [
+                "Livré une plateforme back-office multi-tenant desservant plus de 10 clients B2B, utilisant Vue.js, Vuetify et Quasar pour des interfaces modulaires et maintenables",
+                "Implémenté une architecture de localisation I18n qui a réduit les temps de mise à jour des traductions de 50%, améliorant la vitesse de déploiement international",
+                "Rationalisé la configuration du projet grâce à des configurations Webpack optimisées et Vue CLI, diminuant les temps de compilation et simplifiant la gestion des environnements",
+                "Partenariat avec les designers UX pour améliorer les parcours utilisateur, augmentant l'engagement et l'adoption de fonctionnalités sur toutes les plateformes clients"
+              ],
+              "techStack": "Vue.js • Vuex • VuePersist • Vuetify • Quasar • VueMaterial • Webpack • Vue CLI • i18n • Sass • Swagger • Postman • RESTful APIs • Design Responsive • Git • Figma • Sketch • Jira"
+            }
+          ]
+        },
+        "saint-gobain": {
+          "name": "Saint-Gobain Distribution Bâtiment France",
+          "positions": [
+            {
+              "position": "Développeur Front-End (Vue.js / HTML / Sass)",
+              "description": [
+                "Construit et maintenu plusieurs sites ecommerce B2B (Point.P, SFIC, Brossette, Décocéram, Asturienne) en utilisant Vue.js et les principes de design responsive",
+                "Automatisé les pipelines de build et de déploiement avec Gulp et Git, réduisant les erreurs manuelles de 40% et améliorant la fiabilité des publications",
+                "Intégré des RESTful APIs et collaboré avec des équipes interdisciplinaires sous des frameworks Agile pour assurer une livraison de fonctionnalités de haute qualité et à temps",
+                "Amélioré la cohérence et la maintenabilité front-end entre les marques en implémentant une structure de composants unifiée et une méthodologie CSS"
+              ],
+              "techStack": "Vue.js • VueMaterial • HTML5 • Sass • CSS3 • JavaScript (ES6+) • RESTful APIs • Gulp • Webpack • Git • Jira • Swagger • Postman • Service Workers • PWA • Design Web Responsive"
+            }
+          ]
+        },
+        "donkeycode": {
+          "name": "DonkeyCode",
+          "positions": [
+            {
+              "position": "Développeur Web Frontend (Freelance)",
+              "description": [
+                "Design web responsive mobile pour le site \"1000km à cheval\" du groupe Equidia (www.1000kmacheval.fr)",
+                "Stack technologique: HTML5, CSS3, NPM, Gulp, jQuery, JSON, AJAX, Design Responsive, Git, Twig, Symfony 2",
+                "Méthodologie Agile/Kanban avec Trello"
+              ],
+              "techStack": "HTML5 • CSS3 • NPM • Gulp • jQuery • JSON • AJAX • Design Responsive • Git • Twig • Symfony 2 • Trello"
+            }
+          ]
+        },
+        "pixmania-group": {
+          "name": "Pixmania Group",
+          "positions": [
+            {
+              "position": "Team Lead Front Office (Freelance)",
+              "description": [
+                "Projet mobile et desktop pour Pixmania (www.pixmania.fr)",
+                "Créé des événements tactiles personnalisés pour les écrans mobiles (Pinch, Swipe, drag) avec Zepto et Hammer.js",
+                "Développé des plugins jQuery/Zepto, converti des designs en HTML5/CSS3 responsives",
+                "Optimisé les images pour les appareils retina, implémenté les templates Smarty"
+              ],
+              "techStack": "HTML5 • CSS3 • NPM • Gulp • Stylus • Less • Zepto • jQuery • JSON • Design Web Responsive (RWD) • SVN • Smarty"
+            }
+          ]
+        },
+        "e-merchant": {
+          "name": "E-merchant",
+          "positions": [
+            {
+              "position": "Team Manager / Scrum Master / Frontend Lead",
+              "description": [
+                "Team manager en charge de 7 développeurs frontend",
+                "Scrum Master appliquant la méthodologie Agile, analyse et gestion de planification",
+                "Géré le suivi de l'avancement du projet et les tâches opérationnelles Kanban",
+                "Distribué et assigné les tickets JIRA, écriture de code (20% par semaine)",
+                "Projets responsives mobiles pour: A.P.C (apc.fr), Carrefour (online.carrefour.fr), Celio (celio.com), Pixmania (pixmania.fr)"
+              ],
+              "techStack": "HTML • CSS • Gulp • Grunt • Stylus • Less • Zepto • jQuery • JavaScript • Ender • Design Web Responsive (RWD) • SVN • Git • Smarty • PHP • Jira"
+            }
+          ]
+        },
+        "mazarine-digital": {
+          "name": "Mazarine Digital",
+          "positions": [
+            {
+              "position": "Développeur Frontend",
+              "description": [
+                "Site web mobile en design web responsive pour Valentino \"Uomo\" (Android & iOS)",
+                "Découpe d'images pour appareils retina, HTML/CSS avec SASS et design responsive",
+                "Événements tactiles pour appareils mobiles avec Zepto et Hammer.js",
+                "Créé des sliders et carrousels, implémenté le CMS eZ Publish"
+              ],
+              "techStack": "HTML5 • SASS • CSS3 • Zepto • jQuery • Hammer.js • Design Responsive • SVN • Twig • eZ Publish CMS"
+            }
+          ]
+        },
+        "loreal": {
+          "name": "L'Oréal",
+          "positions": [
+            {
+              "position": "Développeur Web Frontend",
+              "description": [
+                "Développeur frontend pour le site web \"Le Club des Créateurs de Beauté\" (www.ccbparis.fr)",
+                "Écrit des documents techniques et spécifications, intégré des plugins jQuery UI",
+                "Découpe Photoshop et intégration HTML5 avec standards W3C",
+                "Développé des méthodes jQuery personnalisées pour les outils AB Testing et le service de mailing Neolane",
+                "Stack technologique: CSS3, HTML5, JSON, jQuery, AJAX, Design Responsive"
+              ],
+              "techStack": "CSS3 • HTML5 • JSON • jQuery • jQuery UI • AJAX • Design Responsive"
+            }
+          ]
+        },
+        "accor-hotels": {
+          "name": "Accor Hotels",
+          "positions": [
+            {
+              "position": "Développeur Web Frontend",
+              "description": [
+                "Géré les besoins de développement et le contrôle de livraison des agences web et clients",
+                "Gestion de planning, suivi de progression, écrit des documents techniques",
+                "Développé des méthodes jQuery/AJAX personnalisées pour CMS NOHETO (JSP/JSTL)",
+                "Implémenté le développement web JSON & JSONP, analytics (XITI), gestion de bannières (Open AdStream)",
+                "Intégré des widgets de réseaux sociaux, animations Flash (SWFObject), plugins jQuery UI",
+                "Travaillé sur: Sofitel, Novotel, Ibis Hotels, HotelF1, Pullman, MGallery, All Seasons, Etap Hotel, Suite Hotel"
+              ],
+              "techStack": "CSS3 • HTML5 • JSON • JSONP • jQuery 1.7 • jQuery UI • AJAX • Apache • WinCVS • JSP • JSTL • CMS NOHETO • XITI • Open AdStream • SWFObject"
+            }
+          ]
+        },
+        "wolters-kluwer-france": {
+          "name": "Wolters Kluwer France",
+          "positions": [
+            {
+              "position": "Développeur Web Frontend",
+              "description": [
+                "Développement, tests et redesign pour plusieurs sites web WKF",
+                "Sites web: wkf.fr, wk-transport-logistique.fr, wk-rh.fr, wk-pharma.fr, wk-ce.fr"
+              ],
+              "techStack": "WAMP • CSS • XHTML • JavaScript • AJAX • PHP • Apache • MySQL • Putty"
+            }
+          ]
+        },
+        "bouygues-immobilier": {
+          "name": "Bouygues Immobilier",
+          "positions": [
+            {
+              "position": "Développeur Web Frontend",
+              "description": [
+                "Migré 3 minisites d'ASP.NET vers PHP5 et MySQL",
+                "Découpe PSD avec Photoshop, intégration de scripts de validation avec AJAX",
+                "Développé des brochures XHTML pour newsletters sur plusieurs sites immobiliers",
+                "Créé un système de géolocalisation avec Google Maps API en utilisant la bibliothèque JSON et les callbacks"
+              ],
+              "techStack": "CSS • XHTML • JavaScript • AJAX • ASP.NET • PHP 5 • SQL Server • MySQL • IIS Server • Apache • Visual Studio 2005 • Google Maps API • JSON"
+            }
+          ]
+        }
+      }
+    },
+    "education": {
+      "title": "Formation",
+      "items": [
+        {
+          "degree": "Licence",
+          "institution": "Université de Technologie",
+          "fieldOfStudy": "Informatique",
+          "location": "Paris, France"
+        }
+      ]
+    },
+    "certifications": {
+      "title": "Licences et certifications"
+    },
+    "personalProjects": {
+      "title": "Projets personnels",
+      "items": [
+        {
+          "title": "Plateforme E-commerce",
+          "description": "Une plateforme e-commerce full-stack construite avec Vue 3, Nuxt 4 et Tailwind CSS. Caractéristiques incluent authentification utilisateur, catalogue de produits, panier d'achat, intégration de paiement et tableau de bord administrateur.",
+          "techStack": "Vue 3 • Nuxt 4 • Tailwind CSS • TypeScript • Pinia • Vite • Stripe API • RESTful APIs"
+        },
+        {
+          "title": "Application de Gestion de Tâches",
+          "description": "Une application collaborative de gestion de tâches avec mises à jour en temps réel, fonctionnalité de glisser-déposer et fonctionnalités de collaboration d'équipe. Construite en utilisant des technologies frontend modernes.",
+          "techStack": "Vue 3 • Quasar Framework • TypeScript • Vue Query • WebSocket • Vite • i18n"
+        }
+      ]
+    },
+    "recommendations": {
+      "title": "Recommandations",
+      "items": [
+        {
+          "jobPosition": "Talent Acquisition Lead / Intelligenz IT | MBA en RH",
+          "postComment": "J'ai eu le plaisir d'embaucher chechu sur un projet Vuejs, et le client a été très impressionné par ses compétences et son éthique de travail. Chechu Castro a démontré de manière constante une forte capacité à comprendre des exigences complexes et à livrer des résultats de haute qualité dans des délais serrés. Il a également montré une volonté de collaborer avec les membres de l'équipe et de communiquer efficacement pour assurer le succès du projet. Je recommande vivement Chechu Castro pour tout rôle frontend Vuejs et je crois qu'il serait un ajout précieux à toute équipe. Il est très professionnel, fiable et a une grande éthique de travail qui rend le travail avec Chechu agréable. :) :)"
+        },
+        {
+          "jobPosition": "Senior AWS Data Engineer - Big Data Engineer - Développeur Python - Cloud Solutions Engineer",
+          "postComment": "J'ai travaillé avec Chechu sur un projet très intéressant - construire une nouvelle application web à partir de zéro. Ce fut une très bonne expérience de relever tous les défis que nous avons eus avec lui. Même si nous avons travaillé à distance, la communication était facile et discuter des problèmes était toujours efficace. Dans l'ensemble, j'ai vraiment apprécié de travailler avec Chechu."
+        },
+        {
+          "jobPosition": "Senior AWS Data Engineer / Développeur Backend",
+          "postComment": "Je recommande vivement Chechu en tant que développeur Vue. Pendant notre temps de collaboration, j'ai été constamment impressionné par ses compétences techniques et sa capacité à livrer un code de haute qualité. De plus, c'est un excellent collègue et un bon joueur d'équipe, ce qui en fait un plaisir de travailler avec lui. Je ne doute pas que Chechu serait un atout précieux pour toute équipe recherchant un développeur compétent."
+        },
+        {
+          "jobPosition": "Chef de Projet Technique chez Saint-Gobain Distribution Bâtiment France",
+          "postComment": "J'ai eu la chance de travailler avec Chechu pendant plus de 2 ans. Ambitieux, dynamique et serviable, il a su créer un bon dynamisme dans mon équipe tant professionnel que personnel. C'était un plaisir de le challenger techniquement car il est toujours prêt à faire son maximum. Avec Chechu on ne s'ennuie jamais. Si vous avez des projets intéressants, essayez de le rencontrer et vous verrez par vous même :)"
+        },
+        {
+          "jobPosition": "Développeur Java",
+          "postComment": "Chechu est un bon développeur qui a l'avantage d'être polyvalent et autonome. J'ai eu le plaisir de travailler avec lui pendant 3 ans chez St Gobain et nous avons collaboré sur plusieurs projets d'envergure. (Decoceram, Asturienne, etc…) Chechu a rempli parfaitement son rôle et il était toujours efficace dans son rôle « Front ». J'apprécie aussi son caractère, quelqu'un de gentil, ouvert, impliqué et responsable, qui n'hésite pas à offrir son aide aux autres membres de l'équipe. N'importe quel employeur serait content d'avoir Chechu dans son équipe ;)"
+        },
+        {
+          "jobPosition": "Lead Frontend Engineer | Actuellement en formation Executive Education en Full Stack Software Development – The University of Texas at Austin (McCombs School of Business)",
+          "postComment": "Avoir Chechu dans son équipe est un véritable atout. Dynamique et passionné, il sait aussi bien partager son expérience de qualité que sa bonne humeur. C'est un réel plaisir !"
+        },
+        {
+          "jobPosition": "Head of Development and Support",
+          "postComment": "Chechu est un homme dynamique et jovial, sachant entraîner avec lui les personnes qui travaillent autour de lui. Sous ma responsabilité, il a su mener à bien l'ensemble des projets dont je lui ai donné la charge, avec compétences et bonne humeur. Il possède de réelles et éprouvées compétences dans le domaine de l'ergonomie digitale, et ses compétences techniques en JQuery, Zepto, Grunt, etc. ne sont plus à démontrer. Il a su également appréhender, en tant que Scrum Master, les méthodes Agiles et leur mise en place avec succès dans l'équipe dont il avait la responsabilité (5 personnes). Pour résumer, ce fut un collaborateur plaisant, disponible, motivé, compétent et toujours pro-actif."
+        },
+        {
+          "jobPosition": "Senior Software Engineer / Coinbase - Ex FE/UX/UI Engineer at Kraken, Nutanix, Transient Labs, DevRev",
+          "postComment": "Chechu est arrivé chez E-Merchant dans un contexte dans lequel il n'était pas facile de s'intégrer autant d'un point de vue purement technique que sur le plan humain / organisation. Néanmoins il s'est vite adapté à la structure des équipes et des différents projets ainsi qu'aux processus de travail, et a su prendre les bonnes décisions techniques sur les nouveaux projets et gérer au mieux l'équipe malgré le turn over. Chechu est donc quelqu'un qui sait gérer la pression et s'imposer sur des décisions délicates, tout en restant humble et proche des gens qu'il manage."
+        },
+        {
+          "jobPosition": "Consultante Front-End chez OCTO Technology",
+          "postComment": "Chechu est un excellant manager, j'ai beaucoup appris à ses côtés. Il a la capacité de motiver son équipe et montre beaucoup d'attention à chacun, ce qui donne l'envie d'aller plus loin, de s'améliorer. Peu sont les leaders qui manifestent de la confiance en vers les membres de leur équipe et il en fait parti."
+        },
+        {
+          "jobPosition": "Intégrateur Web chez Groupe Profession Santé",
+          "postComment": "J'ai la chance de travailler avec Chechu chez E-Merchant. Il est mon team leader et à ce titre il supervise mon travail, m'accompagne dans mes tâches et est disponible pour m'aider quand je bute sur des problèmes. C'est lui qui organise le travail de l'équipe et fait les choix sur les technos et les méthodes de travail. Au quotidien il est très agréable, patient, pédagogue et très investi dans son travail."
+        },
+        {
+          "jobPosition": "Product Owner confirmé bobbee",
+          "postComment": "Chechu est quelqu'un de très professionel, qui s'investit dans ses différents projets. Il a su évolué en même temps que le métier. De plus, il a un excellent relationnel avec les équipes."
+        },
+        {
+          "jobPosition": "Développeur Front-End (Web APP)",
+          "postComment": "C'est agréable de travailler avec Chechu. Sa capacité a déterminer les urgences, et les réels besoins d'une tâche, permet à l'équipe de travailler avec cohésion dans une bonne ambiance. Que ce soit sur le plan technique, conception ou développement, le niveau de Chechu est celui d'un Lead confirmé."
+        },
+        {
+          "jobPosition": "Je joue avec les LLMs avant qu'ils me roulent dessus (ex-Microsoft, ex-Dior, ex-Chanel, ex-Accor)",
+          "postComment": "Certainement l'un des moteurs de l'équipe. Chechu gère avec aisance les projets de grande envergure. Très sociable et très convivial au quotidien, on peut souvent compter sur ses conseils. Le plaisir de se retrouver dans une future collaboration."
+        },
+        {
+          "jobPosition": "Je joue avec les LLMs avant qu'ils me roulent dessus (ex-Microsoft, ex-Dior, ex-Chanel, ex-Accor)",
+          "postComment": "Pédaguogue et investit dans son travail, Chechu apporte une expérience significative à l'équipe. C'est un personne a qui l'on confie des projets conséquents."
+        },
+        {
+          "jobPosition": "Team Lead, dev Front End",
+          "postComment": "J'ai eu l'ocasion de travailler avec Chechu sur des projets chez Accor et ce fût une bonne expérience. Chechu est un bon développeur qui a l'avantage d'être polyvalent et autonome. En groupe il a les bonnes bases pour chapeauter une équipe et gérer les différentes taches qu'on lui affecte. J'apprécie le caractère de Chechu, c'est quelqu'un de gentil, ouvert, impliqué, responsable, qui n'hésite pas à offrir son aide quitte même à sacrifier un peu de son temps. J'ai apprécié également l'ambiance de travail avec Chechu, son humour très particulier pour évacuer le stress quotidien Au finale je recommende fortement Chechu et je suis sûre que c'est la bonne personne sur laquelle on peut compter même sur les projets les plus compliqués."
+        }
+      ]
+    }
+  }
+}

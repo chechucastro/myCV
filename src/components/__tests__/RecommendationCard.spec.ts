@@ -16,7 +16,7 @@ describe('RecommendationCard', () => {
 
   it('should render full name', () => {
     const wrapper = mount(RecommendationCard, {
-      props: { recommendation: mockRecommendation },
+      props: { recommendation: mockRecommendation, recommendationIndex: 0 },
     })
 
     expect(wrapper.text()).toContain('John Doe')
@@ -24,7 +24,7 @@ describe('RecommendationCard', () => {
 
   it('should render job position', () => {
     const wrapper = mount(RecommendationCard, {
-      props: { recommendation: mockRecommendation },
+      props: { recommendation: mockRecommendation, recommendationIndex: 0 },
     })
 
     expect(wrapper.text()).toContain('Product Manager')
@@ -32,7 +32,7 @@ describe('RecommendationCard', () => {
 
   it('should render comment in quotes', () => {
     const wrapper = mount(RecommendationCard, {
-      props: { recommendation: mockRecommendation },
+      props: { recommendation: mockRecommendation, recommendationIndex: 0 },
     })
 
     const blockquote = wrapper.find('blockquote')
@@ -42,7 +42,7 @@ describe('RecommendationCard', () => {
 
   it('should display hierarchy badge for client', () => {
     const wrapper = mount(RecommendationCard, {
-      props: { recommendation: mockRecommendation },
+      props: { recommendation: mockRecommendation, recommendationIndex: 0 },
     })
 
     expect(wrapper.text()).toContain('Chechu was my client')
@@ -55,7 +55,7 @@ describe('RecommendationCard', () => {
     }
 
     const wrapper = mount(RecommendationCard, {
-      props: { recommendation: colleagueRec },
+      props: { recommendation: colleagueRec, recommendationIndex: 0 },
     })
 
     expect(wrapper.text()).toContain('We worked together on the same team')
@@ -68,7 +68,7 @@ describe('RecommendationCard', () => {
     }
 
     const wrapper = mount(RecommendationCard, {
-      props: { recommendation: managerRec },
+      props: { recommendation: managerRec, recommendationIndex: 0 },
     })
 
     expect(wrapper.text()).toContain('I managed Chechu directly')
@@ -81,7 +81,7 @@ describe('RecommendationCard', () => {
     }
 
     const wrapper = mount(RecommendationCard, {
-      props: { recommendation: reportsToRec },
+      props: { recommendation: reportsToRec, recommendationIndex: 0 },
     })
 
     expect(wrapper.text()).toContain('I reported to Chechu directly')
@@ -89,7 +89,7 @@ describe('RecommendationCard', () => {
 
   it('should have proper semantic HTML structure', () => {
     const wrapper = mount(RecommendationCard, {
-      props: { recommendation: mockRecommendation },
+      props: { recommendation: mockRecommendation, recommendationIndex: 0 },
     })
 
     expect(wrapper.find('article').exists()).toBe(true)
@@ -100,7 +100,7 @@ describe('RecommendationCard', () => {
 
   it('should have correct ARIA label', () => {
     const wrapper = mount(RecommendationCard, {
-      props: { recommendation: mockRecommendation },
+      props: { recommendation: mockRecommendation, recommendationIndex: 0 },
     })
 
     expect(wrapper.find('article').attributes('aria-label')).toBe('Recommendation entry')

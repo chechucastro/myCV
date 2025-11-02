@@ -9,12 +9,13 @@ export default mergeConfig(
       environment: 'jsdom',
       exclude: [...configDefaults.exclude, 'e2e/**'],
       root: fileURLToPath(new URL('./', import.meta.url)),
+      setupFiles: ['./src/test-setup.ts'],
       coverage: {
         provider: 'v8',
         reporter: ['text', 'json', 'html'],
         exclude: [
-          // Default excludes
-          ...configDefaults.coverage.exclude,
+          // Default excludes (handle undefined case)
+          ...(configDefaults.coverage.exclude || []),
           // Exclude all .ts files (non-Vue files)
           '**/*.ts',
           // But include test files explicitly in exclude to not count them

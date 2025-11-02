@@ -4,7 +4,7 @@
       id="languages-heading"
       class="relative mb-6 text-2xl font-bold text-gray-900 after:absolute after:left-0 after:mt-2 after:block after:h-1 after:w-12 after:rounded-full after:bg-gradient-to-r after:from-blue-500 after:to-purple-500 after:content-[''] dark:text-white"
     >
-      Languages
+      {{ t('sections.languages') }}
     </h2>
 
     <!-- Live region for language announcements -->
@@ -12,7 +12,7 @@
 
     <ul class="space-y-5">
       <li
-        v-for="(lang, idx) in languages"
+        v-for="(lang, idx) in props.languages"
         :key="lang.name"
         class="group flex flex-col gap-3 rounded-lg p-3 transition-all duration-200 hover:bg-gray-50 dark:hover:bg-neutral-800"
         :aria-labelledby="'lang-name-' + idx"
@@ -28,7 +28,7 @@
             class="rounded-full px-3 py-1 text-xs font-medium text-white"
             :class="getLanguageLevelColor(lang.level)"
           >
-            {{ lang.level }}
+            {{ t('languages.levels.' + lang.level.toLowerCase()) }}
           </div>
         </div>
 
@@ -43,9 +43,9 @@
             <div
               class="h-full w-0 rounded-sm transition-all duration-700 ease-out"
               :class="{
-                [getLanguageLevelColor(lang.level)]:
-                  barIndex <= getLanguageLevelNumber(lang.level),
-                'language-bar-fill': languagesVisible && barIndex <= getLanguageLevelNumber(lang.level),
+                [getLanguageLevelColor(lang.level)]: barIndex <= getLanguageLevelNumber(lang.level),
+                'language-bar-fill':
+                  languagesVisible && barIndex <= getLanguageLevelNumber(lang.level),
               }"
               :style="{
                 transitionDelay: `${(barIndex - 1) * 150}ms`,
@@ -60,10 +60,15 @@
           :aria-valuemin="1"
           :aria-valuemax="5"
           :aria-valuenow="getLanguageLevelNumber(lang.level)"
-          :aria-label="`${lang.name} proficiency: ${lang.level}`"
+          :aria-label="t('aria.languageProficiency', { language: lang.name, level: lang.level })"
           class="sr-only"
         >
-          Level {{ getLanguageLevelNumber(lang.level) }} out of 5
+          {{
+            t('aria.levelOutOf', {
+              current: getLanguageLevelNumber(lang.level),
+              total: 5,
+            })
+          }}
         </div>
       </li>
     </ul>
@@ -72,6 +77,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, type Ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import type { Language } from '@/types'
 import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
 import { useAccessibility } from '@/composables/useAccessibility'
@@ -82,6 +88,7 @@ interface Props {
 }
 
 const props = defineProps<Props>()
+const { t } = useI18n()
 
 const { observeElement } = useIntersectionObserver()
 const { announceToLiveRegion } = useAccessibility()
@@ -114,4 +121,3 @@ onMounted(() => {
   width: 100% !important;
 }
 </style>
-

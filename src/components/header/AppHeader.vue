@@ -6,7 +6,7 @@
     style="margin-left: calc((100vw - 100%) / -2); margin-right: calc((100vw - 100%) / -2)"
   >
     <nav
-      class="fixed top-0 right-0 left-0 z-50 w-screen bg-gradient-to-r from-white via-white to-purple-400/10 transition-all duration-300 dark:border-neutral-700/50 dark:bg-gradient-to-br dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950"
+      class="fixed top-0 right-0 left-0 z-50 w-screen bg-white transition-all duration-300 dark:border-neutral-700/50 dark:bg-gradient-to-br dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950"
       :class="{ 'shadow-md': isScrolled }"
       role="navigation"
       aria-label="Primary navigation"
@@ -94,4 +94,3 @@ withDefaults(defineProps<Props>(), {
   transform: translateX(-20px);
 }
 </style>
-

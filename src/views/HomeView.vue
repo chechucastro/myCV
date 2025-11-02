@@ -20,7 +20,7 @@
       aria-label="Primary content"
       class="relative bg-white dark:bg-neutral-950"
     >
-      <div class="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-12 lg:flex-row lg:px-8">
+      <div class="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-8 lg:flex-row lg:items-start lg:px-8">
         <!-- Sidebar -->
         <CVSidebar :skills="skills" :languages="languages" :contact-info="contactInfo" />
 
