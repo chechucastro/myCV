@@ -88,6 +88,7 @@ import { useI18n } from 'vue-i18n'
 import type { Skill } from '@/types'
 import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
 import { useAccessibility } from '@/composables/useAccessibility'
+import { TOP_SKILLS_COUNT } from '@/config/constants'
 
 interface Props {
   skills: Skill[]
@@ -100,9 +101,9 @@ const { observeElement } = useIntersectionObserver()
 const { announceToLiveRegion } = useAccessibility()
 
 const showMore = ref(false)
-const topSkillsCount = 5
+const topSkillsCount = TOP_SKILLS_COUNT
 
-// Sort skills by level (descending) and split into top 10 and the rest
+// Sort skills by level (descending) and split into top skills and the rest
 const sortedSkills = computed(() => {
   return [...props.skills].sort((a, b) => b.level - a.level)
 })

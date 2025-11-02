@@ -17,6 +17,7 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useLanguageStore } from '@/stores/language'
+import { useAccessibility } from '@/composables/useAccessibility'
 import type { Locale } from '@/plugins/i18n'
 
 /**
@@ -27,6 +28,7 @@ import type { Locale } from '@/plugins/i18n'
 
 const { t, locale } = useI18n()
 const languageStore = useLanguageStore()
+const { announceToScreenReader } = useAccessibility()
 
 // Computed property for two-way binding with select element
 const currentLocale = computed<Locale>({
@@ -49,13 +51,7 @@ const handleLanguageChange = () => {
   
   // Announce change for screen readers
   const message = `${t('language.select')}: ${t(`language.${currentLocale.value}`)}`
-  const announcement = document.createElement('div')
-  announcement.setAttribute('role', 'status')
-  announcement.setAttribute('aria-live', 'polite')
-  announcement.className = 'sr-only'
-  announcement.textContent = message
-  document.body.appendChild(announcement)
-  setTimeout(() => document.body.removeChild(announcement), 1000)
+  announceToScreenReader(message)
 }
 </script>
 

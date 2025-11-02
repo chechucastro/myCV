@@ -10,7 +10,7 @@
       >
         <img
           :src="props.company.companyLogo"
-          :alt="`${props.company.company} logo`"
+          :alt="`${companyName} logo`"
           loading="lazy"
           width="64"
           height="64"
