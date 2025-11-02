@@ -73,7 +73,7 @@ withDefaults(defineProps<Props>(), {
   name: 'Chechu Castro',
   jobTitle: 'UI Frontend Web Developer',
   techStack: 'VueJS • Quasar • Nuxt • TailwindCSS',
-  profileImage: '/chechuLinkedInOpentoWork.jpeg',
+  profileImage: '/chechuLinkedInOpentoWork.webp',
 })
 </script>
 

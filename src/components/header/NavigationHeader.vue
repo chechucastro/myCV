@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="flex items-center gap-2 sm:gap-4"
-    :class="isScrolled ? 'py-1.5 sm:py-2' : 'sm:py-3'"
-  >
+  <div class="flex items-center gap-2 sm:gap-4" :class="isScrolled ? 'py-1.5 sm:py-2' : 'sm:py-3'">
     <img
       v-if="isScrolled"
       :src="profileImage"
@@ -47,7 +44,6 @@ withDefaults(defineProps<Props>(), {
   name: 'Chechu Castro',
   jobTitle: 'UI Frontend Web Developer',
   techStack: 'VueJS • Quasar • Nuxt • TailwindCSS',
-  profileImage: '/chechuLinkedInOpentoWork.jpeg',
+  profileImage: '/chechuLinkedInOpentoWork.webp',
 })
 </script>
-

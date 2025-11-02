@@ -368,7 +368,7 @@ export const contactInfo: ContactInfo = {
   name: 'Chechu Castro',
   jobTitle: 'UI Frontend Web Developer',
   techStack: 'VueJS • Quasar • Nuxt • TailwindCSS',
-  profileImage: '/chechuLinkedInOpentoWork.jpeg',
+  profileImage: '/chechuLinkedInOpentoWork.webp',
   linkedin: {
     url: 'https://www.linkedin.com/in/chechucastro',
     handle: 'linkedin.com/in/chechucastro',
