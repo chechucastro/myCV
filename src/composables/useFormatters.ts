@@ -1,3 +1,4 @@
+import { useI18n } from 'vue-i18n'
 import type { LanguageLevel, HierarchyMode } from '@/types'
 
 /**
@@ -5,6 +6,7 @@ import type { LanguageLevel, HierarchyMode } from '@/types'
  * Follows Single Responsibility Principle - only handles data formatting
  */
 export function useFormatters() {
+  const { t } = useI18n()
   /**
    * Small date formatter. Kept simple and typed.
    */
@@ -20,16 +22,10 @@ export function useFormatters() {
   }
 
   /**
-   * Format hierarchy mode for display.
+   * Format hierarchy mode for display using i18n translations.
    */
   const formatHierarchyMode = (mode: HierarchyMode): string => {
-    const modeMap: Record<HierarchyMode, string> = {
-      client: 'Chechu was my client',
-      colleague: 'We worked together on the same team',
-      manager: 'I managed Chechu directly',
-      reports_to: 'I reported to Chechu directly',
-    }
-    return modeMap[mode]
+    return t(`hierarchy.${mode}`)
   }
 
   /**

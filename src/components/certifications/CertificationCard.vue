@@ -1,7 +1,10 @@
 <template>
-  <div
-    class="group relative overflow-hidden rounded-xl bg-gradient-to-br from-white to-gray-50 p-6 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border dark:border-neutral-700 dark:from-neutral-800 dark:to-neutral-900 dark:shadow-lg dark:shadow-black/20"
+  <BaseCard
+    border-color="blue"
+    padding="md"
     aria-label="Certification entry"
+    tag="article"
+    custom-classes="border-l-0"
   >
     <!-- Certificate Image -->
     <div class="mb-4 flex justify-center">
@@ -9,8 +12,10 @@
         <img
           :src="certification.certificateImage"
           :alt="`${certification.title} certificate`"
-          class="h-32 w-32 object-cover transition-transform duration-300 group-hover:scale-110"
           loading="lazy"
+          width="128"
+          height="128"
+          class="h-32 w-32 object-cover transition-transform duration-300 group-hover:scale-110"
         />
         <div
           class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
@@ -83,12 +88,13 @@
         </a>
       </div>
     </div>
-  </div>
+  </BaseCard>
 </template>
 
 <script setup lang="ts">
 import type { Certification } from '@/types'
 import { useFormatters } from '@/composables/useFormatters'
+import BaseCard from '@/components/ui/BaseCard.vue'
 
 interface Props {
   certification: Certification

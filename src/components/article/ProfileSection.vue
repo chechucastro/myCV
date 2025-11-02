@@ -1,8 +1,8 @@
 <template>
   <div class="text-gray-900 dark:text-white">
-    <p v-if="typeof body === 'string'">{{ body }}</p>
+    <p v-if="typeof body === 'string'" class="whitespace-pre-line">{{ body }}</p>
     <div v-else>
-      <p v-for="(para, idx) in body" :key="idx">{{ para }}</p>
+      <p v-for="(para, idx) in body" :key="idx" class="whitespace-pre-line">{{ para }}</p>
     </div>
   </div>
 </template>

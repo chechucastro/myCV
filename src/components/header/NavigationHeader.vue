@@ -7,6 +7,9 @@
       v-if="isScrolled"
       :src="profileImage"
       :alt="name"
+      loading="lazy"
+      width="48"
+      height="48"
       class="h-10 w-10 rounded-full border-2 border-gray-200 shadow-md sm:h-12 sm:w-12 dark:border-neutral-700"
     />
     <div class="flex flex-col">
