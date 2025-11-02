@@ -97,9 +97,6 @@ const educationKey = computed(() => {
 })
 
 const translatedDegree = computed(() => {
-  if (props.education.degree) {
-    return props.education.degree
-  }
   if (educationKey.value !== undefined) {
     return t(`articles.education.items.${educationKey.value}.degree`)
   }
@@ -107,9 +104,6 @@ const translatedDegree = computed(() => {
 })
 
 const translatedInstitution = computed(() => {
-  if (props.education.institution) {
-    return props.education.institution
-  }
   if (educationKey.value !== undefined) {
     return t(`articles.education.items.${educationKey.value}.institution`)
   }
@@ -117,9 +111,6 @@ const translatedInstitution = computed(() => {
 })
 
 const translatedFieldOfStudy = computed(() => {
-  if (props.education.fieldOfStudy) {
-    return props.education.fieldOfStudy
-  }
   if (educationKey.value !== undefined) {
     const field = t(`articles.education.items.${educationKey.value}.fieldOfStudy`, '')
     return field || ''
@@ -128,9 +119,6 @@ const translatedFieldOfStudy = computed(() => {
 })
 
 const translatedLocation = computed(() => {
-  if (props.education.location) {
-    return props.education.location
-  }
   if (educationKey.value !== undefined) {
     const loc = t(`articles.education.items.${educationKey.value}.location`, '')
     return loc || ''
@@ -139,9 +127,6 @@ const translatedLocation = computed(() => {
 })
 
 const translatedDescription = computed(() => {
-  if (props.education.description) {
-    return props.education.description
-  }
   if (educationKey.value !== undefined) {
     const desc = t(`articles.education.items.${educationKey.value}.description`, '')
     return desc || ''

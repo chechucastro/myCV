@@ -72,9 +72,6 @@ const translatedHierarchyMode = computed(() => {
 })
 
 const translatedJobPosition = computed(() => {
-  if (props.recommendation.jobPosition) {
-    return props.recommendation.jobPosition
-  }
   if (props.recommendationIndex !== undefined) {
     return t(`articles.recommendations.items.${props.recommendationIndex}.jobPosition`)
   }
@@ -82,9 +79,6 @@ const translatedJobPosition = computed(() => {
 })
 
 const translatedPostComment = computed(() => {
-  if (props.recommendation.postComment) {
-    return props.recommendation.postComment
-  }
   if (props.recommendationIndex !== undefined) {
     return t(`articles.recommendations.items.${props.recommendationIndex}.postComment`)
   }

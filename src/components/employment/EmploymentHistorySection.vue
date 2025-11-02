@@ -2,7 +2,7 @@
   <div class="space-y-6">
     <CompanyHistorySection
       v-for="(company, cIdx) in companyHistory"
-      :key="company.company + '-' + cIdx"
+      :key="(company.companyKey || 'company') + '-' + cIdx"
       :company="company"
     />
   </div>

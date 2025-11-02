@@ -25,7 +25,7 @@
     <div class="space-y-6">
       <PositionCard
         v-for="(pos, pIdx) in props.company.positions"
-        :key="(props.company.company || props.company.companyKey) + '-' + pIdx"
+        :key="(props.company.companyKey || 'company') + '-' + pIdx"
         :position="pos"
         :company-key="props.company.companyKey"
         :position-index="pIdx"
@@ -48,9 +48,6 @@ const props = defineProps<Props>()
 const { t } = useI18n()
 
 const companyName = computed(() => {
-  if (props.company.company) {
-    return props.company.company
-  }
   if (props.company.companyKey) {
     return t(`articles.employment.companies.${props.company.companyKey}.name`)
   }

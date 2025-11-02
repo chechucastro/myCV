@@ -71,9 +71,6 @@ const { t, tm } = useI18n()
 const { formatDate } = useFormatters()
 
 const translatedPosition = computed(() => {
-  if (props.position.position) {
-    return props.position.position
-  }
   if (props.companyKey !== undefined && props.positionIndex !== undefined) {
     return t(`articles.employment.companies.${props.companyKey}.positions.${props.positionIndex}.position`)
   }
@@ -81,9 +78,6 @@ const translatedPosition = computed(() => {
 })
 
 const translatedDescription = computed(() => {
-  if (props.position.description) {
-    return props.position.description
-  }
   if (props.companyKey !== undefined && props.positionIndex !== undefined) {
     const translationKey = `articles.employment.companies.${props.companyKey}.positions.${props.positionIndex}.description`
     try {
@@ -99,9 +93,6 @@ const translatedDescription = computed(() => {
 })
 
 const translatedTechStack = computed(() => {
-  if (props.position.techStack) {
-    return props.position.techStack
-  }
   if (props.companyKey !== undefined && props.positionIndex !== undefined) {
     return t(`articles.employment.companies.${props.companyKey}.positions.${props.positionIndex}.techStack`)
   }

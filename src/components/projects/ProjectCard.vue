@@ -105,9 +105,6 @@ const projectKey = computed(() => {
 })
 
 const translatedTitle = computed(() => {
-  if (props.project.title) {
-    return props.project.title
-  }
   if (projectKey.value !== undefined) {
     return t(`articles.personalProjects.items.${projectKey.value}.title`)
   }
@@ -115,9 +112,6 @@ const translatedTitle = computed(() => {
 })
 
 const translatedDescription = computed(() => {
-  if (props.project.description) {
-    return props.project.description
-  }
   if (projectKey.value !== undefined) {
     const desc = t(`articles.personalProjects.items.${projectKey.value}.description`, '')
     return desc || ''
@@ -126,9 +120,6 @@ const translatedDescription = computed(() => {
 })
 
 const translatedTechStack = computed(() => {
-  if (props.project.techStack) {
-    return props.project.techStack
-  }
   if (projectKey.value !== undefined) {
     const tech = t(`articles.personalProjects.items.${projectKey.value}.techStack`, '')
     return tech || ''
