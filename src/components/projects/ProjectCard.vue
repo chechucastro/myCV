@@ -45,12 +45,13 @@
     </div>
 
     <div v-if="hasLinks" class="flex flex-wrap gap-3">
-      <a
+      <BaseButton
         v-if="project.projectUrl"
+        tag="a"
         :href="project.projectUrl"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 rounded-lg bg-green-50 px-4 py-2 text-sm font-semibold text-green-600 transition-all duration-200 hover:bg-green-100 hover:text-green-700 dark:bg-green-900/30 dark:text-green-400 dark:hover:bg-green-900/50"
+        variant="outline"
+        color="green"
+        size="md"
         :aria-label="`View ${translatedTitle} project (opens in new tab)`"
       >
         <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -62,13 +63,14 @@
           />
         </svg>
         View Project
-      </a>
-      <a
+      </BaseButton>
+      <BaseButton
         v-if="project.githubUrl"
+        tag="a"
         :href="project.githubUrl"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 rounded-lg bg-gray-50 px-4 py-2 text-sm font-semibold text-gray-600 transition-all duration-200 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-900/30 dark:text-gray-400 dark:hover:bg-gray-900/50"
+        variant="outline"
+        color="gray"
+        size="md"
         aria-label="View project on GitHub (opens in new tab)"
       >
         <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -79,7 +81,7 @@
           />
         </svg>
         GitHub
-      </a>
+      </BaseButton>
     </div>
   </BaseCard>
 </template>
@@ -90,6 +92,7 @@ import { useI18n } from 'vue-i18n'
 import type { PersonalProject } from '@/types'
 import { useFormatters } from '@/composables/useFormatters'
 import BaseCard from '@/components/ui/BaseCard.vue'
+import BaseButton from '@/components/ui/BaseButton.vue'
 
 interface Props {
   project: PersonalProject

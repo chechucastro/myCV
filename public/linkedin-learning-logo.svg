@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" fill="none">
+  <!-- LinkedIn "in" icon -->
+  <g fill="#0077B5">
+    <rect x="5" y="10" width="30" height="30" rx="4" fill="#0077B5"/>
+    <text x="20" y="32" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="white" text-anchor="middle">in</text>
+  </g>
+  <!-- Learning text -->
+  <text x="45" y="30" font-family="Arial, sans-serif" font-size="18" font-weight="600" fill="#0077B5">Learning</text>
+</svg>
+
