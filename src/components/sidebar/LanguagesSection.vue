@@ -12,7 +12,7 @@
 
     <ul class="space-y-5">
       <li
-        v-for="(lang, idx) in props.languages"
+        v-for="(lang, idx) in languages"
         :key="lang.name"
         class="group flex flex-col gap-3 rounded-lg p-3 transition-all duration-200 hover:bg-gray-50 dark:hover:bg-neutral-800"
         :aria-labelledby="'lang-name-' + idx"
@@ -83,11 +83,17 @@ import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
 import { useAccessibility } from '@/composables/useAccessibility'
 import { useFormatters } from '@/composables/useFormatters'
 
-interface Props {
-  languages: Language[]
-}
+/**
+ * Languages data
+ */
+const languages: Language[] = [
+  { name: 'Spanish', level: 'Native' },
+  { name: 'French', level: 'Fluent' },
+  { name: 'English', level: 'Fluent' },
+  { name: 'Portuguese', level: 'Professional' },
+  { name: 'Italian', level: 'Conversational' },
+]
 
-const props = defineProps<Props>()
 const { t } = useI18n()
 
 const { observeElement } = useIntersectionObserver()
@@ -103,7 +109,7 @@ onMounted(() => {
     () => {
       languagesVisible.value = true
       // Announce languages briefly (one-by-one) so screen reader users hear initial values
-      props.languages.forEach((lang: Language, i: number) => {
+      languages.forEach((lang: Language, i: number) => {
         window.setTimeout((): void => {
           announceToLiveRegion('languages-live', `${lang.name}: ${lang.level}`)
         }, i * 200)

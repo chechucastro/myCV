@@ -5,13 +5,11 @@ import type { Recommendation } from '@/types'
 
 describe('RecommendationCard', () => {
   const mockRecommendation: Recommendation = {
-    name: 'John',
-    surname: 'Doe',
-    jobPosition: 'Product Manager',
+    name: 'Divya',
+    surname: 'E',
     postDate: '2023-10-15',
     hierarchyMode: 'client',
-    postComment:
-      'Chechu was an exceptional developer who consistently delivered high-quality work.',
+    linkedInUrl: 'https://www.linkedin.com/in/divya-e-11463740/?locale=en_US',
   }
 
   it('should render full name', () => {
@@ -19,7 +17,7 @@ describe('RecommendationCard', () => {
       props: { recommendation: mockRecommendation, recommendationIndex: 0 },
     })
 
-    expect(wrapper.text()).toContain('John Doe')
+    expect(wrapper.text()).toContain('Divya E')
   })
 
   it('should render job position', () => {
@@ -27,7 +25,9 @@ describe('RecommendationCard', () => {
       props: { recommendation: mockRecommendation, recommendationIndex: 0 },
     })
 
-    expect(wrapper.text()).toContain('Product Manager')
+    // Check for the actual job position from i18n translations
+    // Note: The full string might be rendered, checking for the main part
+    expect(wrapper.text()).toContain('Talent Acquisition Lead at Intelligenz IT')
   })
 
   it('should render comment in quotes', () => {
@@ -37,7 +37,8 @@ describe('RecommendationCard', () => {
 
     const blockquote = wrapper.find('blockquote')
     expect(blockquote.exists()).toBe(true)
-    expect(blockquote.text()).toContain('Chechu was an exceptional developer')
+    // Check for actual comment from i18n translations
+    expect(blockquote.text()).toContain('I had the pleasure of hiring chechu on a Vuejs project')
   })
 
   it('should display hierarchy badge for client', () => {
@@ -50,7 +51,9 @@ describe('RecommendationCard', () => {
 
   it('should display hierarchy badge for colleague', () => {
     const colleagueRec: Recommendation = {
-      ...mockRecommendation,
+      name: 'Test',
+      surname: 'User',
+      postDate: '2023-10-15',
       hierarchyMode: 'colleague',
     }
 
@@ -63,7 +66,9 @@ describe('RecommendationCard', () => {
 
   it('should display hierarchy badge for manager', () => {
     const managerRec: Recommendation = {
-      ...mockRecommendation,
+      name: 'Test',
+      surname: 'User',
+      postDate: '2023-10-15',
       hierarchyMode: 'manager',
     }
 
@@ -76,7 +81,9 @@ describe('RecommendationCard', () => {
 
   it('should display hierarchy badge for reports_to', () => {
     const reportsToRec: Recommendation = {
-      ...mockRecommendation,
+      name: 'Test',
+      surname: 'User',
+      postDate: '2023-10-15',
       hierarchyMode: 'reports_to',
     }
 

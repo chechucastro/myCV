@@ -5,7 +5,6 @@
     id="language"
     :aria-label="t('language.select')"
     class="cursor-pointer rounded-lg border-0 bg-transparent px-3 py-2 text-sm font-medium text-gray-700 transition-all duration-200 hover:bg-gray-100 focus:outline-none dark:text-white dark:hover:bg-neutral-800"
-    @change="handleLanguageChange"
   >
     <option v-for="locale in availableLocales" :key="locale" :value="locale">
       {{ t(`language.${locale}`) }}
@@ -14,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, watch, nextTick } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useLanguageStore } from '@/stores/language'
 import { useAccessibility } from '@/composables/useAccessibility'
@@ -30,28 +29,32 @@ const { t, locale } = useI18n()
 const languageStore = useLanguageStore()
 const { announceToScreenReader } = useAccessibility()
 
+// Sync component's i18n locale with store locale
+watch(
+  () => languageStore.currentLocale,
+  (newLocale) => {
+    locale.value = newLocale
+  },
+  { immediate: true },
+)
+
 // Computed property for two-way binding with select element
 const currentLocale = computed<Locale>({
   get: () => languageStore.currentLocale,
   set: (value: Locale) => {
+    // Update store first (this updates i18n.global.locale.value)
     languageStore.setLocale(value)
+    // Immediately update component's locale for instant reactivity
+    locale.value = value
+
+    // Announce change for screen readers (use nextTick to ensure translations are updated)
+    nextTick(() => {
+      const message = `${t('language.select')}: ${t(`language.${value}`)}`
+      announceToScreenReader(message)
+    })
   },
 })
 
 // Available locales from store
 const availableLocales = computed(() => languageStore.availableLocales)
-
-/**
- * Handle language change event
- * Updates both i18n and store
- */
-const handleLanguageChange = () => {
-  // Update i18n locale
-  locale.value = currentLocale.value
-  
-  // Announce change for screen readers
-  const message = `${t('language.select')}: ${t(`language.${currentLocale.value}`)}`
-  announceToScreenReader(message)
-}
 </script>
-

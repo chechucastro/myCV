@@ -107,7 +107,15 @@ test.describe('Responsive Design', () => {
     await page.setViewportSize({ width: 375, height: 667 })
     await page.goto('/')
 
+    // Scroll to make navigation visible (theme toggle is in navigation)
+    await page.evaluate(() => {
+      window.scrollTo(0, 200)
+    })
+    await page.waitForTimeout(500)
+
     const themeToggle = page.getByRole('button', { name: /enable dark mode|disable dark mode/i })
+    await expect(themeToggle).toBeVisible()
+    
     const boundingBox = await themeToggle.boundingBox()
 
     // Button should be reasonably sized for touch (actual implementation is 32px height)

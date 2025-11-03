@@ -25,7 +25,7 @@ describe('CertificationCard', () => {
       props: { certification: mockCertification },
     })
 
-    expect(wrapper.text()).toContain('Issued by:')
+    expect(wrapper.text()).toContain('Issued by')
     expect(wrapper.text()).toContain('Vue School')
   })
 
@@ -45,6 +45,7 @@ describe('CertificationCard', () => {
       props: { certification: mockCertification },
     })
 
+    // BaseButton renders as <a> when tag="a"
     const link = wrapper.find('a')
     expect(link.exists()).toBe(true)
     expect(link.attributes('href')).toBe('https://vueschool.io/certificates/test')
@@ -65,6 +66,7 @@ describe('CertificationCard', () => {
       props: { certification: mockCertification },
     })
 
+    // BaseButton renders as <a> when tag="a"
     const link = wrapper.find('a')
     expect(link.attributes('aria-label')).toContain('View Vue.js 3 Certification certificate')
   })

@@ -70,15 +70,31 @@
     </ul>
 
     <!-- Show More / Show Less button -->
-    <button
-      v-if="hasMoreSkills"
-      @click="toggleShowMore"
-      :aria-expanded="showMore"
-      :aria-controls="'additional-skills'"
-      class="mt-6 w-full rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:from-blue-600 hover:to-purple-600 hover:shadow-lg focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none dark:focus:ring-offset-neutral-900"
-    >
-      {{ showMore ? 'Show Less' : 'Show More' }}
-    </button>
+    <div v-if="hasMoreSkills" class="mt-6">
+      <BaseButton
+        variant="outline"
+        color="green"
+        size="md"
+        button-type="button"
+        full-width
+        :aria-expanded="showMore"
+        :aria-controls="'additional-skills'"
+        :aria-label="showMore ? t('common.showLess') : t('common.showMore')"
+        @click="toggleShowMore"
+      >
+        <span>{{ showMore ? t('common.showLess') : t('common.showMore') }}</span>
+        <svg
+          class="h-4 w-4 transition-transform duration-200"
+          :class="{ 'rotate-180': showMore }"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </BaseButton>
+    </div>
   </section>
 </template>
 
@@ -89,12 +105,45 @@ import type { Skill } from '@/types'
 import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
 import { useAccessibility } from '@/composables/useAccessibility'
 import { TOP_SKILLS_COUNT } from '@/config/constants'
+import BaseButton from '@/components/ui/BaseButton.vue'
 
-interface Props {
-  skills: Skill[]
-}
+/**
+ * Skills data
+ */
+const skills: Skill[] = [
+  { name: 'Vue', level: 90 },
+  { name: 'Tailwind CSS', level: 75 },
+  { name: 'Sass/Less/Stylus', level: 98 },
+  { name: 'JavaScript', level: 85 },
+  { name: 'TypeScript', level: 50 },
+  { name: 'HTML', level: 95 },
+  { name: 'Nuxt', level: 50 },
+  { name: 'Bootstrap', level: 80 },
+  { name: 'Vuetify', level: 75 },
+  { name: 'Responsive Web Design (RWD)', level: 92 },
+  { name: 'UI Implementation', level: 90 },
+  { name: 'Component Libraries', level: 85 },
+  { name: 'Atomic Design', level: 82 },
+  { name: 'SOLID principles', level: 88 },
+  { name: 'Agile Methodologies', level: 85 },
+  { name: 'RESTful APIs', level: 83 },
+  { name: 'Figma', level: 70 },
+  { name: 'Git', level: 90 },
+  { name: 'Unit Testing', level: 75 },
+  { name: 'Cypress', level: 68 },
+  { name: 'Vitest', level: 72 },
+  { name: 'Playwright', level: 65 },
+  { name: 'Vite', level: 85 },
+  { name: 'Axios', level: 82 },
+  { name: 'Mjml', level: 78 },
+  { name: 'Email templates', level: 75 },
+  { name: 'Twig', level: 72 },
+  { name: 'Swagger', level: 70 },
+  { name: 'Jira', level: 88 },
+  { name: 'Jquery', level: 90 },
+  { name: 'Scrum and agile methodologies', level: 85 },
+]
 
-const props = defineProps<Props>()
 const { t } = useI18n()
 
 const { observeElement } = useIntersectionObserver()
@@ -105,7 +154,7 @@ const topSkillsCount = TOP_SKILLS_COUNT
 
 // Sort skills by level (descending) and split into top skills and the rest
 const sortedSkills = computed(() => {
-  return [...props.skills].sort((a, b) => b.level - a.level)
+  return [...skills].sort((a, b) => b.level - a.level)
 })
 
 const topSkills = computed(() => {

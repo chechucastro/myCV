@@ -12,34 +12,31 @@
       {{ translatedTitle }}
     </h2>
 
-    <!-- If a simple body exists, render it -->
+    <!-- If Profile or Core Competencies section, render body -->
     <ProfileSection
-      v-if="section.body && !section.companyHistory"
-      :body="translatedBody || section.body"
+      v-if="(section.title === 'Profile' || section.title === 'Core Competencies') && !section.companyHistory"
+      :body="translatedBody || section.body || ''"
     />
 
     <!-- If companyHistory is provided, render grouped entries -->
     <EmploymentHistorySection
-      v-if="section.companyHistory"
-      :company-history="section.companyHistory"
+      v-if="section.title === 'Employment history'"
     />
 
     <!-- If education is provided, render it -->
     <EducationSection v-if="section.education" :education="section.education" />
 
     <!-- If certifications are provided, render them -->
-    <CertificationsSection v-if="section.certifications" :certifications="section.certifications" />
+    <CertificationsSection v-if="section.title === 'Licenses & certifications'" />
 
     <!-- If personal projects are provided, render them -->
     <PersonalProjectsSection
-      v-if="section.personalProjects"
-      :personal-projects="section.personalProjects"
+      v-if="section.title === 'Personal projects'"
     />
 
     <!-- Recommendations -->
     <RecommendationsSection
-      v-if="section.recommendations"
-      :recommendations="section.recommendations"
+      v-if="section.title === 'Recommendations'"
     />
   </section>
 </template>

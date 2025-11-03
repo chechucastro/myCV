@@ -3,6 +3,11 @@ import { test, expect } from '@playwright/test'
 test.describe('Theme Toggle', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/')
+    // Scroll to make navigation visible so theme toggle is accessible
+    await page.evaluate(() => {
+      window.scrollTo(0, 200)
+    })
+    await page.waitForTimeout(500)
   })
 
   test('should toggle dark mode on and off', async ({ page }) => {

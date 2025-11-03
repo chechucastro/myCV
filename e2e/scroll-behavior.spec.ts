@@ -25,15 +25,16 @@ test.describe('Scroll Behavior', () => {
   })
 
   test('should show name in navigation when scrolled', async ({ page }) => {
-    // Initial state - name should not be in navigation (it's in hero)
-    const nav = page.getByRole('navigation', { name: /primary navigation/i })
-
-    // Scroll down significantly past the hero section
+    // Scroll down significantly past the hero section to trigger navigation visibility
     await page.evaluate(() => window.scrollBy(0, window.innerHeight + 200))
 
     // Wait for scroll handler and transition
     await page.waitForTimeout(800)
 
+    // Navigation should now be visible and contain name
+    const nav = page.getByRole('navigation', { name: /primary navigation/i })
+    await expect(nav).toBeVisible()
+    
     // Name should now appear in navigation
     const navText = await nav.textContent()
     expect(navText).toContain('Chechu Castro')

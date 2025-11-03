@@ -1,19 +1,4 @@
-<template>
-  <component
-    :is="tag"
-    :href="tag === 'a' ? href : undefined"
-    :target="tag === 'a' && external ? '_blank' : undefined"
-    :rel="tag === 'a' && external ? 'noopener noreferrer' : undefined"
-    :type="tag === 'button' ? buttonType : undefined"
-    :disabled="disabled"
-    :aria-label="ariaLabel"
-    :class="buttonClasses"
-  >
-    <slot />
-  </component>
-</template>
 
-<script setup lang="ts">
 import { computed } from 'vue'
 import { tv } from 'tailwind-variants'
 
@@ -145,5 +130,47 @@ const buttonClasses = computed(() => {
   })
   return props.customClasses ? `${baseClasses} ${props.customClasses}` : baseClasses
 })
-</script>
-
+export default (await import('vue')).defineComponent({
+props: (__VLS_mergePropDefaults({} as __VLS_DefinePropsToOptions<Props>, {
+  variant: 'solid',
+  color: 'blue',
+  size: 'md',
+  fullWidth: false,
+  disabled: false,
+  tag: 'button',
+  external: true,
+  buttonType: 'button',
+})),
+setup() {
+() => {
+{
+// @ts-ignore
+(tag);
+// @ts-ignore
+(tag === 'a' ? href : undefined);
+// @ts-ignore
+(tag === 'a' && external ? '_blank' : undefined);
+// @ts-ignore
+(tag === 'a' && external ? 'noopener noreferrer' : undefined);
+// @ts-ignore
+(tag === 'button' ? buttonType : undefined);
+// @ts-ignore
+(disabled);
+// @ts-ignore
+(ariaLabel);
+// @ts-ignore
+(buttonClasses);
+{
+}
+}
+};
+return { };
+},
+});
+type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
+type __VLS_DefinePropsToOptions<T> = { [K in keyof T]-?: {} extends Pick<T, K> ? { type: import('vue').PropType<__VLS_NonUndefinedable<T[K]>> } : { type: import('vue').PropType<T[K]>, required: true } };
+declare function __VLS_mergePropDefaults<P, D>(props: P, defaults: D): {
+			[K in keyof P]: K extends keyof D ? P[K] & {
+				default: D[K]
+			} : P[K]
+		}

@@ -45,8 +45,19 @@ test.describe('Accessibility', () => {
     // Check for main landmark
     await expect(page.getByRole('main')).toBeVisible()
 
-    // Check for navigation landmark
-    await expect(page.getByRole('navigation')).toBeVisible()
+    // Navigation is conditionally visible (only shows after scroll)
+    // Use locator instead of getByRole since navigation might be hidden with v-show
+    const navigation = page.locator('nav[role="navigation"]')
+    await expect(navigation).toBeAttached()
+
+    // Scroll to trigger navigation visibility
+    await page.evaluate(() => {
+      window.scrollTo(0, 200)
+    })
+    await page.waitForTimeout(500)
+
+    // Now navigation should be visible
+    await expect(navigation).toBeVisible()
 
     // Check for banner landmark
     await expect(page.getByRole('banner')).toBeVisible()
@@ -63,6 +74,12 @@ test.describe('Accessibility', () => {
   })
 
   test('should have proper form labels', async ({ page }) => {
+    // Scroll to make navigation visible (language selector is in navigation)
+    await page.evaluate(() => {
+      window.scrollTo(0, 200)
+    })
+    await page.waitForTimeout(500)
+
     // Language selector should have a proper label or aria-label
     const select = page.locator('select#language, select[name="language"]')
     await expect(select.first()).toBeVisible()
@@ -121,7 +138,17 @@ test.describe('Accessibility', () => {
     // Check for semantic elements
     await expect(page.locator('header')).toBeVisible()
     await expect(page.locator('main')).toBeVisible()
-    await expect(page.locator('nav')).toBeVisible()
+    
+    // Navigation is conditionally visible, so check if it's attached to DOM
+    const nav = page.locator('nav')
+    await expect(nav).toBeAttached()
+    
+    // Scroll to trigger navigation visibility if needed
+    await page.evaluate(() => {
+      window.scrollTo(0, 200)
+    })
+    await page.waitForTimeout(500)
+    
     // Check for main article with aria-label
     await expect(page.getByRole('article', { name: 'Main article content' })).toBeVisible()
     // Check for sections (article sections)

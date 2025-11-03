@@ -6,6 +6,7 @@
     style="margin-left: calc((100vw - 100%) / -2); margin-right: calc((100vw - 100%) / -2)"
   >
     <nav
+      v-show="showNav"
       class="fixed top-0 right-0 left-0 z-50 w-screen bg-white transition-all duration-300 dark:border-neutral-700/50 dark:bg-gradient-to-br dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950"
       :class="{ 'shadow-md': isScrolled }"
       role="navigation"
@@ -67,13 +68,15 @@ interface Props {
   profileImage?: string
   isScrolled: boolean
   showNameInNav: boolean
+  showNav: boolean
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   name: 'Chechu Castro',
   jobTitle: 'UI Frontend Web Developer',
   techStack: 'VueJS • Quasar • Nuxt • TailwindCSS',
   profileImage: '/chechuLinkedInOpentoWork.webp',
+  showNav: false,
 })
 </script>
 

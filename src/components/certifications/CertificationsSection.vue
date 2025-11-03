@@ -9,13 +9,34 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import type { Certification } from '@/types'
 import CertificationCard from './CertificationCard.vue'
 
-interface Props {
-  certifications: Certification[]
-}
+const { tm, locale } = useI18n()
 
-defineProps<Props>()
+/**
+ * Build certifications from translations
+ * Reactive to locale changes by accessing locale.value
+ */
+const certifications = computed<Certification[]>(() => {
+  // Access locale.value to make this computed reactive to locale changes
+  void locale.value // Access to track reactivity, even if unused
+  
+  const items = tm('articles.certifications.items')
+  
+  if (!Array.isArray(items)) {
+    return []
+  }
+
+  return items.map((cert: any) => ({
+    title: cert.title,
+    issuedBy: cert.issuedBy,
+    issuedDate: cert.issuedDate,
+    certificateImage: cert.certificateImage,
+    certificateLink: cert.certificateLink,
+  }))
+})
 </script>
 

@@ -1,39 +1,4 @@
-<template>
-  <DefaultLayout aria-label="Main layout">
-    <!-- Skip to main content for keyboard users -->
-    <SkipToContent />
 
-    <!-- Header with navigation and hero section -->
-    <AppHeader
-      :is-scrolled="isScrolled"
-      :show-name-in-nav="showNameInNav"
-      :show-nav="showNav"
-      :name="contactInfo?.name || 'Chechu Castro'"
-      :job-title="contactInfo?.jobTitle || 'UI Frontend Web Developer'"
-      :tech-stack="contactInfo?.techStack || 'VueJS • Quasar • Nuxt • TailwindCSS'"
-      :profile-image="contactInfo?.profileImage || '/chechuLinkedInOpentoWork.webp'"
-    />
-
-    <main
-      id="maincontent"
-      role="main"
-      tabindex="-1"
-      aria-label="Primary content"
-      class="relative bg-white transition-all duration-300 dark:bg-neutral-950"
-      :class="{ 'pt-20 sm:pt-24': showNav }"
-    >
-      <div class="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-8 lg:flex-row lg:items-start lg:px-8">
-        <!-- Sidebar -->
-        <CVSidebar ref="sidebarRef" />
-
-        <!-- Main article content -->
-        <CVArticle />
-      </div>
-    </main>
-  </DefaultLayout>
-</template>
-
-<script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed, nextTick, type Ref } from 'vue'
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
 import SkipToContent from '@/components/header/SkipToContent.vue'
@@ -42,18 +7,10 @@ import CVSidebar from '@/components/sidebar/CVSidebar.vue'
 import CVArticle from '@/components/article/CVArticle.vue'
 import { useScroll } from '@/composables/useScroll'
 import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
-import type { ContactInfo } from '@/types'
+import { skills, languages, articleSections, contactInfo } from '@/data/cv-data'
 
 // Use scroll composable
 const { isScrolled } = useScroll()
-
-// Sidebar ref to access contactInfo
-const sidebarRef = ref<InstanceType<typeof CVSidebar> | null>(null)
-
-// Get contactInfo from sidebar
-const contactInfo = computed<ContactInfo | undefined>(() => {
-  return sidebarRef.value?.contactInfo
-})
 
 // Use intersection observer composable
 const { observeElement, setupScrollReveal } = useIntersectionObserver()
@@ -114,25 +71,58 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
 })
-</script>
-
-<style scoped>
-/* Scroll reveal animations */
-.scroll-reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition:
-    opacity 0.6s ease-out,
-    transform 0.6s ease-out;
+export default (await import('vue')).defineComponent({
+setup() {
+() => {
+// @ts-ignore
+DefaultLayout;
+// @ts-ignore
+SkipToContent;
+// @ts-ignore
+AppHeader;
+// @ts-ignore
+CVSidebar;
+// @ts-ignore
+CVArticle;
+{
+{
 }
-
-.scroll-reveal.revealed {
-  opacity: 1;
-  transform: translateY(0);
+{
+// @ts-ignore
+(isScrolled);
+// @ts-ignore
+(showNameInNav);
+// @ts-ignore
+(showNav);
+// @ts-ignore
+(contactInfo.name);
+// @ts-ignore
+(contactInfo.jobTitle);
+// @ts-ignore
+(contactInfo.techStack);
+// @ts-ignore
+(contactInfo.profileImage);
 }
-
-/* Smooth scroll behavior */
-html {
-  scroll-behavior: smooth;
+{
+// @ts-ignore
+({ 'pt-20 sm:pt-24': showNav });
+{
+{
+// @ts-ignore
+(skills);
+// @ts-ignore
+(languages);
+// @ts-ignore
+(contactInfo);
 }
-</style>
+{
+// @ts-ignore
+(articleSections);
+}
+}
+}
+}
+};
+return { };
+},
+});

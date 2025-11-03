@@ -19,8 +19,8 @@
             <!-- LinkedIn -->
             <ButtonDetails
               :label="t('details.linkedin')"
-              :value="props.contactInfo.linkedin.handle"
-              :href="props.contactInfo.linkedin.url"
+              :value="contactInfo.linkedin.handle"
+              :href="contactInfo.linkedin.url"
               :aria-label="t('aria.linkedinProfile')"
               icon-bg-class="bg-[#0A66C2]"
               icon-fill="white"
@@ -31,8 +31,8 @@
             <!-- GitHub -->
             <ButtonDetails
               :label="t('details.github')"
-              :value="props.contactInfo.github.handle"
-              :href="props.contactInfo.github.url"
+              :value="contactInfo.github.handle"
+              :href="contactInfo.github.url"
               :aria-label="t('aria.githubProfile')"
               icon-bg-class="bg-gray-900 dark:bg-white"
               icon-classes="text-white dark:text-gray-900"
@@ -52,8 +52,8 @@
           </h3>
           <ButtonDetails
             :label="t('details.email')"
-            :value="props.contactInfo.email"
-            :href="`mailto:${props.contactInfo.email}`"
+            :value="contactInfo.email"
+            :href="`mailto:${contactInfo.email}`"
             :aria-label="t('aria.sendEmail')"
             icon-bg-class="bg-gradient-to-br from-blue-500 to-purple-600"
             :icon-path="ICONS.email"
@@ -70,8 +70,8 @@
           </h3>
           <ButtonDetails
             :label="t('details.address')"
-            :value="props.contactInfo.address"
-            :secondary-value="props.contactInfo.country"
+            :value="contactInfo.address"
+            :secondary-value="contactInfo.country"
             icon-bg-class="bg-gradient-to-br from-red-500 to-pink-600"
             :icon-path="ICONS.location"
             :is-clickable="false"
@@ -87,7 +87,7 @@
           </h3>
           <ButtonDetails
             :label="t('details.country')"
-            :value="props.contactInfo.nationality"
+            :value="contactInfo.nationality"
             icon-bg-class="bg-gradient-to-br from-green-500 to-emerald-600"
             :icon-path="ICONS.globe"
             :is-clickable="false"
@@ -99,16 +99,37 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { ContactInfo } from '@/types'
 import ButtonDetails from '@/components/ui/ButtonDetails.vue'
 
-interface Props {
-  contactInfo: ContactInfo
+/**
+ * Contact information
+ */
+const contactInfo: ContactInfo = {
+  name: 'Chechu Castro',
+  jobTitle: 'UI Frontend Web Developer',
+  techStack: 'VueJS • Quasar • Nuxt • TailwindCSS',
+  profileImage: '/chechuLinkedInOpentoWork.webp',
+  linkedin: {
+    url: 'https://www.linkedin.com/in/chechucastro',
+    handle: 'linkedin.com/in/chechucastro',
+  },
+  github: {
+    url: 'https://github.com/chechucastro',
+    handle: 'github.com/chechucastro',
+  },
+  email: 'chechu@digitatis.com',
+  address: 'Tercera Transversal Solanas N°3, 36780 A Guarda',
+  country: 'Spain',
+  nationality: 'Spanish',
 }
 
-const props = withDefaults(defineProps<Props>(), {})
 const { t } = useI18n()
+
+// Expose contactInfo for parent components that need it
+defineExpose({ contactInfo })
 
 /**
  * Icon SVG path constants

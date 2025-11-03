@@ -5,17 +5,6 @@ import type { EmploymentPosition } from '@/types'
 
 describe('PositionCard', () => {
   const mockPosition: EmploymentPosition = {
-    position: 'Senior Frontend Developer',
-    startDate: '2020-06-01',
-    endDate: '2023-12-31',
-    description: [
-      'Led frontend architecture',
-      'Implemented design system',
-      'Improved performance by 30%',
-    ],
-  }
-
-  const mockPositionWithI18n: EmploymentPosition = {
     startDate: '2020-06-01',
     endDate: '2023-12-31',
   }
@@ -25,7 +14,10 @@ describe('PositionCard', () => {
       props: { position: mockPosition, companyKey: 'fairlyne', positionIndex: 0 },
     })
 
-    expect(wrapper.text()).toContain('Senior Frontend Developer')
+    // Check for the actual position title from i18n translations
+    expect(wrapper.text()).toContain(
+      'Front-End Developer (Vue.js / Nuxt / Quasar framework / Tailwind / Reka UI)',
+    )
   })
 
   it('should render all description items', () => {
@@ -33,9 +25,12 @@ describe('PositionCard', () => {
       props: { position: mockPosition, companyKey: 'fairlyne', positionIndex: 0 },
     })
 
-    expect(wrapper.text()).toContain('Led frontend architecture')
-    expect(wrapper.text()).toContain('Implemented design system')
-    expect(wrapper.text()).toContain('Improved performance by 30%')
+    // Check for actual description items from i18n translations
+    expect(wrapper.text()).toContain(
+      'Engineered a shared modular architecture with Nuxt Layers and Vue Query',
+    )
+    expect(wrapper.text()).toContain('Built and maintained a scalable Atomic Design system')
+    expect(wrapper.text()).toContain('Optimized UI performance through lazy loading')
   })
 
   it('should display date range', () => {

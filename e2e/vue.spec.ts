@@ -17,7 +17,21 @@ test.describe('Vue App', () => {
 
     // Check main structural elements exist
     await expect(page.getByRole('banner')).toBeVisible()
-    await expect(page.getByRole('navigation')).toBeVisible()
+    
+    // Navigation is conditionally visible (only shows after scroll)
+    // Use locator instead of getByRole since navigation might be hidden with v-show
+    const navigation = page.locator('nav[role="navigation"]')
+    await expect(navigation).toBeAttached()
+    
+    // Scroll to trigger navigation visibility
+    await page.evaluate(() => {
+      window.scrollTo(0, 200)
+    })
+    await page.waitForTimeout(500)
+    
+    // Now navigation should be visible
+    await expect(navigation).toBeVisible()
+    
     await expect(page.getByRole('main')).toBeVisible()
   })
 })
