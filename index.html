@@ -5,6 +5,21 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CV Chechu Castro - Frontend UI Web developer - VueJS - Nuxt - Quasar framework</title>
+    <!-- Prevent flash of light mode before Vue loads -->
+    <script>
+      (function() {
+        try {
+          const theme = localStorage.getItem('theme-preference');
+          // Default to dark mode if no preference is saved
+          if (theme === 'dark' || theme === null) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {
+          // Default to dark mode if localStorage is unavailable
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
     <!-- Preconnect to external domains for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
