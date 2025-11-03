@@ -7,7 +7,7 @@
     class="cursor-pointer rounded-lg border-0 bg-transparent px-3 py-2 text-sm font-medium text-gray-700 transition-all duration-200 hover:bg-gray-100 focus:outline-none dark:text-white dark:hover:bg-neutral-800"
   >
     <option v-for="locale in availableLocales" :key="locale" :value="locale">
-      {{ t(`language.${locale}`) }}
+      {{ getFlagIcon(locale) }} {{ t(`language.${locale}`) }}
     </option>
   </select>
 </template>
@@ -57,4 +57,16 @@ const currentLocale = computed<Locale>({
 
 // Available locales from store
 const availableLocales = computed(() => languageStore.availableLocales)
+
+/**
+ * Get flag emoji for a locale
+ */
+const getFlagIcon = (locale: Locale): string => {
+  const flagMap: Record<Locale, string> = {
+    en: '🇬🇧',
+    es: '🇪🇸',
+    fr: '🇫🇷',
+  }
+  return flagMap[locale] || ''
+}
 </script>

@@ -38,6 +38,13 @@
       "fluent": "Fluido",
       "professional": "Profesional",
       "conversational": "Conversacional"
+    },
+    "names": {
+      "spanish": "Español",
+      "french": "Francés",
+      "english": "Inglés",
+      "portuguese": "Portugués",
+      "italian": "Italiano"
     }
   },
   "theme": {

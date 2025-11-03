@@ -22,7 +22,7 @@
             :id="'lang-name-' + idx"
             class="text-lg font-semibold text-gray-900 transition-colors group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400"
           >
-            {{ lang.name }}
+            {{ getTranslatedLanguageName(lang.name) }}
           </div>
           <div
             class="rounded-full px-3 py-1 text-xs font-medium text-white"
@@ -60,7 +60,7 @@
           :aria-valuemin="1"
           :aria-valuemax="5"
           :aria-valuenow="getLanguageLevelNumber(lang.level)"
-          :aria-label="t('aria.languageProficiency', { language: lang.name, level: lang.level })"
+          :aria-label="t('aria.languageProficiency', { language: getTranslatedLanguageName(lang.name), level: t('languages.levels.' + lang.level.toLowerCase()) })"
           class="sr-only"
         >
           {{
@@ -102,6 +102,21 @@ const { getLanguageLevelNumber, getLanguageLevelColor } = useFormatters()
 
 const languagesVisible: Ref<boolean> = ref<boolean>(false)
 
+/**
+ * Get translated language name from translation keys
+ */
+const getTranslatedLanguageName = (languageName: string): string => {
+  const languageKey = languageName.toLowerCase()
+  const translationKey = `languages.names.${languageKey}`
+  const translated = t(translationKey)
+  // If translation exists and is different from the key, return it
+  if (translated !== translationKey) {
+    return translated
+  }
+  // Fallback to original name if translation not found
+  return languageName
+}
+
 onMounted(() => {
   // Observe languages section to animate bars only when visible
   observeElement(
@@ -111,7 +126,9 @@ onMounted(() => {
       // Announce languages briefly (one-by-one) so screen reader users hear initial values
       languages.forEach((lang: Language, i: number) => {
         window.setTimeout((): void => {
-          announceToLiveRegion('languages-live', `${lang.name}: ${lang.level}`)
+          const translatedName = getTranslatedLanguageName(lang.name)
+          const translatedLevel = t('languages.levels.' + lang.level.toLowerCase())
+          announceToLiveRegion('languages-live', `${translatedName}: ${translatedLevel}`)
         }, i * 200)
       })
     },
