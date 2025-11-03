@@ -353,6 +353,11 @@
           "techStack": "Vue 3 • TypeScript • Tailwind CSS • Vite • Pinia • Vue I18n • Vitest • Playwright"
         },
         {
+          "title": "Temper",
+          "description": "Une liste triable animée avec des transitions. Construite avec Vue.js, comportant une fonctionnalité de glisser-déposer fluide et des animations élégantes.",
+          "techStack": "Vue.js • JavaScript • SCSS • HTML • CSS"
+        },
+        {
           "title": "Nemonon",
           "description": "Nemonon est un nouvel endroit pour parler. Rencontrez des gens et créez vos événements. Ce site web est fait avec amour et beaucoup de Sass, Html5, Php et javascript.",
           "techStack": "Sass • HTML5 • PHP • JavaScript"

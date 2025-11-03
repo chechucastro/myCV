@@ -33,6 +33,11 @@ const personalProjectsMetadata: Array<{
     endDate: '2025-10-31',
   },
   {
+    githubUrl: 'https://github.com/chechucastro/temper',
+    startDate: '2022-03-01',
+    endDate: '2022-03-31',
+  },
+  {
     projectUrl: 'https://nemonon.com',
     githubUrl: 'https://github.com/chechucastro/nemonon',
     githubIsPrivate: true,
@@ -69,9 +74,9 @@ const { tm, locale } = useI18n()
 const personalProjects = computed<PersonalProject[]>(() => {
   // Access locale.value to make this computed reactive to locale changes
   void locale.value // Access to track reactivity, even if unused
-  
+
   const items = tm('articles.personalProjects.items')
-  
+
   if (!Array.isArray(items)) {
     return []
   }
@@ -89,4 +94,3 @@ const personalProjects = computed<PersonalProject[]>(() => {
   })
 })
 </script>
-

@@ -353,6 +353,11 @@
           "techStack": "Vue 3 • TypeScript • Tailwind CSS • Vite • Pinia • Vue I18n • Vitest • Playwright"
         },
         {
+          "title": "Temper",
+          "description": "A sortable list animated with transitions. Built with Vue.js, featuring smooth drag-and-drop functionality and elegant animations.",
+          "techStack": "Vue.js • JavaScript • SCSS • HTML • CSS"
+        },
+        {
           "title": "Nemonon",
           "description": "Nemonon is a new place to talk. Meet people and create your events. This website is made with love and lots of Sass, Html5, Php and javascript.",
           "techStack": "Sass • HTML5 • PHP • JavaScript"
