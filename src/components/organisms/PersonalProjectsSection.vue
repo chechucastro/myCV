@@ -5,6 +5,7 @@
       :key="projectIdx"
       :project="project"
       :project-index="projectIdx"
+      class="h-full"
     />
   </div>
 </template>
@@ -21,23 +22,39 @@ import ProjectCard from '@/components/molecules/ProjectCard.vue'
 const personalProjectsMetadata: Array<{
   projectUrl?: string
   githubUrl?: string
+  githubIsPrivate?: boolean
   startDate?: string
   endDate?: string
 }> = [
   {
+    projectUrl: window.location.origin,
+    githubUrl: 'https://github.com/chechucastro/myCV',
+    startDate: '2025-10-01',
+    endDate: '2025-10-31',
+  },
+  {
     projectUrl: 'https://nemonon.com',
+    githubUrl: 'https://github.com/chechucastro/nemonon',
+    githubIsPrivate: true,
     startDate: '2015-09-01',
+    endDate: '2024-12-31',
   },
   {
     projectUrl: 'https://xemacon.com',
+    githubUrl: 'https://github.com/chechucastro/xemacon',
+    githubIsPrivate: true,
     startDate: '2014-01-01',
+    endDate: '2024-12-31',
   },
   {
-    projectUrl: 'https://nexus5.com.es',
-    startDate: '2013-10-01',
+    githubUrl: 'https://github.com/chechucastro/CookieLaw',
+    startDate: '2013-01-01',
+    endDate: '2013-01-31',
   },
   {
     projectUrl: 'https://maurolomba.com',
+    githubUrl: 'https://github.com/chechucastro/maurolomba',
+    githubIsPrivate: true,
     startDate: '2010-01-01',
     endDate: '2010-03-31',
   },
@@ -65,6 +82,7 @@ const personalProjects = computed<PersonalProject[]>(() => {
       projectKey: idx,
       projectUrl: metadata.projectUrl,
       githubUrl: metadata.githubUrl,
+      githubIsPrivate: metadata.githubIsPrivate,
       startDate: metadata.startDate,
       endDate: metadata.endDate,
     }

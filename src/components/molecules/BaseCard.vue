@@ -27,7 +27,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const card = tv({
-  base: 'group relative overflow-hidden rounded-xl bg-gradient-to-br from-white to-gray-50 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl border-0  dark:border-neutral-700 dark:from-neutral-800 dark:to-neutral-900 dark:shadow-lg dark:shadow-black/20',
+  base: 'group relative overflow-hidden rounded-xl bg-gradient-to-br from-white to-gray-50 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl border-0 dark:border-neutral-700 dark:from-neutral-800 dark:to-neutral-900 dark:shadow-lg dark:shadow-black/20 flex flex-col h-full',
   variants: {
     borderColor: {
       blue: 'border-l-4 border-blue-500 dark:border-l-4 dark:border-blue-400',

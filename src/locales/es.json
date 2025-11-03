@@ -18,7 +18,6 @@
     "location": "Ubicación",
     "nationality": "Nacionalidad",
     "linkedin": "LinkedIn",
-    "github": "GitHub",
     "email": "Correo electrónico",
     "address": "Dirección",
     "country": "País"
@@ -62,7 +61,9 @@
   "common": {
     "showMore": "Mostrar más",
     "showLess": "Mostrar menos",
-    "viewProject": "Ver Proyecto"
+    "viewProject": "Ver Proyecto",
+    "github": "GitHub",
+    "privateRepo": "Privado"
   },
   "employment": {
     "present": "Actual",
@@ -347,6 +348,11 @@
       "title": "Proyectos personales",
       "items": [
         {
+          "title": "Mi CV",
+          "description": "Un sitio web de CV moderno y responsive construido con Vue 3, TypeScript y Tailwind CSS. Características: modo oscuro, soporte multiidioma y un diseño limpio y profesional.",
+          "techStack": "Vue 3 • TypeScript • Tailwind CSS • Vite • Pinia • Vue I18n • Vitest • Playwright"
+        },
+        {
           "title": "Nemonon",
           "description": "Nemonon es un nuevo lugar para hablar. Conoce gente y crea tus eventos. Este sitio web está hecho con amor y mucho Sass, Html5, Php y javascript.",
           "techStack": "Sass • HTML5 • PHP • JavaScript"
@@ -357,14 +363,14 @@
           "techStack": "Sass • Gulp • HTML5 • jQuery"
         },
         {
-          "title": "Nexus 5",
-          "description": "Sigue la actualidad High-Tech, Geek, Web y Mobile con Nexus5.com.es",
-          "techStack": ""
+          "title": "Cookielaw plugin",
+          "description": "Plugin para Zepto o jQuery que verifica un valor de cookie y oculta o muestra un bloque HTML para informar a los visitantes sobre la política de cookies europea.",
+          "techStack": "JavaScript • jQuery • Zepto • CSS"
         },
         {
           "title": "Maurolomba",
           "description": "Sitio de arquitectura",
-          "techStack": ""
+          "techStack": "HTML5 • CSS3 • Sass • PHP • JavaScript • jQuery"
         }
       ]
     },
