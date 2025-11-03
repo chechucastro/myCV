@@ -5,6 +5,7 @@
   "sections": {
     "details": "Détails",
     "skills": "Compétences",
+    "otherSkills": "Autres compétences",
     "languages": "Langues",
     "profile": "Profil",
     "employment": "Historique professionnel",
@@ -60,7 +61,8 @@
   },
   "common": {
     "showMore": "Afficher plus",
-    "showLess": "Afficher moins"
+    "showLess": "Afficher moins",
+    "viewProject": "Voir le Projet"
   },
   "employment": {
     "present": "Actuel",
@@ -315,10 +317,10 @@
       "title": "Formation",
       "items": [
         {
-          "degree": "Licence",
-          "institution": "Université de Technologie",
-          "fieldOfStudy": "Informatique",
-          "location": "Paris, France"
+          "degree": "Gestion des Services de Tourisme et Voyages",
+          "institution": "Institut de Formation et de Développement IATA",
+          "fieldOfStudy": "Gestion des Services de Tourisme et Voyages",
+          "location": "1 Butterwick\nLondon W6 8DL\nRoyaume-Uni"
         }
       ]
     },
@@ -345,14 +347,24 @@
       "title": "Projets personnels",
       "items": [
         {
-          "title": "Plateforme E-commerce",
-          "description": "Une plateforme e-commerce full-stack construite avec Vue 3, Nuxt 4 et Tailwind CSS. Caractéristiques incluent authentification utilisateur, catalogue de produits, panier d'achat, intégration de paiement et tableau de bord administrateur.",
-          "techStack": "Vue 3 • Nuxt 4 • Tailwind CSS • TypeScript • Pinia • Vite • Stripe API • RESTful APIs"
+          "title": "Nemonon",
+          "description": "Nemonon est un nouvel endroit pour parler. Rencontrez des gens et créez vos événements. Ce site web est fait avec amour et beaucoup de Sass, Html5, Php et javascript.",
+          "techStack": "Sass • HTML5 • PHP • JavaScript"
         },
         {
-          "title": "Application de Gestion de Tâches",
-          "description": "Une application collaborative de gestion de tâches avec mises à jour en temps réel, fonctionnalité de glisser-déposer et fonctionnalités de collaboration d'équipe. Construite en utilisant des technologies frontend modernes.",
-          "techStack": "Vue 3 • Quasar Framework • TypeScript • Vue Query • WebSocket • Vite • i18n"
+          "title": "Xemacon",
+          "description": "Projets de construction et d'environnement en RWD. Projet réalisé avec Sass, Gulp, Html5 et JQuery et beaucoup d'AMOUR",
+          "techStack": "Sass • Gulp • HTML5 • jQuery"
+        },
+        {
+          "title": "Nexus 5",
+          "description": "Suivez l'actualité High-Tech, Geek, Web et Mobile avec Nexus5.com.es",
+          "techStack": ""
+        },
+        {
+          "title": "Maurolomba",
+          "description": "Site d'architecture",
+          "techStack": ""
         }
       ]
     },

@@ -22,7 +22,9 @@
       class="relative bg-white transition-all duration-300 dark:bg-neutral-950"
       :class="{ 'pt-20 sm:pt-24': showNav }"
     >
-      <div class="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-8 lg:flex-row lg:items-start lg:px-8">
+      <div
+        class="mx-auto flex max-w-7xl flex-col gap-8 px-1 py-8 sm:px-4 lg:flex-row lg:items-start lg:px-8"
+      >
         <!-- Sidebar -->
         <CVSidebar ref="sidebarRef" />
 
@@ -36,10 +38,10 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed, nextTick, type Ref } from 'vue'
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
-import SkipToContent from '@/components/header/SkipToContent.vue'
-import AppHeader from '@/components/header/AppHeader.vue'
-import CVSidebar from '@/components/sidebar/CVSidebar.vue'
-import CVArticle from '@/components/article/CVArticle.vue'
+import SkipToContent from '@/components/atoms/SkipToContent/SkipToContent.vue'
+import AppHeader from '@/components/organisms/AppHeader.vue'
+import CVSidebar from '@/components/organisms/CVSidebar.vue'
+import CVArticle from '@/components/organisms/CVArticle.vue'
 import { useScroll } from '@/composables/useScroll'
 import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
 import type { ContactInfo } from '@/types'
@@ -83,7 +85,7 @@ onMounted(() => {
 
   // Track scroll events for first scroll detection
   window.addEventListener('scroll', handleScroll, { passive: true })
-  
+
   // Check initial scroll position
   handleScroll()
 
@@ -104,7 +106,7 @@ onMounted(() => {
             }
           })
         },
-        { threshold: 0, rootMargin: '0px' }
+        { threshold: 0, rootMargin: '0px' },
       )
       heroObserver.observe(heroElement)
     }

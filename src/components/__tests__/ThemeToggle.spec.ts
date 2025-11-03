@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { mount } from '@vue/test-utils'
-import ThemeToggle from '../header/ThemeToggle.vue'
+import ThemeToggle from '../atoms/ThemeToggle.vue'
 
 describe('ThemeToggle', () => {
   beforeEach(() => {

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import RecommendationCard from '../recommendations/RecommendationCard.vue'
+import RecommendationCard from '../molecules/RecommendationCard.vue'
 import type { Recommendation } from '@/types'
 
 describe('RecommendationCard', () => {

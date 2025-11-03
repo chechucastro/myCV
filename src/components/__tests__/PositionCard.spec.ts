@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import PositionCard from '../employment/PositionCard.vue'
+import PositionCard from '../molecules/PositionCard.vue'
 import type { EmploymentPosition } from '@/types'
 
 describe('PositionCard', () => {

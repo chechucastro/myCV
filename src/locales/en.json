@@ -5,6 +5,7 @@
   "sections": {
     "details": "Details",
     "skills": "Skills",
+    "otherSkills": "Other skills",
     "languages": "Languages",
     "profile": "Profile",
     "employment": "Employment history",
@@ -60,7 +61,8 @@
   },
   "common": {
     "showMore": "Show more",
-    "showLess": "Show less"
+    "showLess": "Show less",
+    "viewProject": "View Project"
   },
   "employment": {
     "present": "Present",
@@ -315,10 +317,10 @@
       "title": "Education",
       "items": [
         {
-          "degree": "Bachelor's Degree",
-          "institution": "University of Technology",
-          "fieldOfStudy": "Computer Science",
-          "location": "Paris, France"
+          "degree": "Tourism and Travel Services Management",
+          "institution": "IATA Training and Development Institute",
+          "fieldOfStudy": "Tourism and Travel Services Management",
+          "location": "1 Butterwick\nLondon W6 8DL\nUnited Kingdom"
         }
       ]
     },
@@ -345,14 +347,24 @@
       "title": "Personal projects",
       "items": [
         {
-          "title": "E-commerce Platform",
-          "description": "A full-stack e-commerce platform built with Vue 3, Nuxt 4, and Tailwind CSS. Features include user authentication, product catalog, shopping cart, payment integration, and admin dashboard.",
-          "techStack": "Vue 3 • Nuxt 4 • Tailwind CSS • TypeScript • Pinia • Vite • Stripe API • RESTful APIs"
+          "title": "Nemonon",
+          "description": "Nemonon is a new place to talk. Meet people and create your events. This website is made with love and lots of Sass, Html5, Php and javascript.",
+          "techStack": "Sass • HTML5 • PHP • JavaScript"
         },
         {
-          "title": "Task Management App",
-          "description": "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features. Built using modern frontend technologies.",
-          "techStack": "Vue 3 • Quasar Framework • TypeScript • Vue Query • WebSocket • Vite • i18n"
+          "title": "Xemacon",
+          "description": "Projets de construction et d'environnement en RWD. Project made with Sass, Gulp, Html5 and JQuery and lots of LOVE",
+          "techStack": "Sass • Gulp • HTML5 • jQuery"
+        },
+        {
+          "title": "Nexus 5",
+          "description": "Suivez l'actualité High-Tech, Geek, Web et Mobile avec Nexus5.com.es",
+          "techStack": ""
+        },
+        {
+          "title": "Maurolomba",
+          "description": "Site d'architecture",
+          "techStack": ""
         }
       ]
     },
