@@ -16,6 +16,7 @@
               :aria-label="`${t('aria.linkedinProfile')} - ${recommendation.name} ${recommendation.surname}`"
               class="inline-flex items-center justify-center rounded-lg p-1.5 text-[#0077B5] transition-colors duration-200 hover:bg-blue-50 hover:text-[#0077B5] dark:text-[#0077B5] dark:hover:bg-blue-900/20 dark:hover:text-blue-300"
               title="LinkedIn Profile"
+              @click="() => trackExternalLink('LinkedIn', recommendation.linkedInUrl!)"
             >
               <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path
@@ -55,6 +56,7 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { Recommendation } from '@/types'
 import { useFormatters } from '@/composables/useFormatters'
+import { trackExternalLink } from '@/composables/useGoogleAnalytics'
 import BaseCard from '@/components/molecules/BaseCard.vue'
 import Badge from '@/components/atoms/Badge/Badge.vue'
 

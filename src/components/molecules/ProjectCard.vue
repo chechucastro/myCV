@@ -70,6 +70,7 @@
           color="purple"
           size="md"
           :aria-label="`View ${translatedTitle} project (opens in new tab)`"
+          @click="() => trackExternalLink(translatedTitle.value || 'Project', project.projectUrl!)"
         >
           <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
@@ -94,6 +95,7 @@
               ? 'Private repository'
               : 'View project on GitHub (opens in new tab)'
           "
+          @click="() => !project.githubIsPrivate && project.githubUrl && trackExternalLink('GitHub', project.githubUrl)"
         >
           <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
             <path
@@ -114,6 +116,7 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { PersonalProject } from '@/types'
 import { useFormatters } from '@/composables/useFormatters'
+import { trackExternalLink } from '@/composables/useGoogleAnalytics'
 import BaseCard from '@/components/molecules/BaseCard.vue'
 import BaseButton from '@/components/atoms/BaseButton/BaseButton.vue'
 

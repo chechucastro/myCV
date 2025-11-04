@@ -37,6 +37,7 @@
 import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { Recommendation } from '@/types'
+import { trackSectionToggle } from '@/composables/useGoogleAnalytics'
 import RecommendationCard from '@/components/molecules/RecommendationCard.vue'
 import BaseButton from '@/components/atoms/BaseButton/BaseButton.vue'
 
@@ -110,7 +111,11 @@ const visibleRecommendations = computed<Recommendation[]>(() => {
 })
 
 const toggleShowAll = (): void => {
+  const action = showAll.value ? 'show_less' : 'show_all'
   showAll.value = !showAll.value
+  
+  // Track section toggle
+  trackSectionToggle('recommendations', action)
 }
 </script>
 

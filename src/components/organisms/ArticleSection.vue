@@ -148,6 +148,7 @@ import CertificationsSection from './CertificationsSection.vue'
 import PersonalProjectsSection from './PersonalProjectsSection.vue'
 import RecommendationsSection from './RecommendationsSection.vue'
 import BaseButton from '@/components/atoms/BaseButton/BaseButton.vue'
+import { trackSectionToggle } from '@/composables/useGoogleAnalytics'
 import { skillsData } from '@/data/skills'
 
 // Sort skills by level (descending)
@@ -187,7 +188,11 @@ const hasMoreSkillsToShow = computed(() => {
 
 // Toggle show more/less
 const toggleShowMoreSkills = () => {
+  const action = showMoreSkills.value ? 'show_less' : 'show_more'
   showMoreSkills.value = !showMoreSkills.value
+
+  // Track section toggle
+  trackSectionToggle('core_competencies_skills', action)
 }
 
 interface Props {

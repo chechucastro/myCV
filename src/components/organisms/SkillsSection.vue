@@ -115,6 +115,7 @@ import { useI18n } from 'vue-i18n'
 import type { Skill } from '@/types'
 import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
 import { useAccessibility } from '@/composables/useAccessibility'
+import { trackSectionToggle } from '@/composables/useGoogleAnalytics'
 import { TOP_SKILLS_COUNT } from '@/config/constants'
 import BaseButton from '@/components/atoms/BaseButton/BaseButton.vue'
 import { skillsData } from '@/data/skills'
@@ -171,7 +172,12 @@ const visibleSkills = computed(() => {
 })
 
 const toggleShowMore = async () => {
+  const action = showMore.value ? 'show_less' : 'show_more'
   showMore.value = !showMore.value
+  
+  // Track section toggle
+  trackSectionToggle('skills', action)
+  
   if (showMore.value) {
     // Wait for DOM update before animating
     await nextTick()

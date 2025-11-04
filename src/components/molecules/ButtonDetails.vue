@@ -6,6 +6,7 @@
     :rel="isExternal ? 'noopener noreferrer' : undefined"
     :class="cardClasses"
     :aria-label="props.ariaLabel"
+    @click="handleClick"
   >
     <slot name="icon-container" :iconContainerClasses="iconContainerClasses">
       <div :class="iconContainerClasses">
@@ -61,6 +62,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { tv, type VariantProps } from 'tailwind-variants'
+import { trackExternalLink } from '@/composables/useGoogleAnalytics'
 
 const buttonDetails = tv({
   slots: {
@@ -194,4 +196,32 @@ const iconContainerClasses = computed(() => `${styles.value.iconContainer()} ${p
 const contentClasses = computed(() => styles.value.content())
 const valueClasses = computed(() => styles.value.value())
 const hasSecondaryValue = computed(() => Boolean(props.secondaryValue))
+
+/**
+ * Handle click events on external links
+ */
+const handleClick = (event: Event) => {
+  if (isExternal.value && props.href) {
+    // Extract destination name from label or URL
+    const destination = props.label || extractDomainFromUrl(props.href)
+    trackExternalLink(destination, props.href)
+  }
+}
+
+/**
+ * Extract domain name from URL for tracking
+ */
+const extractDomainFromUrl = (url: string): string => {
+  try {
+    if (url.startsWith('mailto:')) {
+      return 'Email'
+    }
+    const urlObj = new URL(url)
+    const hostname = urlObj.hostname.replace('www.', '')
+    // Capitalize first letter
+    return hostname.split('.')[0].charAt(0).toUpperCase() + hostname.split('.')[0].slice(1)
+  } catch {
+    return 'External Link'
+  }
+}
 </script>

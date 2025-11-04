@@ -48,10 +48,13 @@
 
 <script setup lang="ts">
 import { useTheme } from '@/composables/useTheme'
+import { trackThemeToggle } from '@/composables/useGoogleAnalytics'
 
 const { isDark, toggleDark } = useTheme()
 
 const handleToggle = () => {
   toggleDark()
+  // Track theme change event
+  trackThemeToggle(isDark.value ? 'light' : 'dark')
 }
 </script>

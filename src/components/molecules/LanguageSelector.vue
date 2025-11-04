@@ -17,6 +17,7 @@ import { computed, watch, nextTick } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useLanguageStore } from '@/stores/language'
 import { useAccessibility } from '@/composables/useAccessibility'
+import { trackLanguageChange } from '@/composables/useGoogleAnalytics'
 import type { Locale } from '@/plugins/i18n'
 
 /**
@@ -42,10 +43,17 @@ watch(
 const currentLocale = computed<Locale>({
   get: () => languageStore.currentLocale,
   set: (value: Locale) => {
+    const previousLocale = languageStore.currentLocale
+    
     // Update store first (this updates i18n.global.locale.value)
     languageStore.setLocale(value)
     // Immediately update component's locale for instant reactivity
     locale.value = value
+
+    // Track language change
+    if (previousLocale !== value) {
+      trackLanguageChange(previousLocale, value)
+    }
 
     // Announce change for screen readers (use nextTick to ensure translations are updated)
     nextTick(() => {

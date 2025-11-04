@@ -41,6 +41,7 @@
 import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { CompanyHistory } from '@/types'
+import { trackSectionToggle } from '@/composables/useGoogleAnalytics'
 import CompanyHistorySection from './CompanyHistorySection.vue'
 import BaseButton from '@/components/atoms/BaseButton/BaseButton.vue'
 
@@ -122,7 +123,11 @@ const visibleCompanies = computed<CompanyHistory[]>(() => {
 })
 
 const toggleShowAll = (): void => {
+  const action = showAll.value ? 'show_less' : 'show_all'
   showAll.value = !showAll.value
+  
+  // Track section toggle
+  trackSectionToggle('employment_history', action)
 }
 </script>
 
