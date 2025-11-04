@@ -1,7 +1,7 @@
 <template>
   <button
     id="theme-toggle"
-    @click="toggleDark"
+    @click="handleToggle"
     :aria-pressed="isDark"
     :aria-label="isDark ? 'Disable dark mode' : 'Enable dark mode'"
     class="group flex cursor-pointer items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 focus:outline-none dark:text-white dark:hover:bg-neutral-800 dark:hover:text-white"
@@ -48,7 +48,18 @@
 
 <script setup lang="ts">
 import { useTheme } from '@/composables/useTheme'
+import { useGoogleTagManager } from '@/composables/useGoogleTagManager'
 
 const { isDark, toggleDark } = useTheme()
+const { trackEvent } = useGoogleTagManager()
+
+const handleToggle = () => {
+  toggleDark()
+  // Track theme change event
+  trackEvent('theme_toggle', {
+    theme: isDark.value ? 'dark' : 'light',
+    timestamp: new Date().toISOString(),
+  })
+}
 </script>
 
