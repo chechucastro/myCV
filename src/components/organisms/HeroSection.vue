@@ -81,7 +81,7 @@ withDefaults(defineProps<Props>(), {
 
 @keyframes fadeInUp {
   from {
-    opacity: 0;
+    opacity: 0.01;
     transform: translateY(30px);
   }
   to {
@@ -93,12 +93,12 @@ withDefaults(defineProps<Props>(), {
 /* Profile image fall animation */
 .profile-image-fall {
   animation: fallFromTop 1s ease-out forwards;
-  opacity: 0;
+  opacity: 0.01;
 }
 
 @keyframes fallFromTop {
   from {
-    opacity: 0;
+    opacity: 0.01;
     transform: translateY(-100px) scale(0.8);
   }
   to {

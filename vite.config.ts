@@ -22,8 +22,20 @@ export default defineConfig({
     target: 'es2015',
     reportCompressedSize: false,
     cssCodeSplit: true,
+    cssMinify: true,
     sourcemap: false,
     chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        // Optimize CSS loading - extract to separate file
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name?.endsWith('.css')) {
+            return 'assets/[name]-[hash][extname]'
+          }
+          return 'assets/[name]-[hash][extname]'
+        },
+      },
+    },
   },
   optimizeDeps: {
     include: ['vue', 'vue-router', 'pinia', 'vue-i18n'],

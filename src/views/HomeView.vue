@@ -129,7 +129,7 @@ onUnmounted(() => {
 <style scoped>
 /* Scroll reveal animations */
 .scroll-reveal {
-  opacity: 0;
+  opacity: 0.01;
   transform: translateY(30px);
   transition:
     opacity 0.6s ease-out,
