@@ -4,6 +4,7 @@
     :href="tag === 'a' ? href : undefined"
     :target="tag === 'a' && external ? '_blank' : undefined"
     :rel="tag === 'a' && external ? 'noopener noreferrer' : undefined"
+    :download="tag === 'a' && download ? download : undefined"
     :type="tag === 'button' ? buttonType : undefined"
     :disabled="disabled"
     :aria-label="ariaLabel"
@@ -35,6 +36,7 @@ interface Props {
   tag?: ButtonTag
   href?: string
   external?: boolean
+  download?: string | boolean
   buttonType?: 'button' | 'submit' | 'reset'
   ariaLabel?: string
   customClasses?: string

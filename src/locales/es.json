@@ -66,7 +66,9 @@
     "privateRepo": "Privado"
   },
   "footer": {
-    "madeWithLove": "Hecho con"
+    "madeWithLove": "Hecho con",
+    "downloadCVFull": "Descargar CV (Completo)",
+    "downloadCVLight": "Descargar CV (Ligero)"
   },
   "employment": {
     "present": "Actual",
