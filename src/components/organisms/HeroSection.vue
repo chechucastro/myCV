@@ -25,6 +25,7 @@
               :src="profileImage"
               :alt="name"
               loading="eager"
+              fetchpriority="high"
               width="160"
               height="160"
               class="profile-image-fall mx-auto h-32 w-32 rounded-full border-4 border-gray-200 shadow-2xl transition-transform duration-300 hover:scale-105 sm:h-40 sm:w-40 dark:border-neutral-700"

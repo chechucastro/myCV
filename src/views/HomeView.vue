@@ -79,6 +79,9 @@ const handleScroll = (): void => {
   }
 }
 
+// Store hero observer reference for cleanup
+let heroObserver: IntersectionObserver | null = null
+
 onMounted(() => {
   // Setup scroll reveal animations
   setupScrollReveal()
@@ -93,7 +96,7 @@ onMounted(() => {
   nextTick(() => {
     const heroElement = document.getElementById('hero-section')
     if (heroElement) {
-      const heroObserver = new IntersectionObserver(
+      heroObserver = new IntersectionObserver(
         (entries: IntersectionObserverEntry[]) => {
           entries.forEach((entry: IntersectionObserverEntry) => {
             // Update hero visibility (trigger on both entry and exit)
@@ -115,6 +118,11 @@ onMounted(() => {
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
+  // Disconnect observer to ensure bfcache compatibility
+  if (heroObserver) {
+    heroObserver.disconnect()
+    heroObserver = null
+  }
 })
 </script>
 
