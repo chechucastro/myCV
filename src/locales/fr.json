@@ -65,6 +65,9 @@
     "github": "GitHub",
     "privateRepo": "Privé"
   },
+  "footer": {
+    "madeWithLove": "Fait avec"
+  },
   "employment": {
     "present": "Actuel",
     "techStack": "Stack Technique"

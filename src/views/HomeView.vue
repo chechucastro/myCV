@@ -32,6 +32,9 @@
         <CVArticle />
       </div>
     </main>
+
+    <!-- Footer -->
+    <AppFooter />
   </DefaultLayout>
 </template>
 
@@ -40,6 +43,7 @@ import { ref, onMounted, onUnmounted, computed, nextTick, type Ref } from 'vue'
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
 import SkipToContent from '@/components/atoms/SkipToContent/SkipToContent.vue'
 import AppHeader from '@/components/organisms/AppHeader.vue'
+import AppFooter from '@/components/organisms/AppFooter.vue'
 import CVSidebar from '@/components/organisms/CVSidebar.vue'
 import CVArticle from '@/components/organisms/CVArticle.vue'
 import { useScroll } from '@/composables/useScroll'

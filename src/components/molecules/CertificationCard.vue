@@ -7,20 +7,22 @@
     custom-classes="flex flex-col h-full"
   >
     <!-- Certificate Logo Container -->
-    <div class="mb-6 flex justify-center">
-      <div class="flex h-24 w-full items-center justify-center rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 p-6 dark:from-blue-900/20 dark:to-indigo-900/20">
+    <div class="flex">
+      <div class="flex w-1/2">
         <img
           :src="props.certification.certificateImage"
           :alt="`${props.certification.title} certificate`"
           loading="lazy"
-          class="h-full w-auto max-w-full"
+          width="384"
+          height="96"
+          class="mb-2 h-full w-auto max-w-full"
         />
       </div>
     </div>
 
     <!-- Certificate Details -->
     <div class="flex flex-1 flex-col space-y-4">
-      <h3 class="text-xl font-bold leading-tight text-gray-900 dark:text-white">
+      <h3 class="text-xl leading-tight font-bold text-gray-900 dark:text-white">
         {{ props.certification.title }}
       </h3>
 
@@ -41,7 +43,9 @@
           </svg>
           <div>
             <span class="font-semibold text-gray-700 dark:text-gray-300">Issued by</span>
-            <p class="mt-0.5 text-gray-600 dark:text-gray-400">{{ props.certification.issuedBy }}</p>
+            <p class="mt-0.5 text-gray-600 dark:text-gray-400">
+              {{ props.certification.issuedBy }}
+            </p>
           </div>
         </div>
         <div class="flex items-start gap-3">
@@ -108,4 +112,3 @@ interface Props {
 const props = defineProps<Props>()
 const { formatDate } = useFormatters()
 </script>
-
