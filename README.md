@@ -71,3 +71,36 @@ npm run test:e2e -- --debug
 ```sh
 npm run lint
 ```
+
+## Google Tag Manager Integration
+
+This project includes Google Tag Manager (GTM) for analytics tracking.
+
+**GTM Container ID:** `GTM-5PZSPQJ5`
+
+### Features
+
+- ✅ Automatic GTM initialization on app load
+- ✅ TypeScript support with full type definitions
+- ✅ Composable API for easy event tracking
+- ✅ Debug mode enabled in development
+- ✅ noscript fallback for non-JavaScript environments
+
+### Usage
+
+```vue
+<script setup lang="ts">
+import { useGoogleTagManager } from '@/composables/useGoogleTagManager'
+
+const { trackEvent, trackClick } = useGoogleTagManager()
+
+const handleAction = () => {
+  trackEvent('button_click', {
+    buttonName: 'Download CV',
+    location: 'header',
+  })
+}
+</script>
+```
+
+For detailed usage examples and API documentation, see [`src/plugins/GTM_USAGE.md`](./src/plugins/GTM_USAGE.md).
