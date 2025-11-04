@@ -1,4 +1,4 @@
-import { nextTick, onUnmounted } from 'vue'
+import { nextTick, onMounted, onUnmounted } from 'vue'
 
 /**
  * Composable for Intersection Observer functionality
@@ -126,8 +126,24 @@ export function useIntersectionObserver() {
     observers.length = 0
   }
 
+  /**
+   * Handle pagehide event for bfcache compatibility
+   */
+  const handlePageHide = (event: PageTransitionEvent): void => {
+    if (event.persisted) {
+      // Page is being cached, clean up observers
+      cleanup()
+    }
+  }
+
+  // Setup bfcache handlers
+  onMounted(() => {
+    window.addEventListener('pagehide', handlePageHide)
+  })
+
   // Automatically cleanup on unmount
   onUnmounted(() => {
+    window.removeEventListener('pagehide', handlePageHide)
     cleanup()
   })
 

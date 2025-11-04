@@ -85,18 +85,44 @@ const handleScroll = (): void => {
 
 // Store hero observer reference for cleanup
 let heroObserver: IntersectionObserver | null = null
+let isScrollListenerActive = false
 
-onMounted(() => {
-  // Setup scroll reveal animations
-  setupScrollReveal()
+/**
+ * Initialize scroll listener
+ */
+const initScrollListener = (): void => {
+  if (!isScrollListenerActive) {
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    isScrollListenerActive = true
+    handleScroll() // Check initial scroll position
+  }
+}
 
-  // Track scroll events for first scroll detection
-  window.addEventListener('scroll', handleScroll, { passive: true })
+/**
+ * Cleanup function for event listeners and observers
+ * Called on both unmount and pagehide (bfcache)
+ */
+const cleanup = (): void => {
+  if (isScrollListenerActive) {
+    window.removeEventListener('scroll', handleScroll)
+    isScrollListenerActive = false
+  }
+  if (heroObserver) {
+    heroObserver.disconnect()
+    heroObserver = null
+  }
+}
 
-  // Check initial scroll position
-  handleScroll()
+/**
+ * Initialize hero observer
+ */
+const initializeHeroObserver = (): void => {
+  // Clean up existing observer if any
+  if (heroObserver) {
+    heroObserver.disconnect()
+    heroObserver = null
+  }
 
-  // Observe hero section to track visibility and show name in navigation
   nextTick(() => {
     const heroElement = document.getElementById('hero-section')
     if (heroElement) {
@@ -118,15 +144,48 @@ onMounted(() => {
       heroObserver.observe(heroElement)
     }
   })
+}
+
+/**
+ * Handle pagehide event for bfcache compatibility
+ */
+const handlePageHide = (event: PageTransitionEvent): void => {
+  if (event.persisted) {
+    // Page is being cached, clean up resources
+    cleanup()
+  }
+}
+
+/**
+ * Handle pageshow event for bfcache restoration
+ */
+const handlePageShow = (event: PageTransitionEvent): void => {
+  if (event.persisted) {
+    // Page was restored from bfcache, reinitialize observers and listeners
+    initScrollListener()
+    initializeHeroObserver()
+  }
+}
+
+onMounted(() => {
+  // Setup scroll reveal animations
+  setupScrollReveal()
+
+  // Initialize scroll listener
+  initScrollListener()
+
+  // Setup bfcache handlers
+  window.addEventListener('pagehide', handlePageHide)
+  window.addEventListener('pageshow', handlePageShow)
+
+  // Observe hero section to track visibility and show name in navigation
+  initializeHeroObserver()
 })
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
-  // Disconnect observer to ensure bfcache compatibility
-  if (heroObserver) {
-    heroObserver.disconnect()
-    heroObserver = null
-  }
+  window.removeEventListener('pagehide', handlePageHide)
+  window.removeEventListener('pageshow', handlePageShow)
+  cleanup()
 })
 </script>
 
