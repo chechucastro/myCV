@@ -67,8 +67,8 @@
   },
   "footer": {
     "madeWithLove": "Fait avec",
-    "downloadCVFull": "Télécharger CV (Complet)",
-    "downloadCVLight": "Télécharger CV (Léger)"
+    "downloadCVFull": "Télécharger CV (Full)",
+    "downloadCVLight": "Télécharger CV (Mini)"
   },
   "employment": {
     "present": "Actuel",

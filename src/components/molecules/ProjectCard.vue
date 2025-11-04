@@ -36,11 +36,6 @@
               formatDate(project.endDate)
             }}</time>
           </template>
-          <span
-            v-if="project.startDate && !project.endDate"
-            class="ml-2 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900 dark:text-green-200"
-            >{{ t('employment.present') }}</span
-          >
         </div>
       </div>
 
