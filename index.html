@@ -20,23 +20,11 @@
         }
       })()
     </script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TCD2QKZGTB"></script>
-    <script>
-      window.dataLayer = window.dataLayer || []
-      function gtag() {
-        dataLayer.push(arguments)
-      }
-      gtag('js', new Date())
-      gtag('config', 'G-TCD2QKZGTB')
-    </script>
-    <!-- Preconnect to external domains for faster loading -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <!-- Preconnect to external domains early for faster loading -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
     <!-- Preload critical resources -->
-    <link rel="preload" href="/chechuLinkedInOpentoWork.webp" as="image" type="image/webp" />
+    <link rel="preload" href="/chechuLinkedInOpentoWork.webp" as="image" type="image/webp" fetchpriority="high" />
     <!-- Mobile -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -60,5 +48,15 @@
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
+    <!-- Google tag (gtag.js) - Loaded at end to avoid blocking critical rendering -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TCD2QKZGTB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-TCD2QKZGTB')
+    </script>
   </body>
 </html>

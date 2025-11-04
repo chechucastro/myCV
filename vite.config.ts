@@ -27,6 +27,19 @@ export default defineConfig({
     chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
+        // Optimize chunk splitting to reduce dependency chains
+        manualChunks: (id) => {
+          // Separate vendor chunks for better caching and parallel loading
+          if (id.includes('node_modules')) {
+            if (id.includes('vue')) {
+              return 'vue-vendor'
+            }
+            if (id.includes('vue-router') || id.includes('pinia') || id.includes('vue-i18n')) {
+              return 'vue-ecosystem'
+            }
+            return 'vendor'
+          }
+        },
         // Optimize CSS loading - extract to separate file
         assetFileNames: (assetInfo) => {
           if (assetInfo.name?.endsWith('.css')) {
