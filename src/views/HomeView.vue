@@ -23,11 +23,8 @@
       :class="{ 'pt-20 sm:pt-24': showNav }"
     >
       <div
-        class="mx-auto flex max-w-7xl flex-col gap-8 px-1 py-8 sm:px-4 lg:flex-row lg:items-start lg:px-8"
+        class="mx-auto max-w-7xl px-1 py-8 sm:px-4 lg:px-8"
       >
-        <!-- Sidebar -->
-        <CVSidebar ref="sidebarRef" />
-
         <!-- Main article content -->
         <CVArticle />
       </div>
@@ -44,22 +41,16 @@ import DefaultLayout from '@/layouts/DefaultLayout.vue'
 import SkipToContent from '@/components/atoms/SkipToContent/SkipToContent.vue'
 import AppHeader from '@/components/organisms/AppHeader.vue'
 import AppFooter from '@/components/organisms/AppFooter.vue'
-import CVSidebar from '@/components/organisms/CVSidebar.vue'
 import CVArticle from '@/components/organisms/CVArticle.vue'
 import { useScroll } from '@/composables/useScroll'
 import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
-import type { ContactInfo } from '@/types'
+import { CONTACT_INFO } from '@/config/constants'
 
 // Use scroll composable
 const { isScrolled } = useScroll()
 
-// Sidebar ref to access contactInfo
-const sidebarRef = ref<InstanceType<typeof CVSidebar> | null>(null)
-
-// Get contactInfo from sidebar
-const contactInfo = computed<ContactInfo | undefined>(() => {
-  return sidebarRef.value?.contactInfo
-})
+// Use shared contactInfo constant
+const contactInfo = computed(() => CONTACT_INFO)
 
 // Use intersection observer composable
 const { observeElement, setupScrollReveal } = useIntersectionObserver()

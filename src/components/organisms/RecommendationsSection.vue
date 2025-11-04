@@ -1,6 +1,6 @@
 <template>
   <div class="space-y-6">
-    <transition-group name="fade-slide" tag="div" class="space-y-6">
+    <transition-group name="fade-slide" tag="div" class="grid grid-cols-1 gap-6 sm:grid-cols-2">
       <RecommendationCard
         v-for="(rec, recIdx) in visibleRecommendations"
         :key="rec.name + '-' + rec.surname + '-' + recIdx"

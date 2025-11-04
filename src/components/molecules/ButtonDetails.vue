@@ -4,6 +4,7 @@
     :href="props.href"
     :target="isExternal ? '_blank' : undefined"
     :rel="isExternal ? 'noopener noreferrer' : undefined"
+    :download="props.download"
     :class="cardClasses"
     :aria-label="props.ariaLabel"
     @click="handleClick"
@@ -156,6 +157,7 @@ interface Props {
   showArrow?: boolean
   alignment?: ButtonDetailsVariants['alignment']
   hoverColor?: ButtonDetailsVariants['hoverColor']
+  download?: boolean | string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -168,7 +170,8 @@ const props = withDefaults(defineProps<Props>(), {
   iconClasses: 'text-white',
   showArrow: false,
   alignment: 'center',
-    hoverColor: 'purple',
+  hoverColor: 'purple',
+  download: undefined,
 })
 
 const isExternal = computed<boolean>(() => {

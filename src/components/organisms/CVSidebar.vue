@@ -1,31 +1,15 @@
 <template>
-  <aside
-    class="scroll-reveal order-1 h-fit sticky lg:w-80"
-    aria-label="Sidebar with languages and contact information"
-  >
-    <div
-      class="rounded-2xl bg-white/95 p-4 shadow-xl backdrop-blur-sm transition-all duration-300 sm:p-6 lg:p-6 lg:shadow-2xl dark:border dark:border-neutral-800 dark:bg-neutral-900/95 dark:shadow-2xl dark:shadow-black/30"
-    >
-      <div class="relative">
-        <LanguagesSection />
-        <DetailsSection ref="detailsSectionRef" />
-      </div>
-    </div>
-  </aside>
+  <!-- Sidebar component - currently empty but kept for contactInfo exposure -->
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import type { ContactInfo } from '@/types'
-import LanguagesSection from './LanguagesSection.vue'
-import DetailsSection from './DetailsSection.vue'
-
-const detailsSectionRef = ref<InstanceType<typeof DetailsSection> | null>(null)
+import { CONTACT_INFO } from '@/config/constants'
 
 // Expose contactInfo for parent components
 defineExpose({
-  get contactInfo(): ContactInfo | undefined {
-    return detailsSectionRef.value?.contactInfo
+  get contactInfo(): ContactInfo {
+    return CONTACT_INFO
   },
 })
 </script>

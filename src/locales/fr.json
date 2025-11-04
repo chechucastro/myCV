@@ -19,13 +19,20 @@
     "nationality": "Nationalité",
     "linkedin": "LinkedIn",
     "email": "E-mail",
+    "hireMe": "M'embaucher sur Malt",
     "address": "Adresse",
-    "country": "Pays"
+    "country": "Pays",
+    "downloads": "Téléchargements",
+    "downloadCVFull": "Télécharger CV (Full)",
+    "downloadCVLight": "Télécharger CV (Mini)"
   },
   "aria": {
     "linkedinProfile": "Ouvrir le profil LinkedIn (s'ouvre dans un nouvel onglet)",
     "githubProfile": "Ouvrir le profil GitHub (s'ouvre dans un nouvel onglet)",
     "sendEmail": "Envoyer un e-mail",
+    "hireMeProfile": "Ouvrir le profil Malt pour m'embaucher (s'ouvre dans un nouvel onglet)",
+    "downloadCVFull": "Télécharger CV complet (PDF)",
+    "downloadCVLight": "Télécharger CV mini (PDF)",
     "languageProficiency": "Niveau de {language}: {level}",
     "levelOutOf": "Niveau {current} sur {total}",
     "mainLayout": "Mise en page principale",

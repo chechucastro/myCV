@@ -29,7 +29,10 @@
             {{ translatedJobPosition }}
           </p>
         </div>
-        <time :datetime="recommendation.postDate" class="text-sm text-gray-500 dark:text-gray-300">
+        <time
+          :datetime="recommendation.postDate"
+          class="text-center text-sm text-gray-500 capitalize dark:text-gray-300"
+        >
           {{ formatDate(recommendation.postDate) }}
         </time>
       </div>

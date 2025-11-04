@@ -1,6 +1,12 @@
 <template>
   <section
-    :id="section.title === 'Profile' ? 'profile-section' : undefined"
+    :id="
+      section.title === 'Profile'
+        ? 'profile-section'
+        : section.title === 'Languages'
+          ? 'languages-section'
+          : undefined
+    "
     :aria-labelledby="'section-title-' + sectionIndex"
     role="region"
     class="scroll-reveal relative mb-8 bg-white p-4 transition-all duration-300 last:mb-0 hover:shadow-xl sm:rounded-2xl sm:shadow-lg lg:p-6 dark:border dark:border-neutral-800 dark:bg-neutral-900 dark:shadow-lg dark:shadow-black/20"
@@ -87,6 +93,9 @@
       </div>
     </template>
 
+    <!-- If Languages section, render it -->
+    <LanguagesSection v-if="section.title === 'Languages'" />
+
     <!-- If companyHistory is provided, render grouped entries -->
     <EmploymentHistorySection v-if="section.title === 'Employment history'" />
 
@@ -101,6 +110,9 @@
 
     <!-- Recommendations -->
     <RecommendationsSection v-if="section.title === 'Recommendations'" />
+
+    <!-- Details -->
+    <DetailsSection v-if="section.title === 'Details'" />
   </section>
 </template>
 
@@ -142,11 +154,13 @@ import { useI18n } from 'vue-i18n'
 import type { ArticleSection as ArticleSectionType } from '@/types'
 import ProfileSection from '@/components/molecules/ProfileSection.vue'
 import SkillsSection from './SkillsSection.vue'
+import LanguagesSection from './LanguagesSection.vue'
 import EmploymentHistorySection from './EmploymentHistorySection.vue'
 import EducationSection from './EducationSection.vue'
 import CertificationsSection from './CertificationsSection.vue'
 import PersonalProjectsSection from './PersonalProjectsSection.vue'
 import RecommendationsSection from './RecommendationsSection.vue'
+import DetailsSection from './DetailsSection.vue'
 import BaseButton from '@/components/atoms/BaseButton/BaseButton.vue'
 import { trackSectionToggle } from '@/composables/useGoogleAnalytics'
 import { skillsData } from '@/data/skills'
@@ -207,11 +221,13 @@ const translatedTitle = computed(() => {
   const titleKeyMap: Record<string, string> = {
     Profile: 'articles.profile.title',
     'Core Competencies': 'articles.coreCompetencies.title',
+    Languages: 'sections.languages',
     'Employment history': 'articles.employment.title',
     Education: 'articles.education.title',
     'Licenses & certifications': 'articles.certifications.title',
     'Personal projects': 'articles.personalProjects.title',
     Recommendations: 'articles.recommendations.title',
+    Details: 'sections.details',
   }
 
   const translationKey = titleKeyMap[props.section.title]

@@ -35,6 +35,11 @@ const articleSections = computed<ArticleSection[]>(() => {
     body: '', // Body is read from translations in ArticleSection component
   })
 
+  // Languages section
+  sections.push({
+    title: 'Languages',
+  })
+
   // Employment history section - EmploymentHistorySection now builds this itself
   sections.push({
     title: 'Employment history',
@@ -68,6 +73,11 @@ const articleSections = computed<ArticleSection[]>(() => {
   sections.push({
     title: 'Recommendations',
     recommendations: [], // Empty array - RecommendationsSection builds from translations
+  })
+
+  // Details section - DetailsSection now builds this itself
+  sections.push({
+    title: 'Details',
   })
 
   return sections

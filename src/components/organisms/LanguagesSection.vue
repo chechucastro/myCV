@@ -1,16 +1,9 @@
 <template>
-  <section id="languages-section" aria-labelledby="languages-heading" class="scroll-reveal mb-8">
-    <h2
-      id="languages-heading"
-      class="relative mb-6 text-2xl font-bold text-gray-900 after:absolute after:left-0 after:mt-2 after:block after:h-1 after:w-12 after:rounded-full after:bg-gradient-to-r after:from-blue-500 after:to-purple-500 after:content-[''] dark:text-white"
-    >
-      {{ t('sections.languages') }}
-    </h2>
-
+  <div>
     <!-- Live region for language announcements -->
     <div id="languages-live" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
-    <ul class="space-y-5">
+    <ul class="grid grid-cols-1 gap-5 sm:grid-cols-2">
       <li
         v-for="(lang, idx) in languages"
         :key="lang.name"
@@ -77,7 +70,7 @@
         </div>
       </li>
     </ul>
-  </section>
+  </div>
 </template>
 
 <script setup lang="ts">
