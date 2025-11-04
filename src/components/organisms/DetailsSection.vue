@@ -1,24 +1,29 @@
 <template>
-  <div class="mx-auto space-y-6">
+  <div class="mx-auto space-y-8">
     <address class="not-italic">
       <!-- Social Links Section -->
-      <div class="mb-6">
-        <h3
-          class="mb-4 text-xs font-semibold tracking-wider text-gray-500 uppercase dark:text-gray-400"
-        >
-          {{ t('details.social') }}
-        </h3>
-        <div class="flex w-full flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-3">
+      <div class="mb-8">
+        <div class="mb-5 flex items-center gap-3">
+          <div class="h-px flex-1 bg-gradient-to-r from-transparent via-purple-500/30 to-transparent"></div>
+          <h3
+            class="text-xs font-bold tracking-widest text-gray-600 uppercase dark:text-gray-300"
+          >
+            {{ t('details.social') }}
+          </h3>
+          <div class="h-px flex-1 bg-gradient-to-r from-transparent via-purple-500/30 to-transparent"></div>
+        </div>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <!-- LinkedIn -->
           <ButtonDetails
             :label="t('details.linkedin')"
             :value="contactInfo.linkedin.handle"
             :href="contactInfo.linkedin.url"
             :aria-label="t('aria.linkedinProfile')"
-            icon-bg-class="bg-[#0A66C2]"
+            icon-bg-class="bg-gradient-to-br from-[#0A66C2] to-[#004182] shadow-lg shadow-blue-500/30"
             icon-fill="white"
             :icon-path="ICONS.linkedin"
             :show-arrow="false"
+            hover-color="blue"
           />
 
           <!-- GitHub -->
@@ -27,38 +32,43 @@
             :value="contactInfo.github.handle"
             :href="contactInfo.github.url"
             :aria-label="t('aria.githubProfile')"
-            icon-bg-class="bg-gray-900 dark:bg-white"
+            icon-bg-class="bg-gradient-to-br from-gray-900 to-gray-700 dark:from-gray-100 dark:to-white shadow-lg shadow-gray-500/30"
             icon-classes="text-white dark:text-gray-900"
             :icon-path="ICONS.github"
-            hover-color="purple"
+            hover-color="gray"
             :show-arrow="false"
           />
         </div>
       </div>
 
       <!-- Contact Section -->
-      <div class="mb-6">
-        <h3
-          class="mb-4 text-xs font-semibold tracking-wider text-gray-500 uppercase dark:text-gray-400"
-        >
-          {{ t('details.contact') }}
-        </h3>
-        <div class="flex w-full flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-3">
+      <div class="mb-8">
+        <div class="mb-5 flex items-center gap-3">
+          <div class="h-px flex-1 bg-gradient-to-r from-transparent via-blue-500/30 to-transparent"></div>
+          <h3
+            class="text-xs font-bold tracking-widest text-gray-600 uppercase dark:text-gray-300"
+          >
+            {{ t('details.contact') }}
+          </h3>
+          <div class="h-px flex-1 bg-gradient-to-r from-transparent via-blue-500/30 to-transparent"></div>
+        </div>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <ButtonDetails
             :label="t('details.email')"
             :value="contactInfo.email"
             :href="`mailto:${contactInfo.email}`"
             :aria-label="t('aria.sendEmail')"
-            icon-bg-class="bg-gradient-to-br from-blue-500 to-purple-600"
+            icon-bg-class="bg-gradient-to-br from-blue-500 via-purple-600 to-purple-700 shadow-lg shadow-purple-500/30"
             :icon-path="ICONS.email"
             alignment="start"
+            hover-color="purple"
           />
           <ButtonDetails
             :label="t('details.hireMe')"
             :value="t('details.hireMe')"
             href="https://www.malt.es/profile/chechucastro"
             :aria-label="t('aria.hireMeProfile')"
-            icon-bg-class="bg-white"
+            icon-bg-class="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-700 shadow-lg shadow-red-500/20"
             hover-color="purple"
             :show-arrow="true"
           >
@@ -66,7 +76,7 @@
               <img
                 src="/company-logos/malt.svg"
                 alt="Malt logo"
-                class="h-5 w-auto object-contain"
+                class="h-6 w-auto object-contain transition-transform duration-500 group-hover:scale-110"
                 aria-hidden="true"
               ></img>
             </template>
@@ -75,19 +85,23 @@
       </div>
 
       <!-- Download CV Section -->
-      <div class="mb-6">
-        <h3
-          class="mb-4 text-xs font-semibold tracking-wider text-gray-500 uppercase dark:text-gray-400"
-        >
-          {{ t('details.downloads') }}
-        </h3>
-        <div class="flex w-full flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-3">
+      <div class="mb-8">
+        <div class="mb-5 flex items-center gap-3">
+          <div class="h-px flex-1 bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent"></div>
+          <h3
+            class="text-xs font-bold tracking-widest text-gray-600 uppercase dark:text-gray-300"
+          >
+            {{ t('details.downloads') }}
+          </h3>
+          <div class="h-px flex-1 bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent"></div>
+        </div>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <ButtonDetails
             :label="t('details.downloadCVFull')"
             :value="t('details.downloadCVFull')"
             href="/docs/Chechu-Castro-CV-EN-2025-full.pdf"
             :aria-label="t('aria.downloadCVFull')"
-            icon-bg-class="bg-gradient-to-br from-indigo-500 to-blue-600"
+            icon-bg-class="bg-gradient-to-br from-indigo-600 via-purple-600 to-blue-600 shadow-lg shadow-indigo-500/30"
             :icon-path="ICONS.download"
             hover-color="purple"
             :show-arrow="false"
@@ -98,9 +112,9 @@
             :value="t('details.downloadCVLight')"
             href="/docs/Chechu-Castro-CV-EN-2025-light.pdf"
             :aria-label="t('aria.downloadCVLight')"
-            icon-bg-class="bg-gradient-to-br from-teal-500 to-cyan-600"
+            icon-bg-class="bg-gradient-to-br from-teal-500 via-cyan-600 to-blue-500 shadow-lg shadow-teal-500/30"
             :icon-path="ICONS.download"
-            hover-color="purple"
+            hover-color="blue"
             :show-arrow="false"
             download="Chechu-Castro-CV-EN-2025-light.pdf"
           />

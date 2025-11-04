@@ -30,7 +30,7 @@
     <slot name="content" :contentClasses="contentClasses" :valueClasses="valueClasses">
       <div :class="contentClasses">
         <slot name="label">
-          <span class="text-xs text-gray-500 dark:text-gray-400">{{ props.label }}</span>
+          <span class="text-xs font-medium text-gray-500 dark:text-gray-400 tracking-wide uppercase">{{ props.label }}</span>
         </slot>
 
         <slot name="value" :valueClasses="valueClasses">
@@ -45,18 +45,16 @@
       </div>
     </slot>
 
-    <slot name="trailing">
-      <svg
-        v-if="props.showArrow"
-        class="ml-auto h-4 w-4 text-gray-400 transition-transform group-hover:translate-x-1 dark:text-gray-500"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-      >
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-      </svg>
-    </slot>
+    <svg
+      v-if="props.showArrow"
+      class="ml-auto h-5 w-5 flex-shrink-0 text-gray-500 transition-all duration-500 group-hover:translate-x-2 group-hover:text-purple-500 dark:text-gray-400 dark:group-hover:text-purple-400"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+    </svg>
   </component>
 </template>
 
@@ -69,34 +67,50 @@ const buttonDetails = tv({
   slots: {
     base: [
       'group',
+      'relative',
       'flex',
-      'gap-3',
-      'rounded-xl',
+      'gap-4',
+      'rounded-2xl',
       'border',
-      'border-purple-200',
-      'dark:border-purple-700',
-      'bg-gradient-to-br',
-      'from-white',
-      'to-gray-50',
-      'p-3',
-      'shadow-sm',
+      'border-gray-200/50',
+      'dark:border-gray-700/50',
+      'bg-white/80',
+      'dark:bg-gray-800/80',
+      'backdrop-blur-sm',
+      'p-4',
+      'shadow-lg',
+      'shadow-gray-200/50',
+      'dark:shadow-gray-900/50',
       'transition-all',
-      'duration-300',
-      'dark:from-gray-800',
-      'dark:to-gray-800/50',
+      'duration-500',
+      'ease-out',
+      'overflow-hidden',
+      'before:absolute',
+      'before:inset-0',
+      'before:rounded-2xl',
+      'before:bg-gradient-to-br',
+      'before:from-purple-500/0',
+      'before:to-blue-500/0',
+      'before:opacity-0',
+      'before:transition-opacity',
+      'before:duration-500',
+      'before:-z-10',
     ],
     iconContainer: [
       'flex',
-      'h-10',
-      'w-10',
+      'h-12',
+      'w-12',
       'flex-shrink-0',
       'items-center',
       'justify-center',
-      'rounded-lg',
-      'shadow-sm',
+      'rounded-xl',
+      'shadow-lg',
+      'transition-all',
+      'duration-500',
+      'ease-out',
     ],
-    content: ['flex', 'flex-col'],
-    value: ['text-sm', 'font-medium', 'text-gray-900', 'dark:text-white'],
+    content: ['flex', 'flex-col', 'gap-1', 'flex-1', 'min-w-0'],
+    value: ['text-sm', 'font-semibold', 'text-gray-900', 'dark:text-white', 'transition-colors', 'duration-300'],
   },
   variants: {
     alignment: {
@@ -109,8 +123,27 @@ const buttonDetails = tv({
     },
     isClickable: {
       true: {
-        base: 'cursor-pointer hover:scale-[1.02] hover:shadow-md',
-        iconContainer: 'transition-transform duration-300 group-hover:scale-110',
+        base: [
+          'cursor-pointer',
+          'hover:scale-[1.03]',
+          'hover:shadow-2xl',
+          'hover:shadow-purple-500/20',
+          'dark:hover:shadow-purple-500/30',
+          'hover:-translate-y-1',
+          'active:scale-[0.98]',
+          'active:translate-y-0',
+          'before:hover:opacity-100',
+          'before:hover:from-purple-500/5',
+          'before:hover:to-blue-500/5',
+          'dark:before:hover:from-purple-500/10',
+          'dark:before:hover:to-blue-500/10',
+        ],
+        iconContainer: [
+          'group-hover:scale-110',
+          'group-hover:rotate-3',
+          'group-active:scale-95',
+          'group-active:rotate-0',
+        ],
       },
     },
     isEmail: {
@@ -121,16 +154,16 @@ const buttonDetails = tv({
     },
     hoverColor: {
       blue: {
-        base: 'hover:border-purple-300 dark:hover:border-purple-500',
-        value: 'group-hover:text-purple-600 dark:group-hover:text-purple-400',
+        base: 'hover:border-blue-300/50 dark:hover:border-blue-500/50',
+        value: 'group-hover:text-blue-600 dark:group-hover:text-blue-400',
       },
       purple: {
-        base: 'hover:border-purple-300 dark:hover:border-purple-500',
+        base: 'hover:border-purple-300/50 dark:hover:border-purple-500/50',
         value: 'group-hover:text-purple-600 dark:group-hover:text-purple-400',
       },
       gray: {
-        base: 'hover:border-purple-300 dark:hover:border-purple-500',
-        value: 'group-hover:text-purple-600 dark:group-hover:text-purple-400',
+        base: 'hover:border-gray-300/50 dark:hover:border-gray-500/50',
+        value: 'group-hover:text-gray-600 dark:group-hover:text-gray-400',
       },
     },
   },
