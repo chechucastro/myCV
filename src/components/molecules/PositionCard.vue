@@ -6,6 +6,24 @@
     tag="article"
     custom-classes="rounded-lg bg-white shadow-sm hover:shadow-md dark:bg-neutral-800 dark:shadow-md dark:shadow-black/10"
   >
+    <div class="mb-6 flex items-center gap-4">
+      <div
+        v-if="props.data.company.logo"
+        class="flex h-16 w-16 flex-shrink-0 items-center justify-center overflow-hidden rounded-lg border border-gray-200 bg-white p-2 shadow-sm dark:border-gray-700 dark:bg-white"
+      >
+        <img
+          :src="props.data.company.logo"
+          :alt="`${props.data.company.name} logo`"
+          loading="lazy"
+          width="64"
+          height="64"
+          class="h-full w-full object-contain"
+        />
+      </div>
+      <h3 class="text-xl font-bold text-gray-900 dark:text-white">
+        {{ props.data.company.name }}
+      </h3>
+    </div>
     <h4 class="mb-3 text-lg font-semibold text-gray-900 dark:text-white">
       {{ translatedPosition }}
     </h4>
@@ -25,10 +43,12 @@
           d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
         />
       </svg>
-      <time :datetime="position.startDate">{{ formatDate(position.startDate) }}</time>
+      <time :datetime="props.data.position.startDate">{{
+        formatDate(props.data.position.startDate)
+      }}</time>
       <span aria-hidden="true">—</span>
-      <time v-if="position.endDate" :datetime="position.endDate">{{
-        formatDate(position.endDate)
+      <time v-if="props.data.position.endDate" :datetime="props.data.position.endDate">{{
+        formatDate(props.data.position.endDate)
       }}</time>
       <span
         v-else
@@ -37,7 +57,10 @@
       >
     </div>
 
-    <ul v-if="translatedDescription.length > 0" class="ml-4 space-y-2 text-sm text-gray-700 dark:text-gray-200">
+    <ul
+      v-if="translatedDescription.length > 0"
+      class="ml-4 space-y-2 text-sm text-gray-700 dark:text-gray-200"
+    >
       <li v-for="(d, dIdx) in translatedDescription" :key="dIdx" class="flex items-start gap-2">
         <span
           class="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-purple-500 dark:bg-purple-400"
@@ -46,8 +69,10 @@
       </li>
     </ul>
 
-    <div v-if="translatedTechStack" class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-      <h5 class="mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">{{ t('employment.techStack') }}:</h5>
+    <div v-if="translatedTechStack" class="mt-4 border-t border-gray-200 pt-4 dark:border-gray-700">
+      <h5 class="mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+        {{ t('employment.techStack') }}:
+      </h5>
       <p class="text-sm text-gray-600 dark:text-gray-400">{{ translatedTechStack }}</p>
     </div>
   </BaseCard>
@@ -58,12 +83,18 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { EmploymentPosition } from '@/types'
 import { useFormatters } from '@/composables/useFormatters'
-import BaseCard from '@/components/molecules/BaseCard.vue'
+import BaseCard from '@/components/atoms/BaseCard/BaseCard.vue'
 
 interface Props {
-  position: EmploymentPosition
-  companyKey?: string
-  positionIndex?: number
+  data: {
+    position: EmploymentPosition
+    company: {
+      name: string
+      logo?: string
+      key?: string
+    }
+    idx: number
+  }
 }
 
 const props = defineProps<Props>()
@@ -71,15 +102,17 @@ const { t, tm } = useI18n()
 const { formatDate } = useFormatters()
 
 const translatedPosition = computed(() => {
-  if (props.companyKey !== undefined && props.positionIndex !== undefined) {
-    return t(`articles.employment.companies.${props.companyKey}.positions.${props.positionIndex}.position`)
+  if (props.data.company.key !== undefined && props.data.idx !== undefined) {
+    return t(
+      `articles.employment.companies.${props.data.company.key}.positions.${props.data.idx}.position`,
+    )
   }
   return ''
 })
 
 const translatedDescription = computed(() => {
-  if (props.companyKey !== undefined && props.positionIndex !== undefined) {
-    const translationKey = `articles.employment.companies.${props.companyKey}.positions.${props.positionIndex}.description`
+  if (props.data.company.key !== undefined && props.data.idx !== undefined) {
+    const translationKey = `articles.employment.companies.${props.data.company.key}.positions.${props.data.idx}.description`
     try {
       // Use tm() for returning message objects/arrays in vue-i18n v9
       const desc = tm(translationKey)
@@ -93,10 +126,11 @@ const translatedDescription = computed(() => {
 })
 
 const translatedTechStack = computed(() => {
-  if (props.companyKey !== undefined && props.positionIndex !== undefined) {
-    return t(`articles.employment.companies.${props.companyKey}.positions.${props.positionIndex}.techStack`)
+  if (props.data.company.key !== undefined && props.data.idx !== undefined) {
+    return t(
+      `articles.employment.companies.${props.data.company.key}.positions.${props.data.idx}.techStack`,
+    )
   }
   return ''
 })
 </script>
-

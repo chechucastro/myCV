@@ -78,7 +78,7 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { Education } from '@/types'
 import { useFormatters } from '@/composables/useFormatters'
-import BaseCard from '@/components/molecules/BaseCard.vue'
+import BaseCard from '@/components/atoms/BaseCard/BaseCard.vue'
 
 interface Props {
   education: Education

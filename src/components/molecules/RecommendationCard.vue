@@ -60,7 +60,7 @@ import { useI18n } from 'vue-i18n'
 import type { Recommendation } from '@/types'
 import { useFormatters } from '@/composables/useFormatters'
 import { trackExternalLink } from '@/composables/useGoogleAnalytics'
-import BaseCard from '@/components/molecules/BaseCard.vue'
+import BaseCard from '@/components/atoms/BaseCard/BaseCard.vue'
 import Badge from '@/components/atoms/Badge/Badge.vue'
 
 interface Props {

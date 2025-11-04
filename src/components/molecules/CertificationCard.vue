@@ -102,7 +102,7 @@
 <script setup lang="ts">
 import type { Certification } from '@/types'
 import { useFormatters } from '@/composables/useFormatters'
-import BaseCard from '@/components/molecules/BaseCard.vue'
+import BaseCard from '@/components/atoms/BaseCard/BaseCard.vue'
 import BaseButton from '@/components/atoms/BaseButton/BaseButton.vue'
 
 interface Props {

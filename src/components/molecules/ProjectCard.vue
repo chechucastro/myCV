@@ -112,7 +112,7 @@ import { useI18n } from 'vue-i18n'
 import type { PersonalProject } from '@/types'
 import { useFormatters } from '@/composables/useFormatters'
 import { trackExternalLink } from '@/composables/useGoogleAnalytics'
-import BaseCard from '@/components/molecules/BaseCard.vue'
+import BaseCard from '@/components/atoms/BaseCard/BaseCard.vue'
 import BaseButton from '@/components/atoms/BaseButton/BaseButton.vue'
 
 interface Props {
