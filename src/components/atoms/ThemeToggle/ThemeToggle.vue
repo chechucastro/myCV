@@ -48,18 +48,10 @@
 
 <script setup lang="ts">
 import { useTheme } from '@/composables/useTheme'
-import { useGoogleTagManager } from '@/composables/useGoogleTagManager'
 
 const { isDark, toggleDark } = useTheme()
-const { trackEvent } = useGoogleTagManager()
 
 const handleToggle = () => {
   toggleDark()
-  // Track theme change event
-  trackEvent('theme_toggle', {
-    theme: isDark.value ? 'dark' : 'light',
-    timestamp: new Date().toISOString(),
-  })
 }
 </script>
-
