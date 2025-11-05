@@ -70,7 +70,7 @@
             :aria-label="t('aria.hireMeProfile')"
             icon-bg-class="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-700 shadow-lg shadow-red-500/20"
             hover-color="purple"
-            :show-arrow="true"
+            :show-arrow="false"
           >
             <template #icon>
               <img

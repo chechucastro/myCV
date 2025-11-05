@@ -1,6 +1,6 @@
 /**
  * Application configuration constants
- * 
+ *
  * Centralized configuration values that can be adjusted without modifying component code.
  */
 
@@ -32,4 +32,3 @@ export const CONTACT_INFO: ContactInfo = {
   country: 'Spain',
   nationality: 'Spanish',
 }
-
