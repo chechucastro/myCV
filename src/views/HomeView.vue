@@ -22,9 +22,7 @@
       class="relative bg-white transition-all duration-300 dark:bg-neutral-950"
       :class="{ 'pt-20 sm:pt-24': showNav }"
     >
-      <div
-        class="mx-auto max-w-7xl px-1 py-8 sm:px-4 lg:px-8"
-      >
+      <div class="mx-auto max-w-7xl px-1 py-8 sm:px-4 lg:px-8">
         <!-- Main article content -->
         <CVArticle />
       </div>
@@ -53,7 +51,7 @@ const { isScrolled } = useScroll()
 const contactInfo = computed(() => CONTACT_INFO)
 
 // Use intersection observer composable
-const { observeElement, setupScrollReveal } = useIntersectionObserver()
+const { setupScrollReveal } = useIntersectionObserver()
 
 // Show name in navigation when scrolled past hero section
 const showNameInNav: Ref<boolean> = ref<boolean>(false)

@@ -34,15 +34,21 @@ test.describe('Accessibility', () => {
     // Focus test is browser-dependent, especially in WebKit
     if (browserName !== 'webkit') {
       await page.keyboard.press('Tab')
-      await page.waitForTimeout(200)
+      // Wait for focus to settle
+      await page.waitForFunction(
+        () => {
+          const active = document.activeElement
+          return active && ['A', 'BUTTON'].includes(active.tagName)
+        },
+        { timeout: 1000 },
+      )
       const focusedElement = await page.evaluate(() => document.activeElement?.tagName)
       // Should be focused on skip link or the next focusable element
       expect(['A', 'BUTTON']).toContain(focusedElement)
     } else {
       // For WebKit, just verify the link can be focused programmatically
       await skipLink.focus()
-      await page.waitForTimeout(100)
-      await expect(skipLink).toBeFocused()
+      await expect(skipLink).toBeFocused({ timeout: 1000 })
     }
   })
 
@@ -59,10 +65,8 @@ test.describe('Accessibility', () => {
     await page.evaluate(() => {
       window.scrollTo(0, 200)
     })
-    await page.waitForTimeout(500)
-
-    // Now navigation should be visible
-    await expect(navigation).toBeVisible()
+    // Wait for navigation to become visible after scroll
+    await expect(navigation).toBeVisible({ timeout: 1000 })
 
     // Check for banner landmark
     await expect(page.getByRole('banner')).toBeVisible()
@@ -84,12 +88,9 @@ test.describe('Accessibility', () => {
     await page.evaluate(() => {
       window.scrollTo(0, window.innerHeight + 200)
     })
-    await page.waitForTimeout(1500) // Wait for intersection observer and transitions
-
-    // Language selector should have a proper label or aria-label
+    // Wait for intersection observer and transitions - wait for select to be attached
     const select = page.locator('select#language, select[name="language"]')
-    // Check that select exists in DOM (it may be hidden but should have proper attributes)
-    await expect(select.first()).toBeAttached()
+    await expect(select.first()).toBeAttached({ timeout: 2000 })
 
     const selectElement = select.first()
     const nameAttr = await selectElement.getAttribute('name')
@@ -135,11 +136,9 @@ test.describe('Accessibility', () => {
         competenciesHeading.scrollIntoView({ behavior: 'smooth', block: 'center' })
       }
     })
-    await page.waitForTimeout(1000)
-
-    // Check for live regions used in skills/languages announcements
-    // Live regions should be in DOM (even if sr-only/hidden)
+    // Wait for live regions to be present after scroll
     const liveRegions = page.locator('[aria-live]')
+    await expect(liveRegions.first()).toBeAttached({ timeout: 2000 })
     const count = await liveRegions.count()
 
     expect(count).toBeGreaterThan(0)
@@ -170,7 +169,8 @@ test.describe('Accessibility', () => {
     await page.evaluate(() => {
       window.scrollTo(0, 200)
     })
-    await page.waitForTimeout(500)
+    // Wait for navigation to become visible after scroll
+    await expect(nav).toBeVisible({ timeout: 1000 })
 
     // Check for main article with aria-label
     await expect(page.getByRole('article', { name: 'Main article content' })).toBeVisible()

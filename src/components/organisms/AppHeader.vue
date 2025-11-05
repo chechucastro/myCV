@@ -71,7 +71,7 @@ interface Props {
   showNav: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   name: 'Chechu Castro',
   jobTitle: 'UI Frontend Web Developer',
   techStack: 'VueJS • Quasar • Nuxt • TailwindCSS',

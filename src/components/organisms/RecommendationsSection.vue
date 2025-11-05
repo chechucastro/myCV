@@ -26,7 +26,12 @@
           viewBox="0 0 24 24"
           aria-hidden="true"
         >
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7"
+          />
         </svg>
       </BaseButton>
     </div>
@@ -45,21 +50,111 @@ import BaseButton from '@/components/atoms/BaseButton/BaseButton.vue'
  * Recommendations metadata
  */
 const recommendationsMetadata: Recommendation[] = [
-  { name: 'Divya', surname: 'E', postDate: '2023-02-28', hierarchyMode: 'client', linkedInUrl: 'https://www.linkedin.com/in/divya-e-11463740/?locale=en_US' },
-  { name: 'Vasil', surname: 'Yovchev', postDate: '2023-02-28', hierarchyMode: 'colleague', linkedInUrl: 'https://www.linkedin.com/in/vyovchev/?locale=en_US' },
-  { name: 'Ante', surname: 'Rukavina', postDate: '2023-02-28', hierarchyMode: 'colleague', linkedInUrl: 'https://www.linkedin.com/in/ante-rukavina-9792271b0/?locale=en_US' },
-  { name: 'Juliana', surname: 'RALAIVAO', postDate: '2018-10-23', hierarchyMode: 'manager', linkedInUrl: 'https://www.linkedin.com/in/juliana-ralaivao-a297a6a5/?locale=en_US' },
-  { name: 'Antoine', surname: 'Martin', postDate: '2018-10-11', hierarchyMode: 'colleague', linkedInUrl: 'https://www.linkedin.com/in/antoine-martin-55712084/?locale=en_US' },
-  { name: 'Alexis', surname: 'Estrade', postDate: '2018-10-11', hierarchyMode: 'manager', linkedInUrl: 'https://www.linkedin.com/in/alexis-estrade/?locale=en_US' },
-  { name: 'Frédéric', surname: 'Rodas', postDate: '2015-11-06', hierarchyMode: 'manager', linkedInUrl: 'https://www.linkedin.com/in/fredericrodas/?locale=en_US' },
-  { name: 'Nicolas', surname: 'Escoffier', postDate: '2015-07-20', hierarchyMode: 'reports_to', linkedInUrl: 'https://www.linkedin.com/in/nicolasescoffier?locale=en_US' },
-  { name: 'Sylvia', surname: 'Moreno', postDate: '2015-05-21', hierarchyMode: 'reports_to', linkedInUrl: 'https://www.linkedin.com/in/sylvia-m-30161859?locale=en_US' },
-  { name: 'Bruno', surname: 'Haouli', postDate: '2015-05-21', hierarchyMode: 'reports_to', linkedInUrl: 'https://www.linkedin.com/in/bruno-haouli-052a414?locale=en_US' },
-  { name: 'Nicolas', surname: 'Delfour', postDate: '2014-11-22', hierarchyMode: 'colleague', linkedInUrl: 'https://www.linkedin.com/in/nicolasdelfour?locale=en_US' },
-  { name: 'François', surname: 'JULIENNE', postDate: '2014-07-24', hierarchyMode: 'reports_to', linkedInUrl: 'https://www.linkedin.com/in/francoisjulienne?locale=en_US' },
-  { name: 'Rudy', surname: 'THIMOTHÉE', postDate: '2012-10-24', hierarchyMode: 'colleague', linkedInUrl: 'https://www.linkedin.com/in/rudy-thimoth%C3%A9e-20a11716?locale=en_US' },
-  { name: 'Rudy', surname: 'THIMOTHÉE', postDate: '2012-09-11', hierarchyMode: 'colleague', linkedInUrl: 'https://www.linkedin.com/in/rudy-thimoth%C3%A9e-20a11716?locale=en_US' },
-  { name: 'Moez', surname: 'Kacem', postDate: '2012-01-12', hierarchyMode: 'colleague', linkedInUrl: 'https://www.linkedin.com/in/moez-kacem?locale=en_US' },
+  {
+    name: 'Divya',
+    surname: 'E',
+    postDate: '2023-02-28',
+    hierarchyMode: 'client',
+    linkedInUrl: 'https://www.linkedin.com/in/divya-e-11463740/?locale=en_US',
+  },
+  {
+    name: 'Vasil',
+    surname: 'Yovchev',
+    postDate: '2023-02-28',
+    hierarchyMode: 'colleague',
+    linkedInUrl: 'https://www.linkedin.com/in/vyovchev/?locale=en_US',
+  },
+  {
+    name: 'Ante',
+    surname: 'Rukavina',
+    postDate: '2023-02-28',
+    hierarchyMode: 'colleague',
+    linkedInUrl: 'https://www.linkedin.com/in/ante-rukavina-9792271b0/?locale=en_US',
+  },
+  {
+    name: 'Juliana',
+    surname: 'RALAIVAO',
+    postDate: '2018-10-23',
+    hierarchyMode: 'manager',
+    linkedInUrl: 'https://www.linkedin.com/in/juliana-ralaivao-a297a6a5/?locale=en_US',
+  },
+  {
+    name: 'Antoine',
+    surname: 'Martin',
+    postDate: '2018-10-11',
+    hierarchyMode: 'colleague',
+    linkedInUrl: 'https://www.linkedin.com/in/antoine-martin-55712084/?locale=en_US',
+  },
+  {
+    name: 'Alexis',
+    surname: 'Estrade',
+    postDate: '2018-10-11',
+    hierarchyMode: 'manager',
+    linkedInUrl: 'https://www.linkedin.com/in/alexis-estrade/?locale=en_US',
+  },
+  {
+    name: 'Frédéric',
+    surname: 'Rodas',
+    postDate: '2015-11-06',
+    hierarchyMode: 'manager',
+    linkedInUrl: 'https://www.linkedin.com/in/fredericrodas/?locale=en_US',
+  },
+  {
+    name: 'Nicolas',
+    surname: 'Escoffier',
+    postDate: '2015-07-20',
+    hierarchyMode: 'reports_to',
+    linkedInUrl: 'https://www.linkedin.com/in/nicolasescoffier?locale=en_US',
+  },
+  {
+    name: 'Sylvia',
+    surname: 'Moreno',
+    postDate: '2015-05-21',
+    hierarchyMode: 'reports_to',
+    linkedInUrl: 'https://www.linkedin.com/in/sylvia-m-30161859?locale=en_US',
+  },
+  {
+    name: 'Bruno',
+    surname: 'Haouli',
+    postDate: '2015-05-21',
+    hierarchyMode: 'reports_to',
+    linkedInUrl: 'https://www.linkedin.com/in/bruno-haouli-052a414?locale=en_US',
+  },
+  {
+    name: 'Nicolas',
+    surname: 'Delfour',
+    postDate: '2014-11-22',
+    hierarchyMode: 'colleague',
+    linkedInUrl: 'https://www.linkedin.com/in/nicolasdelfour?locale=en_US',
+  },
+  {
+    name: 'François',
+    surname: 'JULIENNE',
+    postDate: '2014-07-24',
+    hierarchyMode: 'reports_to',
+    linkedInUrl: 'https://www.linkedin.com/in/francoisjulienne?locale=en_US',
+  },
+  {
+    name: 'Rudy',
+    surname: 'THIMOTHÉE',
+    postDate: '2012-10-24',
+    hierarchyMode: 'colleague',
+    linkedInUrl: 'https://www.linkedin.com/in/rudy-thimoth%C3%A9e-20a11716?locale=en_US',
+  },
+  {
+    name: 'Rudy',
+    surname: 'THIMOTHÉE',
+    postDate: '2012-09-11',
+    hierarchyMode: 'colleague',
+    linkedInUrl: 'https://www.linkedin.com/in/rudy-thimoth%C3%A9e-20a11716?locale=en_US',
+  },
+  {
+    name: 'Moez',
+    surname: 'Kacem',
+    postDate: '2012-01-12',
+    hierarchyMode: 'colleague',
+    linkedInUrl: 'https://www.linkedin.com/in/moez-kacem?locale=en_US',
+  },
 ]
 
 interface Props {
@@ -79,9 +174,9 @@ const { t, tm, locale } = useI18n()
 const recommendations = computed<Recommendation[]>(() => {
   // Access locale.value to make this computed reactive to locale changes
   void locale.value // Access to track reactivity, even if unused
-  
+
   const items = tm('articles.recommendations.items')
-  
+
   if (!Array.isArray(items)) {
     return []
   }
@@ -113,7 +208,7 @@ const visibleRecommendations = computed<Recommendation[]>(() => {
 const toggleShowAll = (): void => {
   const action = showAll.value ? 'show_less' : 'show_all'
   showAll.value = !showAll.value
-  
+
   // Track section toggle
   trackSectionToggle('recommendations', action)
 }
@@ -139,4 +234,3 @@ const toggleShowAll = (): void => {
   transition: transform 0.4s ease-out;
 }
 </style>
-

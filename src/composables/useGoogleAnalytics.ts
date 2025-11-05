@@ -1,51 +1,60 @@
 /**
- * Composable for Google Analytics 4 (GA4) event tracking
- * Uses gtag.js directly for tracking events
+ * Composable for Google Tag Manager (GTM) event tracking
+ * Uses dataLayer.push() to send events to GTM
  */
+
+/**
+ * GTM dataLayer entry type
+ */
+type GTMDataLayerEntry = Record<string, unknown> & {
+  event?: string
+}
 
 declare global {
   interface Window {
-    dataLayer: any[]
-    gtag: (...args: any[]) => void
+    dataLayer: GTMDataLayerEntry[]
   }
 }
 
 /**
- * Track a custom event with GA4
+ * Track a custom event with GTM
  * @param eventName - Event name (snake_case recommended)
  * @param parameters - Event parameters
  */
-export function trackEvent(eventName: string, parameters?: Record<string, any>): void {
-  if (typeof window === 'undefined' || typeof window.gtag !== 'function') {
+export function trackEvent(eventName: string, parameters?: Record<string, unknown>): void {
+  if (typeof window === 'undefined' || !window.dataLayer) {
     if (import.meta.env.DEV) {
-      console.warn('[GA4] gtag not available, event not tracked:', eventName, parameters)
+      console.warn('[GTM] dataLayer not available, event not tracked:', eventName, parameters)
     }
     return
   }
 
   try {
-    window.gtag('event', eventName, parameters || {})
-    
+    window.dataLayer.push({
+      event: eventName,
+      ...(parameters || {}),
+    })
+
     if (import.meta.env.DEV) {
-      console.log('[GA4] Event tracked:', eventName, parameters)
+      console.log('[GTM] Event tracked:', eventName, parameters)
     }
   } catch (error) {
-    console.error('[GA4] Error tracking event:', error)
+    console.error('[GTM] Error tracking event:', error)
   }
 }
 
 /**
- * Track a page view
+ * Track a page view with GTM
  * @param pagePath - Page path (defaults to current path)
  * @param pageTitle - Page title (optional)
  */
 export function trackPageView(pagePath?: string, pageTitle?: string): void {
-  const parameters: Record<string, any> = {}
-  
+  const parameters: Record<string, unknown> = {}
+
   if (pagePath) {
     parameters.page_path = pagePath
   }
-  
+
   if (pageTitle) {
     parameters.page_title = pageTitle
   }
@@ -54,11 +63,11 @@ export function trackPageView(pagePath?: string, pageTitle?: string): void {
 }
 
 /**
- * Track a click event
+ * Track a click event with GTM
  * @param elementName - Name/identifier of the clicked element
  * @param additionalData - Additional event data
  */
-export function trackClick(elementName: string, additionalData?: Record<string, any>): void {
+export function trackClick(elementName: string, additionalData?: Record<string, unknown>): void {
   trackEvent('click', {
     element_name: elementName,
     ...additionalData,
@@ -66,7 +75,7 @@ export function trackClick(elementName: string, additionalData?: Record<string, 
 }
 
 /**
- * Track external link clicks
+ * Track external link clicks with GTM
  * @param destination - Where the link goes (e.g., 'LinkedIn', 'GitHub')
  * @param url - The URL being clicked
  */
@@ -78,7 +87,7 @@ export function trackExternalLink(destination: string, url: string): void {
 }
 
 /**
- * Track theme toggle
+ * Track theme toggle with GTM
  * @param theme - The theme being switched to ('dark' | 'light')
  */
 export function trackThemeToggle(theme: 'dark' | 'light'): void {
@@ -89,7 +98,7 @@ export function trackThemeToggle(theme: 'dark' | 'light'): void {
 }
 
 /**
- * Track language change
+ * Track language change with GTM
  * @param fromLocale - Previous language locale
  * @param toLocale - New language locale
  */
@@ -101,7 +110,7 @@ export function trackLanguageChange(fromLocale: string, toLocale: string): void 
 }
 
 /**
- * Track section toggle (show more/show all)
+ * Track section toggle (show more/show all) with GTM
  * @param sectionName - Name of the section being toggled
  * @param action - Action taken ('show_more' | 'show_less' | 'show_all' | 'collapse')
  */
@@ -113,7 +122,7 @@ export function trackSectionToggle(sectionName: string, action: string): void {
 }
 
 /**
- * Composable function that returns tracking methods
+ * Composable function that returns GTM tracking methods
  */
 export function useGoogleAnalytics() {
   return {
@@ -126,4 +135,3 @@ export function useGoogleAnalytics() {
     trackSectionToggle,
   }
 }
-
