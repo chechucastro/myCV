@@ -5,13 +5,23 @@ import type { EmploymentPosition } from '@/types'
 
 describe('PositionCard', () => {
   const mockPosition: EmploymentPosition = {
-    startDate: '2020-06-01',
-    endDate: '2023-12-31',
+    startDate: '2023-10-01',
+    endDate: '2025-10-31',
+  }
+
+  const mockData = {
+    position: mockPosition,
+    company: {
+      name: 'Fairlyne',
+      logo: '/company-logos/fairlyne.webp',
+      key: 'fairlyne',
+    },
+    idx: 0,
   }
 
   it('should render position title', () => {
     const wrapper = mount(PositionCard, {
-      props: { position: mockPosition, companyKey: 'fairlyne', positionIndex: 0 },
+      props: { data: mockData },
     })
 
     // Check for the actual position title from i18n translations
@@ -22,7 +32,7 @@ describe('PositionCard', () => {
 
   it('should render all description items', () => {
     const wrapper = mount(PositionCard, {
-      props: { position: mockPosition, companyKey: 'fairlyne', positionIndex: 0 },
+      props: { data: mockData },
     })
 
     // Check for actual description items from i18n translations
@@ -35,12 +45,12 @@ describe('PositionCard', () => {
 
   it('should display date range', () => {
     const wrapper = mount(PositionCard, {
-      props: { position: mockPosition, companyKey: 'fairlyne', positionIndex: 0 },
+      props: { data: mockData },
     })
 
     const text = wrapper.text()
-    expect(text.toLowerCase()).toMatch(/jun|junio/)
-    expect(text).toContain('2020')
+    expect(text.toLowerCase()).toMatch(/oct|october/)
+    expect(text).toContain('2023')
   })
 
   it('should show "Present" badge when no end date', () => {
@@ -49,8 +59,13 @@ describe('PositionCard', () => {
       endDate: undefined,
     }
 
+    const currentData = {
+      ...mockData,
+      position: currentPosition,
+    }
+
     const wrapper = mount(PositionCard, {
-      props: { position: currentPosition, companyKey: 'fairlyne', positionIndex: 0 },
+      props: { data: currentData },
     })
 
     expect(wrapper.text()).toContain('Present')
@@ -58,7 +73,7 @@ describe('PositionCard', () => {
 
   it('should render description as list items', () => {
     const wrapper = mount(PositionCard, {
-      props: { position: mockPosition, companyKey: 'fairlyne', positionIndex: 0 },
+      props: { data: mockData },
     })
 
     const listItems = wrapper.findAll('li')
@@ -67,7 +82,7 @@ describe('PositionCard', () => {
 
   it('should have proper semantic HTML structure', () => {
     const wrapper = mount(PositionCard, {
-      props: { position: mockPosition, companyKey: 'fairlyne', positionIndex: 0 },
+      props: { data: mockData },
     })
 
     expect(wrapper.find('article').exists()).toBe(true)
@@ -76,7 +91,7 @@ describe('PositionCard', () => {
 
   it('should have correct ARIA labels', () => {
     const wrapper = mount(PositionCard, {
-      props: { position: mockPosition, companyKey: 'fairlyne', positionIndex: 0 },
+      props: { data: mockData },
     })
 
     expect(wrapper.find('article').attributes('aria-label')).toBe('Employment entry')

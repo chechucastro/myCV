@@ -1,10 +1,20 @@
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect, beforeEach, afterEach } from 'vitest'
 import { mount } from '@vue/test-utils'
-import ThemeToggle from '../atoms/ThemeToggle.vue'
+import ThemeToggle from '../atoms/ThemeToggle/ThemeToggle.vue'
 
 describe('ThemeToggle', () => {
   beforeEach(() => {
+    // Clean up document classes and localStorage before each test
     document.documentElement.classList.remove('dark')
+    localStorage.clear()
+    // Set initial theme to light mode for consistent test behavior
+    localStorage.setItem('theme-preference', 'light')
+  })
+
+  afterEach(() => {
+    // Clean up after each test
+    document.documentElement.classList.remove('dark')
+    localStorage.clear()
   })
 
   it('should render theme toggle button', () => {

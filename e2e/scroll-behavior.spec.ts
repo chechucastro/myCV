@@ -3,6 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('Scroll Behavior', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/')
+    await page.waitForLoadState('networkidle')
     await page.setViewportSize({ width: 1280, height: 720 })
   })
 
@@ -25,16 +26,19 @@ test.describe('Scroll Behavior', () => {
   })
 
   test('should show name in navigation when scrolled', async ({ page }) => {
-    // Scroll down significantly past the hero section to trigger navigation visibility
-    await page.evaluate(() => window.scrollBy(0, window.innerHeight + 200))
+    await page.waitForLoadState('networkidle')
 
-    // Wait for scroll handler and transition
-    await page.waitForTimeout(800)
+    // Scroll down significantly past the hero section to trigger navigation visibility
+    // Navigation only shows when hero is not visible (hasScrolled && !isHeroVisible)
+    await page.evaluate(() => window.scrollTo(0, window.innerHeight + 200))
+
+    // Wait for scroll handler, intersection observer, and transition
+    await page.waitForTimeout(2000)
 
     // Navigation should now be visible and contain name
     const nav = page.getByRole('navigation', { name: /primary navigation/i })
-    await expect(nav).toBeVisible()
-    
+    await expect(nav).toBeVisible({ timeout: 10000 })
+
     // Name should now appear in navigation
     const navText = await nav.textContent()
     expect(navText).toContain('Chechu Castro')
@@ -65,4 +69,3 @@ test.describe('Scroll Behavior', () => {
     expect(['auto', 'smooth']).toContain(htmlScrollBehavior)
   })
 })
-
