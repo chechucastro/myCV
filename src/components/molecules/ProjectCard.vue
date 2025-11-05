@@ -50,9 +50,9 @@
         v-if="translatedTechStack"
         class="mb-4 border-t border-gray-200 pt-4 dark:border-gray-700"
       >
-        <h5 class="mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+        <h4 class="mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
           {{ t('employment.techStack') }}:
-        </h5>
+        </h4>
         <p class="text-sm text-gray-600 dark:text-gray-400">{{ translatedTechStack }}</p>
       </div>
 
