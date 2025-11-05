@@ -18,7 +18,7 @@
             {{ getTranslatedLanguageName(lang.name) }}
           </div>
           <div
-            class="rounded-full px-3 py-1 text-xs font-medium text-gray-900 dark:text-white"
+            class="rounded-full px-3 py-1 text-xs font-medium"
             :class="getLanguageLevelColor(lang.level)"
           >
             {{ t('languages.levels.' + lang.level.toLowerCase()) }}

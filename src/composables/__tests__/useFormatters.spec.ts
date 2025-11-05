@@ -122,34 +122,59 @@ describe('useFormatters', () => {
   })
 
   describe('getLanguageLevelColor', () => {
-    it('should return correct color for Native', () => {
+    it('should return correct color for Native with white text for accessibility', () => {
       const result = getLanguageLevelColor('Native')
-      expect(result).toContain('bg-red-500')
+      expect(result).toContain('bg-red-600')
+      expect(result).toContain('text-white')
     })
 
-    it('should return correct color for Fluent', () => {
+    it('should return correct color for Fluent with white text for accessibility', () => {
       const result = getLanguageLevelColor('Fluent')
-      expect(result).toContain('bg-orange-500')
+      expect(result).toContain('bg-orange-600')
+      expect(result).toContain('text-white')
     })
 
-    it('should return correct color for Professional', () => {
+    it('should return correct color for Professional with white text for accessibility', () => {
       const result = getLanguageLevelColor('Professional')
-      expect(result).toContain('bg-yellow-500')
+      expect(result).toContain('bg-yellow-600')
+      expect(result).toContain('text-white')
     })
 
-    it('should return correct color for Conversational', () => {
+    it('should return correct color for Conversational with white text for accessibility', () => {
       const result = getLanguageLevelColor('Conversational')
-      expect(result).toContain('bg-cyan-500')
+      expect(result).toContain('bg-cyan-600')
+      expect(result).toContain('text-white')
     })
 
-    it('should return correct color for Basic', () => {
+    it('should return correct color for Basic with white text for accessibility', () => {
       const result = getLanguageLevelColor('Basic')
-      expect(result).toContain('bg-blue-500')
+      expect(result).toContain('bg-blue-600')
+      expect(result).toContain('text-white')
     })
 
     it('should include dark mode classes', () => {
       const result = getLanguageLevelColor('Native')
       expect(result).toContain('dark:')
+      expect(result).toContain('dark:bg-red-500')
+      expect(result).toContain('dark:text-white')
+    })
+
+    it('should ensure WCAG AA compliance by using white text on darker backgrounds', () => {
+      const levels: LanguageLevel[] = [
+        'Basic',
+        'Conversational',
+        'Professional',
+        'Fluent',
+        'Native',
+      ]
+
+      levels.forEach((level) => {
+        const result = getLanguageLevelColor(level)
+        // All levels should include white text for proper contrast
+        expect(result).toContain('text-white')
+        // All levels should use -600 shade in light mode for better contrast
+        expect(result).toMatch(/bg-(red|orange|yellow|cyan|blue)-600/)
+      })
     })
   })
 })
