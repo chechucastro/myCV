@@ -12,53 +12,88 @@ src/
 │   └── index.ts               # All interfaces and types
 │
 ├── data/                       # Mock data and content
-│   └── cv-data.ts             # CV content (skills, languages, articles, contact info)
+│   └── skills.ts              # Skills data
+│
+├── config/                     # Configuration constants
+│   └── constants.ts           # Application constants (contact info, etc.)
 │
 ├── composables/               # Reusable business logic
 │   ├── useTheme.ts           # Theme management (dark/light mode)
 │   ├── useScroll.ts          # Scroll tracking logic
 │   ├── useIntersectionObserver.ts  # Intersection Observer utilities
 │   ├── useFormatters.ts      # Data formatting utilities
-│   └── useAccessibility.ts   # Accessibility announcements
+│   ├── useAccessibility.ts   # Accessibility announcements
+│   ├── useBfcache.ts         # Browser back/forward cache handling
+│   ├── useGoogleAnalytics.ts # Google Analytics integration
+│   └── useLinkedIn.ts        # LinkedIn integration utilities
 │
 ├── components/
-│   ├── header/               # Header and navigation components
-│   │   ├── AppHeader.vue            # Main header component
-│   │   ├── ThemeToggle.vue          # Dark/light mode toggle
+│   ├── atoms/                # Atomic design: smallest UI components
+│   │   ├── Badge/            # Badge component with variants
+│   │   │   ├── Badge.vue
+│   │   │   ├── Badge.const.ts
+│   │   │   └── Badge.variants.ts
+│   │   ├── BaseButton/       # Base button component with variants
+│   │   │   ├── BaseButton.vue
+│   │   │   ├── BaseButton.const.ts
+│   │   │   └── BaseButton.variants.ts
+│   │   ├── BaseCard/         # Base card component with variants
+│   │   │   ├── BaseCard.vue
+│   │   │   ├── BaseCard.const.ts
+│   │   │   └── BaseCard.variants.ts
+│   │   ├── SkipToContent/    # Accessibility skip link
+│   │   │   └── SkipToContent.vue
+│   │   └── ThemeToggle/      # Dark/light mode toggle
+│   │       └── ThemeToggle.vue
+│   │
+│   ├── molecules/            # Atomic design: composed atoms
+│   │   ├── ButtonDetails.vue        # Button with details
+│   │   ├── CertificationCard.vue    # Certification card
+│   │   ├── EducationCard.vue        # Education card
 │   │   ├── LanguageSelector.vue     # Language selection dropdown
-│   │   ├── NavigationHeader.vue     # Navigation bar header
-│   │   ├── HeroSection.vue          # Hero section with profile
-│   │   └── SkipToContent.vue        # Accessibility skip link
+│   │   ├── PositionCard.vue         # Individual position card
+│   │   ├── ProfileSection.vue       # Profile text content
+│   │   ├── ProjectCard.vue          # Personal project card
+│   │   └── RecommendationCard.vue   # Individual recommendation
 │   │
-│   ├── sidebar/              # Sidebar components
-│   │   ├── CVSidebar.vue            # Main sidebar container
-│   │   ├── SkillsSection.vue        # Skills with progress bars
-│   │   ├── LanguagesSection.vue     # Language proficiency
-│   │   └── DetailsSection.vue       # Contact and personal details
-│   │
-│   ├── article/              # Main content components
-│   │   ├── CVArticle.vue            # Article container
-│   │   ├── ArticleSection.vue       # Generic section wrapper
-│   │   └── ProfileSection.vue       # Profile text content
-│   │
-│   ├── employment/           # Employment history components
-│   │   ├── EmploymentHistorySection.vue  # Employment container
-│   │   ├── CompanyHistorySection.vue     # Company grouping
-│   │   └── PositionCard.vue              # Individual position card
-│   │
-│   ├── certifications/       # Certification components
-│   │   ├── CertificationsSection.vue     # Certifications grid
-│   │   └── CertificationCard.vue         # Individual certificate
-│   │
-│   └── recommendations/      # Recommendation components
-│       ├── RecommendationsSection.vue    # Recommendations container
-│       └── RecommendationCard.vue        # Individual recommendation
+│   └── organisms/           # Atomic design: complex UI sections
+│       ├── AppFooter.vue                    # Application footer
+│       ├── AppHeader.vue                    # Main header component
+│       ├── ArticleSection.vue               # Generic section wrapper
+│       ├── CertificationsSection.vue        # Certifications grid
+│       ├── CompanyHistorySection.vue        # Company grouping
+│       ├── CVArticle.vue                   # Article container
+│       ├── CVSidebar.vue                   # Main sidebar container
+│       ├── DetailsSection.vue              # Contact and personal details
+│       ├── EducationSection.vue            # Education section
+│       ├── EmploymentHistorySection.vue    # Employment container
+│       ├── HeroSection.vue                 # Hero section with profile
+│       ├── LanguagesSection.vue            # Language proficiency
+│       ├── NavigationHeader.vue            # Navigation bar header
+│       ├── PersonalProjectsSection.vue     # Personal projects section
+│       ├── RecommendationsSection.vue      # Recommendations container
+│       └── SkillsSection.vue                # Skills with progress bars
 │
 ├── layouts/
 │   └── DefaultLayout.vue     # Main layout wrapper
 │
-└── views/
-    └── HomeView.vue          # Main view (now much simpler)
+├── views/
+│   └── HomeView.vue          # Main view
+│
+├── plugins/
+│   └── i18n.ts               # Internationalization plugin
+│
+├── router/
+│   └── index.ts              # Vue Router configuration
+│
+├── stores/                   # State management (Pinia)
+│   ├── counter.ts            # Example counter store
+│   └── language.ts           # Language store
+│
+└── locales/                  # Translation files
+    ├── en.json               # English translations
+    ├── es.json               # Spanish translations
+    └── fr.json               # French translations
 ```
 
 ## SOLID Principles Applied
@@ -115,59 +150,73 @@ High-level components depend on abstractions (composables), not concrete impleme
 
 Reusable logic extracted into composables following the Composition API:
 
-- **Theme Management**: Dark/light mode toggle
-- **Scroll Tracking**: Monitors scroll position for UI updates
-- **Intersection Observer**: Handles scroll animations and visibility detection
-- **Formatters**: Date formatting, language levels, hierarchy modes
-- **Accessibility**: Screen reader announcements
+- **Theme Management**: Dark/light mode toggle (`useTheme`)
+- **Scroll Tracking**: Monitors scroll position for UI updates (`useScroll`)
+- **Intersection Observer**: Handles scroll animations and visibility detection (`useIntersectionObserver`)
+- **Formatters**: Date formatting, language levels, hierarchy modes (`useFormatters`)
+- **Accessibility**: Screen reader announcements (`useAccessibility`)
+- **BFCache Handling**: Browser back/forward cache compatibility (`useBfcache`)
+- **Google Analytics**: Analytics integration (`useGoogleAnalytics`)
+- **LinkedIn Integration**: LinkedIn-specific utilities (`useLinkedIn`)
 
-### Component Hierarchy
+### Component Hierarchy (Atomic Design Pattern)
 
-#### Header Components
+The application follows **Atomic Design** principles, organizing components into three levels:
 
-- `AppHeader`: Main header orchestrator
-- `ThemeToggle`: Isolated theme switching logic
-- `LanguageSelector`: Standalone language selection
-- `NavigationHeader`: Sticky navigation bar content
-- `HeroSection`: Landing hero with profile image
+#### Atoms (Smallest UI Components)
+
+Basic building blocks that cannot be broken down further:
+
+- `Badge`: Reusable badge component with variants
+- `BaseButton`: Base button component with variants and constants
+- `BaseCard`: Base card component with variants and constants
 - `SkipToContent`: Accessibility skip link
+- `ThemeToggle`: Dark/light mode toggle button
 
-#### Sidebar Components
+#### Molecules (Composed Atoms)
 
-- `CVSidebar`: Container for all sidebar sections
-- `SkillsSection`: Skills with animated progress bars
-- `LanguagesSection`: Language proficiency levels
-- `DetailsSection`: Contact information and social links
+Simple combinations of atoms that form basic UI elements:
 
-#### Article Components
+- `ButtonDetails`: Button component with additional details
+- `CertificationCard`: Individual certificate card with image and link
+- `EducationCard`: Education entry card
+- `LanguageSelector`: Language selection dropdown
+- `PositionCard`: Individual job position card with details
+- `ProfileSection`: Profile text content display
+- `ProjectCard`: Personal project card
+- `RecommendationCard`: Individual recommendation card with hierarchy badge
 
-- `CVArticle`: Main content container
+#### Organisms (Complex UI Sections)
+
+Complex components composed of molecules and atoms:
+
+- `AppFooter`: Application footer with credits
+- `AppHeader`: Main header orchestrator (contains NavigationHeader, ThemeToggle, LanguageSelector, HeroSection)
 - `ArticleSection`: Generic section wrapper with conditional rendering
-- `ProfileSection`: Simple text content display
-
-#### Employment Components
-
-- `EmploymentHistorySection`: Groups all employment data
-- `CompanyHistorySection`: Groups positions by company
-- `PositionCard`: Individual job position with details
-
-#### Certification Components
-
 - `CertificationsSection`: Grid layout of certificates
-- `CertificationCard`: Individual certificate with image and link
-
-#### Recommendation Components
-
+- `CompanyHistorySection`: Groups positions by company
+- `CVArticle`: Main article container
+- `CVSidebar`: Container for all sidebar sections
+- `DetailsSection`: Contact information and social links
+- `EducationSection`: Education history section
+- `EmploymentHistorySection`: Groups all employment data
+- `HeroSection`: Landing hero section with profile image
+- `LanguagesSection`: Language proficiency levels
+- `NavigationHeader`: Sticky navigation bar content
+- `PersonalProjectsSection`: Personal projects grid/list
 - `RecommendationsSection`: List of recommendations
-- `RecommendationCard`: Individual recommendation with hierarchy badge
+- `SkillsSection`: Skills with animated progress bars
 
 ## Data Flow
 
-1. **cv-data.ts** holds all CV content (skills, languages, articles, contact info)
-2. **HomeView.vue** imports and uses this data
-3. Data is passed down to child components via props
-4. Components use composables for business logic (formatting, animations, etc.)
-5. UI updates reactively based on state changes
+1. **constants.ts** holds application constants (contact info, etc.)
+2. **skills.ts** holds skills data
+3. **locales/** holds all translatable content (i18n)
+4. **HomeView.vue** imports constants and uses i18n for translations
+5. Data is passed down to child components via props
+6. Components use composables for business logic (formatting, animations, etc.)
+7. Components read translations via `useI18n()` composable
+8. UI updates reactively based on state changes
 
 ## Benefits of This Architecture
 
@@ -216,10 +265,11 @@ Reusable logic extracted into composables following the Composition API:
 
 ### Adding a New Section
 
-1. Create a new component in the appropriate folder
+1. Create a new component in the appropriate atomic design folder (`atoms/`, `molecules/`, or `organisms/`)
 2. Define the interface in `src/types/index.ts`
-3. Import and use in `ArticleSection.vue`
-4. Add data to `src/data/cv-data.ts`
+3. Import and use in `ArticleSection.vue` or `CVArticle.vue`
+4. Add translations to `src/locales/*.json` files
+5. Add constants to `src/config/constants.ts` if needed
 
 ### Adding New Business Logic
 
@@ -232,13 +282,27 @@ Reusable logic extracted into composables following the Composition API:
 1. Add interfaces/types to `src/types/index.ts`
 2. Import where needed using `import type { YourType } from '@/types'`
 
-## Migration Notes
+## Architecture Evolution
 
-The original monolithic `HomeView.vue` (1218 lines) has been split into:
+The application has evolved from a monolithic structure to a well-organized, scalable architecture:
+
+### Current Structure
 
 - **8 composables** for business logic
-- **24 focused components** for UI
+- **5 atoms** - Basic UI building blocks
+- **8 molecules** - Composed UI elements
+- **17 organisms** - Complex UI sections
 - **1 types file** with all TypeScript definitions
-- **1 simplified view** (now ~250 lines)
+- **1 simplified view** (~200 lines)
+- **i18n support** with 3 languages (EN, ES, FR)
+- **Atomic Design Pattern** for component organization
 
-This results in better code organization, easier maintenance, and improved developer experience.
+### Key Architectural Decisions
+
+1. **Atomic Design**: Components organized by complexity (atoms → molecules → organisms)
+2. **Internationalization**: Content managed through translation files, not hardcoded
+3. **Configuration Management**: Constants centralized in `config/constants.ts`
+4. **State Management**: Pinia stores for global state (language, etc.)
+5. **Composables Pattern**: Business logic extracted and reusable across components
+
+This results in better code organization, easier maintenance, improved testability, and enhanced developer experience.
