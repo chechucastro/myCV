@@ -48,11 +48,11 @@ export function useFormatters() {
    */
   const getLanguageLevelColor = (level: LanguageLevel): string => {
     const colorMap: Record<LanguageLevel, string> = {
-      Native: 'bg-red-600 text-white dark:bg-red-500 dark:text-white',
-      Fluent: 'bg-orange-600 text-white dark:bg-orange-500 dark:text-white',
-      Professional: 'bg-yellow-600 text-white dark:bg-yellow-500 dark:text-white',
-      Conversational: 'bg-cyan-600 text-white dark:bg-cyan-500 dark:text-white',
-      Basic: 'bg-blue-600 text-white dark:bg-blue-500 dark:text-white',
+      Native: 'bg-red-700 text-white dark:bg-red-600 dark:text-white',
+      Fluent: 'bg-orange-700 text-white dark:bg-orange-600 dark:text-white',
+      Professional: 'bg-yellow-800 text-white dark:bg-yellow-700 dark:text-white',
+      Conversational: 'bg-cyan-700 text-white dark:bg-cyan-600 dark:text-white',
+      Basic: 'bg-blue-700 text-white dark:bg-blue-600 dark:text-white',
     }
     return colorMap[level]
   }

@@ -124,38 +124,38 @@ describe('useFormatters', () => {
   describe('getLanguageLevelColor', () => {
     it('should return correct color for Native with white text for accessibility', () => {
       const result = getLanguageLevelColor('Native')
-      expect(result).toContain('bg-red-600')
+      expect(result).toContain('bg-red-700')
       expect(result).toContain('text-white')
     })
 
     it('should return correct color for Fluent with white text for accessibility', () => {
       const result = getLanguageLevelColor('Fluent')
-      expect(result).toContain('bg-orange-600')
+      expect(result).toContain('bg-orange-700')
       expect(result).toContain('text-white')
     })
 
     it('should return correct color for Professional with white text for accessibility', () => {
       const result = getLanguageLevelColor('Professional')
-      expect(result).toContain('bg-yellow-600')
+      expect(result).toContain('bg-yellow-800')
       expect(result).toContain('text-white')
     })
 
     it('should return correct color for Conversational with white text for accessibility', () => {
       const result = getLanguageLevelColor('Conversational')
-      expect(result).toContain('bg-cyan-600')
+      expect(result).toContain('bg-cyan-700')
       expect(result).toContain('text-white')
     })
 
     it('should return correct color for Basic with white text for accessibility', () => {
       const result = getLanguageLevelColor('Basic')
-      expect(result).toContain('bg-blue-600')
+      expect(result).toContain('bg-blue-700')
       expect(result).toContain('text-white')
     })
 
     it('should include dark mode classes', () => {
       const result = getLanguageLevelColor('Native')
       expect(result).toContain('dark:')
-      expect(result).toContain('dark:bg-red-500')
+      expect(result).toContain('dark:bg-red-600')
       expect(result).toContain('dark:text-white')
     })
 
@@ -172,8 +172,8 @@ describe('useFormatters', () => {
         const result = getLanguageLevelColor(level)
         // All levels should include white text for proper contrast
         expect(result).toContain('text-white')
-        // All levels should use -600 shade in light mode for better contrast
-        expect(result).toMatch(/bg-(red|orange|yellow|cyan|blue)-600/)
+        // All levels should use darker shades (700/800) in light mode for WCAG AA compliance
+        expect(result).toMatch(/bg-(red|orange|yellow|cyan|blue)-(700|800)/)
       })
     })
   })
