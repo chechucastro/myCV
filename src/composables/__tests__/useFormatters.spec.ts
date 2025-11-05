@@ -130,7 +130,7 @@ describe('useFormatters', () => {
 
     it('should return correct color for Fluent with white text for accessibility', () => {
       const result = getLanguageLevelColor('Fluent')
-      expect(result).toContain('bg-orange-700')
+      expect(result).toContain('bg-orange-800')
       expect(result).toContain('text-white')
     })
 
@@ -142,7 +142,7 @@ describe('useFormatters', () => {
 
     it('should return correct color for Conversational with white text for accessibility', () => {
       const result = getLanguageLevelColor('Conversational')
-      expect(result).toContain('bg-cyan-700')
+      expect(result).toContain('bg-cyan-800')
       expect(result).toContain('text-white')
     })
 
