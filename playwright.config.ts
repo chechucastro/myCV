@@ -103,8 +103,8 @@ export default defineConfig({
          *    Then run: SKIP_WEBSERVER=1 npm run test:e2e:dev
          */
         command: 'npm run preview',
-        port: 4173,
-        reuseExistingServer: true, // Always reuse existing server to avoid permission issues
+        url: 'http://localhost:4173',
+        reuseExistingServer: !process.env.CI, // Only reuse in local development, not in CI
         timeout: 120 * 1000, // Increase timeout for server startup
       },
 })

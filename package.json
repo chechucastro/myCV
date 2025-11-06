@@ -11,7 +11,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "npm run test:unit && npm run test:e2e",
-    "test:unit": "vitest --watch",
+    "test:unit": "vitest",
     "test:unit:coverage": "vitest --coverage",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
