@@ -4,7 +4,7 @@ test.describe('Responsive Design', () => {
   test('should display correctly on desktop', async ({ page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 })
     await page.goto('/')
-    await page.waitForLoadState('networkidle')
+    await page.waitForLoadState('load')
 
     // Hero should be visible
     await expect(page.locator('#hero-section')).toBeVisible()
@@ -22,7 +22,7 @@ test.describe('Responsive Design', () => {
   test('should display correctly on tablet', async ({ page }) => {
     await page.setViewportSize({ width: 768, height: 1024 })
     await page.goto('/')
-    await page.waitForLoadState('networkidle')
+    await page.waitForLoadState('load')
 
     // Content should still be accessible
     await expect(page.getByRole('heading', { name: /Chechu Castro/i }).first()).toBeVisible()
@@ -35,7 +35,7 @@ test.describe('Responsive Design', () => {
   test('should display correctly on mobile', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 })
     await page.goto('/')
-    await page.waitForLoadState('networkidle')
+    await page.waitForLoadState('load')
 
     // Hero should be visible
     await expect(page.locator('#hero-section')).toBeVisible()
@@ -48,19 +48,14 @@ test.describe('Responsive Design', () => {
     await expect(page.getByRole('main')).toBeVisible()
   })
 
-  test('should work on iPhone 12', async ({ browser, browserName }) => {
-    // Skip this test for Firefox as it doesn't support device emulation
-    if (browserName === 'firefox') {
-      test.skip()
-      return
-    }
-
+  // Device emulation tests
+  test('should work on iPhone 12', async ({ browser }) => {
     const context = await browser.newContext({
       ...devices['iPhone 12'],
     })
     const page = await context.newPage()
     await page.goto('/')
-    await page.waitForLoadState('networkidle')
+    await page.waitForLoadState('load')
 
     await expect(page.getByRole('heading', { name: /Chechu Castro/i }).first()).toBeVisible()
     await expect(
@@ -70,19 +65,13 @@ test.describe('Responsive Design', () => {
     await context.close()
   })
 
-  test('should work on iPad', async ({ browser, browserName }) => {
-    // Skip this test for Firefox as it doesn't support device emulation
-    if (browserName === 'firefox') {
-      test.skip()
-      return
-    }
-
+  test('should work on iPad', async ({ browser }) => {
     const context = await browser.newContext({
       ...devices['iPad Pro'],
     })
     const page = await context.newPage()
     await page.goto('/')
-    await page.waitForLoadState('networkidle')
+    await page.waitForLoadState('load')
 
     await expect(page.getByRole('heading', { name: /Chechu Castro/i }).first()).toBeVisible()
     await expect(
@@ -94,7 +83,7 @@ test.describe('Responsive Design', () => {
 
   test('should handle viewport resize', async ({ page }) => {
     await page.goto('/')
-    await page.waitForLoadState('networkidle')
+    await page.waitForLoadState('load')
 
     // Start with desktop
     await page.setViewportSize({ width: 1920, height: 1080 })
@@ -112,14 +101,21 @@ test.describe('Responsive Design', () => {
   test('should have touch-friendly buttons on mobile', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 })
     await page.goto('/')
-    await page.waitForLoadState('networkidle')
+    await page.waitForLoadState('load')
 
     // Scroll enough to make navigation visible (theme toggle is in navigation)
     // Navigation only shows when hero is not visible, so scroll past hero section
     await page.evaluate(() => {
       window.scrollTo(0, window.innerHeight + 200)
     })
-    await page.waitForTimeout(2000) // Wait for intersection observer and transitions
+    // Wait for intersection observer and transitions
+    await page.waitForFunction(
+      () => {
+        const nav = document.querySelector('nav[role="navigation"]')
+        return nav && window.getComputedStyle(nav).visibility !== 'hidden'
+      },
+      { timeout: 5000 },
+    )
 
     // Wait for navigation to be visible
     const navigation = page.getByRole('navigation', { name: /primary navigation/i })

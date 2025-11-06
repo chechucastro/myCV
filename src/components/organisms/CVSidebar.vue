@@ -1,5 +1,7 @@
 <template>
-  <!-- Sidebar component - currently empty but kept for contactInfo exposure -->
+  <div>
+    <!-- Sidebar component - currently empty but kept for contactInfo exposure -->
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -13,4 +15,3 @@ defineExpose({
   },
 })
 </script>
-

@@ -30,7 +30,10 @@
     <slot name="content" :contentClasses="contentClasses" :valueClasses="valueClasses">
       <div :class="contentClasses">
         <slot name="label">
-          <span class="text-xs font-medium text-gray-500 dark:text-gray-400 tracking-wide uppercase">{{ props.label }}</span>
+          <span
+            class="text-xs font-medium tracking-wide text-gray-500 uppercase dark:text-gray-400"
+            >{{ props.label }}</span
+          >
         </slot>
 
         <slot name="value" :valueClasses="valueClasses">
@@ -110,7 +113,14 @@ const buttonDetails = tv({
       'ease-out',
     ],
     content: ['flex', 'flex-col', 'gap-1', 'flex-1', 'min-w-0'],
-    value: ['text-sm', 'font-semibold', 'text-gray-900', 'dark:text-white', 'transition-colors', 'duration-300'],
+    value: [
+      'text-sm',
+      'font-semibold',
+      'text-gray-900',
+      'dark:text-white',
+      'transition-colors',
+      'duration-300',
+    ],
   },
   variants: {
     alignment: {
@@ -236,7 +246,7 @@ const hasSecondaryValue = computed(() => Boolean(props.secondaryValue))
 /**
  * Handle click events on external links
  */
-const handleClick = (event: Event) => {
+const handleClick = () => {
   if (isExternal.value && props.href) {
     // Extract destination name from label or URL
     const destination = props.label || extractDomainFromUrl(props.href)
@@ -254,8 +264,12 @@ const extractDomainFromUrl = (url: string): string => {
     }
     const urlObj = new URL(url)
     const hostname = urlObj.hostname.replace('www.', '')
+    const domainPart = hostname.split('.')[0]
     // Capitalize first letter
-    return hostname.split('.')[0].charAt(0).toUpperCase() + hostname.split('.')[0].slice(1)
+    if (domainPart) {
+      return domainPart.charAt(0).toUpperCase() + domainPart.slice(1)
+    }
+    return 'External Link'
   } catch {
     return 'External Link'
   }

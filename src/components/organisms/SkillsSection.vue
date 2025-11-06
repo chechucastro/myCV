@@ -174,10 +174,10 @@ const visibleSkills = computed(() => {
 const toggleShowMore = async () => {
   const action = showMore.value ? 'show_less' : 'show_more'
   showMore.value = !showMore.value
-  
+
   // Track section toggle
   trackSectionToggle('skills', action)
-  
+
   if (showMore.value) {
     // Wait for DOM update before animating
     await nextTick()

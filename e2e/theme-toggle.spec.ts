@@ -9,14 +9,18 @@ test.describe('Theme Toggle', () => {
     })
 
     await page.goto('/')
-    await page.waitForLoadState('networkidle')
+    await page.waitForLoadState('load')
 
     // Scroll enough to make navigation visible (theme toggle is in navigation)
     // Navigation only shows when hero is not visible, so scroll past hero section
     await page.evaluate(() => {
       window.scrollTo(0, window.innerHeight + 200)
     })
-    await page.waitForTimeout(2000) // Wait for intersection observer and transitions
+    // Wait for intersection observer and transitions
+    await page.waitForFunction(() => {
+      const nav = document.querySelector('nav[role="navigation"]')
+      return nav && window.getComputedStyle(nav).visibility !== 'hidden'
+    }, { timeout: 5000 })
 
     // Ensure navigation is visible before proceeding
     const navigation = page.getByRole('navigation', { name: /primary navigation/i })
@@ -60,9 +64,8 @@ test.describe('Theme Toggle', () => {
 
     // Click to enable dark mode
     await themeToggle.click()
-    await page.waitForTimeout(300)
-
-    // Check updated aria-pressed state (dark mode = true)
+    
+    // Wait for button to update and check aria-pressed attribute
     const darkModeButton = page.getByRole('button', { name: /disable dark mode/i })
     await expect(darkModeButton).toBeVisible()
     await expect(darkModeButton).toHaveAttribute('aria-pressed', 'true')

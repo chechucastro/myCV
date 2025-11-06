@@ -72,4 +72,3 @@ describe('ThemeToggle', () => {
     expect(document.documentElement.classList.contains('dark')).toBe(false)
   })
 })
-

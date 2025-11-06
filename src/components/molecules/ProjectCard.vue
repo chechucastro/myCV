@@ -65,7 +65,7 @@
           color="purple"
           size="md"
           :aria-label="`View ${translatedTitle} project (opens in new tab)`"
-          @click="() => trackExternalLink(translatedTitle.value || 'Project', project.projectUrl!)"
+          @click="() => trackExternalLink(translatedTitle || 'Project', project.projectUrl!)"
         >
           <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
@@ -90,7 +90,12 @@
               ? 'Private repository'
               : 'View project on GitHub (opens in new tab)'
           "
-          @click="() => !project.githubIsPrivate && project.githubUrl && trackExternalLink('GitHub', project.githubUrl)"
+          @click="
+            () =>
+              !project.githubIsPrivate &&
+              project.githubUrl &&
+              trackExternalLink('GitHub', project.githubUrl)
+          "
         >
           <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
             <path

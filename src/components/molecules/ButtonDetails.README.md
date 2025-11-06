@@ -9,7 +9,7 @@ A flexible, reusable UI component for displaying card-based information with ico
 ✅ **SOLID Principles** - Clean, maintainable architecture  
 ✅ **Accessibility** - ARIA labels and semantic HTML  
 ✅ **Responsive** - Adapts to all screen sizes  
-✅ **Theme Support** - Light and dark mode compatible  
+✅ **Theme Support** - Light and dark mode compatible
 
 ---
 
@@ -39,6 +39,7 @@ The component provides **7 customizable slots** for maximum flexibility:
 Replace the entire icon container.
 
 **Scoped Slot Props:**
+
 - `iconContainerClasses` - Computed CSS classes for the container
 
 ```vue
@@ -72,6 +73,7 @@ Replace just the icon (keeps the default container).
 Replace the entire content area.
 
 **Scoped Slot Props:**
+
 - `contentClasses` - Computed CSS classes for content container
 - `valueClasses` - Computed CSS classes for value text
 
@@ -110,6 +112,7 @@ Replace just the label (keeps default content structure).
 Replace the main value display.
 
 **Scoped Slot Props:**
+
 - `valueClasses` - Computed CSS classes for value
 
 ```vue
@@ -167,27 +170,27 @@ Add custom content at the end (badges, arrows, etc.).
 
 ### Required Props
 
-| Prop | Type | Description |
-|------|------|-------------|
+| Prop          | Type     | Description                                                   |
+| ------------- | -------- | ------------------------------------------------------------- |
 | `iconBgClass` | `string` | Background classes for icon container (e.g., `"bg-blue-500"`) |
 
 ### Optional Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `label` | `string` | `''` | Display label for the detail |
-| `value` | `string` | `''` | Main value to display |
-| `secondaryValue` | `string` | `''` | Secondary value (e.g., country) |
-| `href` | `string` | `undefined` | Optional link URL |
-| `ariaLabel` | `string` | `''` | ARIA label for accessibility |
-| `iconPath` | `string` | `''` | SVG path data for icon |
-| `iconFill` | `string` | `'currentColor'` | Icon fill color |
-| `iconClasses` | `string` | `'text-white'` | Additional icon classes |
-| `showArrow` | `boolean` | `false` | Show external link arrow |
-| `hoverBorderColor` | `string` | `'hover:border-blue-300 dark:hover:border-blue-500'` | Border color on hover |
-| `valueHoverColor` | `string` | `'group-hover:text-blue-600 dark:group-hover:text-blue-400'` | Value text hover color |
-| `alignment` | `'start' \| 'center'` | `'center'` | Content vertical alignment |
-| `isClickable` | `boolean` | `true` | Whether the card is clickable |
+| Prop               | Type                  | Default                                                      | Description                     |
+| ------------------ | --------------------- | ------------------------------------------------------------ | ------------------------------- |
+| `label`            | `string`              | `''`                                                         | Display label for the detail    |
+| `value`            | `string`              | `''`                                                         | Main value to display           |
+| `secondaryValue`   | `string`              | `''`                                                         | Secondary value (e.g., country) |
+| `href`             | `string`              | `undefined`                                                  | Optional link URL               |
+| `ariaLabel`        | `string`              | `''`                                                         | ARIA label for accessibility    |
+| `iconPath`         | `string`              | `''`                                                         | SVG path data for icon          |
+| `iconFill`         | `string`              | `'currentColor'`                                             | Icon fill color                 |
+| `iconClasses`      | `string`              | `'text-white'`                                               | Additional icon classes         |
+| `showArrow`        | `boolean`             | `false`                                                      | Show external link arrow        |
+| `hoverBorderColor` | `string`              | `'hover:border-blue-300 dark:hover:border-blue-500'`         | Border color on hover           |
+| `valueHoverColor`  | `string`              | `'group-hover:text-blue-600 dark:group-hover:text-blue-400'` | Value text hover color          |
+| `alignment`        | `'start' \| 'center'` | `'center'`                                                   | Content vertical alignment      |
+| `isClickable`      | `boolean`             | `true`                                                       | Whether the card is clickable   |
 
 ---
 
@@ -250,10 +253,7 @@ Add custom content at the end (badges, arrows, etc.).
 ### Example 3: Fully Custom Card
 
 ```vue
-<ButtonDetails
-  href="/profile"
-  icon-bg-class="bg-gradient-to-br from-purple-500 to-pink-500"
->
+<ButtonDetails href="/profile" icon-bg-class="bg-gradient-to-br from-purple-500 to-pink-500">
   <template #icon-container="{ iconContainerClasses }">
     <div :class="[iconContainerClasses, 'relative']">
       <img src="/avatar.jpg" alt="Profile" class="h-full w-full rounded-lg object-cover" />
@@ -346,6 +346,7 @@ The component uses Tailwind CSS and supports:
 ## Related Components
 
 Consider using:
+
 - `Button.vue` - For action buttons
 - `Card.vue` - For content cards
 - `Badge.vue` - For status indicators
@@ -355,6 +356,7 @@ Consider using:
 ## Contributing
 
 When extending this component:
+
 1. Maintain TypeScript typing
 2. Follow SOLID principles
 3. Add new props with sensible defaults
@@ -367,4 +369,3 @@ When extending this component:
 ## License
 
 Part of the my-cv project.
-

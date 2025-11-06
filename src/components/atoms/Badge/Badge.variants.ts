@@ -21,4 +21,3 @@ export const badge = tv({
  * Extracted from the badge variant configuration for type safety
  */
 export type BadgeVariantProps = VariantProps<typeof badge>
-

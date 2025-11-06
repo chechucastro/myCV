@@ -3,6 +3,8 @@
  * Uses dataLayer.push() to send events to GTM
  */
 
+/// <reference types="vite/client" />
+
 /**
  * GTM dataLayer entry type
  */

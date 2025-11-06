@@ -1,4 +1,6 @@
 import { fileURLToPath, URL } from 'node:url'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -7,6 +9,8 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // Use temp directory for Vite cache to avoid permission issues
+  cacheDir: join(tmpdir(), 'vite-cache'),
   plugins: [
     vue(),
     // Only include dev tools in development

@@ -175,14 +175,24 @@ const recommendations = computed<Recommendation[]>(() => {
   // Access locale.value to make this computed reactive to locale changes
   void locale.value // Access to track reactivity, even if unused
 
-  const items = tm('articles.recommendations.items')
+  const items = tm('articles.recommendations.items') as unknown
 
   if (!Array.isArray(items)) {
     return []
   }
 
-  return items.map((item: any, idx: number) => {
-    const metadata = recommendationsMetadata[idx] || recommendationsMetadata[0]
+  return (items as unknown[]).map((_item, idx: number): Recommendation => {
+    const metadata = recommendationsMetadata[idx] ?? recommendationsMetadata[0]
+    if (!metadata) {
+      // In case recommendationsMetadata is empty, return default empty values
+      return {
+        name: '',
+        surname: '',
+        postDate: '',
+        hierarchyMode: 'colleague' as const,
+        linkedInUrl: '',
+      }
+    }
     return {
       name: metadata.name,
       surname: metadata.surname,

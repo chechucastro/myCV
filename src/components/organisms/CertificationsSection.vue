@@ -23,20 +23,21 @@ const { tm, locale } = useI18n()
 const certifications = computed<Certification[]>(() => {
   // Access locale.value to make this computed reactive to locale changes
   void locale.value // Access to track reactivity, even if unused
-  
-  const items = tm('articles.certifications.items')
-  
+
+  const items = tm('articles.certifications.items') as unknown
+
   if (!Array.isArray(items)) {
     return []
   }
 
-  return items.map((cert: any) => ({
-    title: cert.title,
-    issuedBy: cert.issuedBy,
-    issuedDate: cert.issuedDate,
-    certificateImage: cert.certificateImage,
-    certificateLink: cert.certificateLink,
-  }))
+  return (items as Array<Record<string, unknown>>).map(
+    (cert): Certification => ({
+      title: cert.title as string,
+      issuedBy: cert.issuedBy as string,
+      issuedDate: cert.issuedDate as string,
+      certificateImage: cert.certificateImage as string,
+      certificateLink: cert.certificateLink as string,
+    }),
+  )
 })
 </script>
-

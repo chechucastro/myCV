@@ -1,10 +1,5 @@
 <template>
-  <BaseCard
-    border-color="purple"
-    padding="md"
-    aria-label="Education entry"
-    tag="article"
-  >
+  <BaseCard border-color="purple" padding="md" aria-label="Education entry" tag="article">
     <!-- Education Header -->
     <div class="mb-4">
       <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">
@@ -46,7 +41,10 @@
         >
       </div>
 
-      <div v-if="translatedLocation" class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+      <div
+        v-if="translatedLocation"
+        class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300"
+      >
         <svg
           class="h-4 w-4 text-purple-500 dark:text-purple-400"
           fill="none"
@@ -68,7 +66,6 @@
         </svg>
         <span class="whitespace-pre-line">{{ translatedLocation }}</span>
       </div>
-
     </div>
   </BaseCard>
 </template>
@@ -90,7 +87,9 @@ const { t } = useI18n()
 const { formatDate } = useFormatters()
 
 const educationKey = computed(() => {
-  return props.education.educationKey !== undefined ? props.education.educationKey : props.educationIndex
+  return props.education.educationKey !== undefined
+    ? props.education.educationKey
+    : props.educationIndex
 })
 
 const translatedDegree = computed(() => {
@@ -122,6 +121,4 @@ const translatedLocation = computed(() => {
   }
   return ''
 })
-
 </script>
-

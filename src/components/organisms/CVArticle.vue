@@ -11,11 +11,8 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
 import type { ArticleSection } from '@/types'
 import ArticleSectionComponent from './ArticleSection.vue'
-
-const { tm } = useI18n()
 
 /**
  * Build article sections from translation files

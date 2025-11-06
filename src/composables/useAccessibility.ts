@@ -30,7 +30,7 @@ export function useAccessibility() {
     message: string,
     duration: number = 1000,
     ariaLive: 'polite' | 'assertive' | 'off' = 'polite',
-    role: string = 'status'
+    role: string = 'status',
   ): void => {
     // Check if we're in a browser environment
     if (typeof document === 'undefined') return
@@ -58,4 +58,3 @@ export function useAccessibility() {
     announceToScreenReader,
   }
 }
-

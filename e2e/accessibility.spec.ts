@@ -1,5 +1,4 @@
 import { test, expect } from '@playwright/test'
-import AxeBuilder from '@axe-core/playwright'
 
 test.describe('Accessibility', () => {
   test.beforeEach(async ({ page }) => {
@@ -7,10 +6,10 @@ test.describe('Accessibility', () => {
   })
 
   test('should have proper heading hierarchy', async ({ page }) => {
-    await page.waitForLoadState('networkidle')
+    await page.waitForLoadState('load')
 
     // Wait for hero section to be in DOM
-    await page.waitForSelector('#hero-section', { state: 'attached' })
+    await expect(page.locator('#hero-section')).toBeAttached()
 
     // H1 is in hero section and should be in DOM (even if conditionally rendered)
     // Check that h1 exists in DOM (it's conditionally visible but should exist when hero is not scrolled)
@@ -22,34 +21,35 @@ test.describe('Accessibility', () => {
     expect(headings.length).toBeGreaterThan(0)
   })
 
-  test('should have skip to content link', async ({ page, browserName }) => {
-    await page.waitForLoadState('networkidle')
+  test('should have skip to content link', async ({ page }) => {
+    await page.waitForLoadState('load')
 
     const skipLink = page.getByRole('link', { name: /skip to main content/i })
     await expect(skipLink).toBeAttached()
 
     // Skip link should navigate to main content
     await expect(skipLink).toHaveAttribute('href', '#maincontent')
+  })
 
-    // Focus test is browser-dependent, especially in WebKit
-    if (browserName !== 'webkit') {
-      await page.keyboard.press('Tab')
-      // Wait for focus to settle
-      await page.waitForFunction(
-        () => {
-          const active = document.activeElement
-          return active && ['A', 'BUTTON'].includes(active.tagName)
-        },
-        { timeout: 1000 },
-      )
-      const focusedElement = await page.evaluate(() => document.activeElement?.tagName)
-      // Should be focused on skip link or the next focusable element
-      expect(['A', 'BUTTON']).toContain(focusedElement)
-    } else {
-      // For WebKit, just verify the link can be focused programmatically
-      await skipLink.focus()
-      await expect(skipLink).toBeFocused({ timeout: 1000 })
-    }
+  test('should have skip to content link focusable via keyboard', async ({ page }) => {
+    await page.waitForLoadState('load')
+
+    const skipLink = page.getByRole('link', { name: /skip to main content/i })
+    await expect(skipLink).toBeAttached()
+
+    // Test keyboard navigation
+    await page.keyboard.press('Tab')
+    // Wait for focus to settle
+    await page.waitForFunction(
+      () => {
+        const active = document.activeElement
+        return active && ['A', 'BUTTON'].includes(active.tagName)
+      },
+      { timeout: 1000 },
+    )
+    const focusedElement = await page.evaluate(() => document.activeElement?.tagName)
+    // Should be focused on skip link or the next focusable element
+    expect(['A', 'BUTTON']).toContain(focusedElement)
   })
 
   test('should have proper ARIA landmarks', async ({ page }) => {
@@ -108,17 +108,22 @@ test.describe('Accessibility', () => {
       const ariaLabel = await link.getAttribute('aria-label')
 
       expect(text || ariaLabel).toBeTruthy()
+    }
 
-      // External links should have proper attributes
-      const href = await link.getAttribute('href')
-      if (href && (href.startsWith('http://') || href.startsWith('https://'))) {
-        const target = await link.getAttribute('target')
-        const rel = await link.getAttribute('rel')
+    // Check external links that open in new tab separately
+    const externalLinksWithBlankTarget = await page
+      .getByRole('link')
+      .filter({
+        has: page.locator(
+          '[href^="http://"][target="_blank"], [href^="https://"][target="_blank"]',
+        ),
+      })
+      .all()
 
-        if (target === '_blank') {
-          expect(rel).toContain('noopener')
-        }
-      }
+    for (const link of externalLinksWithBlankTarget) {
+      const rel = await link.getAttribute('rel')
+      // External links opening in new tab must have noopener for security
+      expect(rel).toContain('noopener')
     }
   })
 

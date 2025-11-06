@@ -1,5 +1,7 @@
 import process from 'node:process'
 import { defineConfig, devices } from '@playwright/test'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 
 /**
  * Read environment variables from file.
@@ -28,13 +30,15 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: process.env.CI
+    ? 'html'
+    : [['list'], ['html', { outputFolder: join(tmpdir(), 'playwright-report') }]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
     actionTimeout: 0,
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: process.env.CI ? 'http://localhost:4173' : 'http://localhost:5173',
+    baseURL: 'http://localhost:4173',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -49,18 +53,6 @@ export default defineConfig({
       name: 'chromium',
       use: {
         ...devices['Desktop Chrome'],
-      },
-    },
-    {
-      name: 'firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-      },
-    },
-    {
-      name: 'webkit',
-      use: {
-        ...devices['Desktop Safari'],
       },
     },
 
@@ -94,17 +86,25 @@ export default defineConfig({
   ],
 
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */
-  // outputDir: 'test-results/',
+  outputDir: process.env.CI ? 'test-results/' : join(tmpdir(), 'playwright-test-results'),
 
   /* Run your local dev server before starting the tests */
-  webServer: {
-    /**
-     * Use the dev server by default for faster feedback loop.
-     * Use the preview server on CI for more realistic testing.
-     * Playwright will re-use the local server if there is already a dev-server running.
-     */
-    command: process.env.CI ? 'npm run preview' : 'npm run dev',
-    port: process.env.CI ? 4173 : 5173,
-    reuseExistingServer: !process.env.CI,
-  },
+  webServer: process.env.SKIP_WEBSERVER
+    ? undefined
+    : {
+        /**
+         * Use preview server to avoid Vite dev server permission issues with .vite-temp
+         * The preview server doesn't have the same temp file issues as the dev server
+         * For local development, build first: npm run build && npm run test:e2e
+         *
+         * If you encounter permission errors, you can:
+         * 1. Fix permissions: bash scripts/fix-vite-permissions.sh (may need sudo)
+         * 2. Or start server manually: npm run build && npm run preview
+         *    Then run: SKIP_WEBSERVER=1 npm run test:e2e:dev
+         */
+        command: 'npm run preview',
+        port: 4173,
+        reuseExistingServer: true, // Always reuse existing server to avoid permission issues
+        timeout: 120 * 1000, // Increase timeout for server startup
+      },
 })

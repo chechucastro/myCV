@@ -77,8 +77,7 @@ export function useIntersectionObserver() {
         revealElements.forEach((el: Element) => {
           // Check if element is already in viewport on initial load
           const rect = el.getBoundingClientRect()
-          const viewportHeight =
-            window.innerHeight || document.documentElement.clientHeight
+          const viewportHeight = window.innerHeight || document.documentElement.clientHeight
           const viewportWidth = window.innerWidth || document.documentElement.clientWidth
           const isInViewport =
             rect.top < viewportHeight &&
@@ -153,4 +152,3 @@ export function useIntersectionObserver() {
     cleanup,
   }
 }
-

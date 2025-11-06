@@ -106,25 +106,31 @@ const { tm, locale, t } = useI18n()
  */
 const personalProjects = computed<PersonalProject[]>(() => {
   // Access locale.value to make this computed reactive to locale changes
-  void locale.value // Access to track reactivity, even if unused
+  // Ensure reactivity on locale
+  void locale.value
 
-  const items = tm('articles.personalProjects.items')
+  // Get translated items, fall back to empty array if result is not an array
+  const itemsRaw = tm('articles.personalProjects.items') as unknown
+  const items = Array.isArray(itemsRaw) ? (itemsRaw as Record<string, unknown>[]) : []
 
-  if (!Array.isArray(items)) {
+  // Return early if no items found
+  if (items.length === 0) {
     return []
   }
 
-  return items.map((item: any, idx: number) => {
+  const result: PersonalProject[] = []
+  for (let idx = 0; idx < items.length; idx++) {
     const metadata = personalProjectsMetadata[idx] || {}
-    return {
+    result.push({
       projectKey: idx,
       projectUrl: metadata.projectUrl,
       githubUrl: metadata.githubUrl,
       githubIsPrivate: metadata.githubIsPrivate,
       startDate: metadata.startDate,
       endDate: metadata.endDate,
-    }
-  })
+    })
+  }
+  return result
 })
 
 /**

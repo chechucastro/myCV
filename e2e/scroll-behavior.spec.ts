@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('Scroll Behavior', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/')
-    await page.waitForLoadState('networkidle')
+    await page.waitForLoadState('load')
     await page.setViewportSize({ width: 1280, height: 720 })
   })
 
@@ -18,7 +18,12 @@ test.describe('Scroll Behavior', () => {
     await page.evaluate(() => window.scrollBy(0, window.innerHeight))
 
     // Wait for animation and scroll handler
-    await page.waitForTimeout(800)
+    await page.waitForFunction(() => {
+      const hero = document.querySelector('#hero-section')
+      if (!hero) return false
+      const rect = hero.getBoundingClientRect()
+      return rect.height < 500 // Hero should be collapsed
+    }, { timeout: 2000 })
 
     // Hero should be collapsed
     const collapsedHeight = await heroSection.boundingBox()
@@ -26,14 +31,17 @@ test.describe('Scroll Behavior', () => {
   })
 
   test('should show name in navigation when scrolled', async ({ page }) => {
-    await page.waitForLoadState('networkidle')
+    await page.waitForLoadState('load')
 
     // Scroll down significantly past the hero section to trigger navigation visibility
     // Navigation only shows when hero is not visible (hasScrolled && !isHeroVisible)
     await page.evaluate(() => window.scrollTo(0, window.innerHeight + 200))
 
     // Wait for scroll handler, intersection observer, and transition
-    await page.waitForTimeout(2000)
+    await page.waitForFunction(() => {
+      const nav = document.querySelector('nav[role="navigation"]')
+      return nav && window.getComputedStyle(nav).visibility !== 'hidden'
+    }, { timeout: 5000 })
 
     // Navigation should now be visible and contain name
     const nav = page.getByRole('navigation', { name: /primary navigation/i })
@@ -49,7 +57,10 @@ test.describe('Scroll Behavior', () => {
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
 
     // Wait for animations and intersection observer
-    await page.waitForTimeout(1500)
+    await page.waitForFunction(() => {
+      const scrollRevealElements = document.querySelectorAll('.scroll-reveal')
+      return scrollRevealElements.length > 0
+    }, { timeout: 3000 })
 
     // Check that sections with scroll-reveal class exist (they may not have 'revealed' class based on implementation)
     const scrollRevealElements = page.locator('.scroll-reveal')

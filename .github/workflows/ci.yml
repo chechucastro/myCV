@@ -33,6 +33,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Run type check
+        run: npm run type-check
+
+      - name: Run lint check
+        run: npx eslint .
+
+      - name: Run format check
+        run: npx prettier --check src/
+
       - name: Run Vitest unit tests
         run: npm run test:unit
 

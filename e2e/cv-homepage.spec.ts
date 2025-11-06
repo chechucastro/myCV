@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('CV Homepage', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/')
-    await page.waitForLoadState('networkidle')
+    await page.waitForLoadState('load')
   })
 
   test('should display hero section with profile information', async ({ page }) => {
@@ -36,7 +36,14 @@ test.describe('CV Homepage', () => {
     await page.evaluate(() => {
       window.scrollTo(0, window.innerHeight + 200)
     })
-    await page.waitForTimeout(2000) // Wait for intersection observer and transitions
+    // Wait for intersection observer and transitions
+    await page.waitForFunction(
+      () => {
+        const nav = document.querySelector('nav[role="navigation"]')
+        return nav && window.getComputedStyle(nav).visibility !== 'hidden'
+      },
+      { timeout: 5000 },
+    )
 
     // Check navigation exists and is visible
     const navigation = page.getByRole('navigation', { name: /primary navigation/i })
@@ -62,7 +69,21 @@ test.describe('CV Homepage', () => {
         skillsHeading.scrollIntoView({ behavior: 'smooth', block: 'center' })
       }
     })
-    await page.waitForTimeout(1500) // Wait for scroll and animations
+    // Wait for scroll and animations
+    await page.waitForFunction(
+      () => {
+        const skillsHeading = Array.from(document.querySelectorAll('h2')).find(
+          (h2) =>
+            h2.textContent?.toLowerCase().includes('other skills') ||
+            h2.textContent?.toLowerCase().includes('otras habilidades') ||
+            h2.textContent?.toLowerCase().includes('autres compétences'),
+        )
+        if (!skillsHeading) return false
+        const rect = skillsHeading.getBoundingClientRect()
+        return rect.top >= 0 && rect.top <= window.innerHeight
+      },
+      { timeout: 3000 },
+    )
 
     // Check that skills are visible in the article content (not sidebar)
     // Skills are sorted by level descending, so top skills should be visible
@@ -83,21 +104,48 @@ test.describe('CV Homepage', () => {
     // Check for HTML skill (level 95) - it should be visible in first column
     const htmlSkillDiv = page.locator('div[id^="skill-name-"]', { hasText: 'HTML' })
     await expect(htmlSkillDiv.first()).toBeVisible()
+  })
+
+  test('should expand skills when show more button is clicked', async ({ page }) => {
+    // Scroll to skills section
+    await page.evaluate(() => {
+      const skillsHeading = Array.from(document.querySelectorAll('h2')).find(
+        (h2) =>
+          h2.textContent?.toLowerCase().includes('other skills') ||
+          h2.textContent?.toLowerCase().includes('otras habilidades') ||
+          h2.textContent?.toLowerCase().includes('autres compétences'),
+      )
+      if (skillsHeading) {
+        skillsHeading.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }
+    })
+    // Wait for scroll and animations
+    await page.waitForFunction(
+      () => {
+        const skillsHeading = Array.from(document.querySelectorAll('h2')).find(
+          (h2) =>
+            h2.textContent?.toLowerCase().includes('other skills') ||
+            h2.textContent?.toLowerCase().includes('otras habilidades') ||
+            h2.textContent?.toLowerCase().includes('autres compétences'),
+        )
+        if (!skillsHeading) return false
+        const rect = skillsHeading.getBoundingClientRect()
+        return rect.top >= 0 && rect.top <= window.innerHeight
+      },
+      { timeout: 3000 },
+    )
 
     // Check for Show More button (skills are shown in columns, may need to expand)
     const showMoreButton = page.getByRole('button', {
       name: /show more|show less|mostrar más|mostrar menos|afficher plus|afficher moins/i,
     })
-    const buttonCount = await showMoreButton.count()
 
-    if (buttonCount > 0) {
-      // Click to show more skills to verify the functionality
-      await showMoreButton.first().click()
-      await page.waitForTimeout(500)
+    // Try to click the button and verify expansion
+    // If button doesn't exist, the click will timeout and test will fail appropriately
+    await showMoreButton.first().click({ timeout: 2000 })
 
-      // Now TypeScript should be visible (it has level 50)
-      await expect(page.getByText('TypeScript', { exact: true })).toBeVisible()
-    }
+    // Verify TypeScript becomes visible after expansion
+    await expect(page.getByText('TypeScript', { exact: true })).toBeVisible({ timeout: 2000 })
   })
 
   test('should display sidebar with languages', async ({ page }) => {
@@ -113,7 +161,21 @@ test.describe('CV Homepage', () => {
         languagesHeading.scrollIntoView({ behavior: 'smooth', block: 'center' })
       }
     })
-    await page.waitForTimeout(1000) // Wait for scroll and animations
+    // Wait for languages section to be in viewport
+    await page.waitForFunction(
+      () => {
+        const languagesHeading = Array.from(document.querySelectorAll('h2')).find(
+          (h2) =>
+            h2.textContent?.includes('Languages') ||
+            h2.textContent?.includes('Idiomas') ||
+            h2.textContent?.includes('Langues'),
+        )
+        if (!languagesHeading) return false
+        const rect = languagesHeading.getBoundingClientRect()
+        return rect.top >= 0 && rect.top <= window.innerHeight
+      },
+      { timeout: 3000 },
+    )
 
     // Check languages section heading (handles translations)
     await expect(page.getByRole('heading', { name: /Languages|Idiomas|Langues/i })).toBeVisible()
@@ -165,7 +227,21 @@ test.describe('CV Homepage', () => {
         educationSection.scrollIntoView({ behavior: 'smooth', block: 'center' })
       }
     })
-    await page.waitForTimeout(500)
+    // Wait for education section to be in viewport
+    await page.waitForFunction(
+      () => {
+        const educationSection = Array.from(document.querySelectorAll('h2')).find(
+          (h2) =>
+            h2.textContent?.includes('Education') ||
+            h2.textContent?.includes('Educación') ||
+            h2.textContent?.includes('Formation'),
+        )
+        if (!educationSection) return false
+        const rect = educationSection.getBoundingClientRect()
+        return rect.top >= 0 && rect.top <= window.innerHeight
+      },
+      { timeout: 2000 },
+    )
 
     // Check Education section heading
     await expect(
@@ -186,7 +262,21 @@ test.describe('CV Homepage', () => {
         employmentSection.scrollIntoView({ behavior: 'smooth', block: 'center' })
       }
     })
-    await page.waitForTimeout(500)
+    // Wait for employment section to be in viewport
+    await page.waitForFunction(
+      () => {
+        const employmentSection = Array.from(document.querySelectorAll('h2')).find(
+          (h2) =>
+            h2.textContent?.includes('Employment history') ||
+            h2.textContent?.includes('Historial de empleo') ||
+            h2.textContent?.includes('Historique'),
+        )
+        if (!employmentSection) return false
+        const rect = employmentSection.getBoundingClientRect()
+        return rect.top >= 0 && rect.top <= window.innerHeight
+      },
+      { timeout: 2000 },
+    )
 
     // Check Employment history section heading (handles translations)
     await expect(
@@ -211,7 +301,18 @@ test.describe('CV Homepage', () => {
         certSection.scrollIntoView({ behavior: 'smooth', block: 'center' })
       }
     })
-    await page.waitForTimeout(500)
+    // Wait for certifications section to be in viewport
+    await page.waitForFunction(
+      () => {
+        const certSection = Array.from(document.querySelectorAll('h2')).find((h2) =>
+          h2.textContent?.includes('certifications'),
+        )
+        if (!certSection) return false
+        const rect = certSection.getBoundingClientRect()
+        return rect.top >= 0 && rect.top <= window.innerHeight
+      },
+      { timeout: 2000 },
+    )
 
     // Check Certifications section heading
     await expect(
@@ -243,7 +344,21 @@ test.describe('CV Homepage', () => {
         projectsSection.scrollIntoView({ behavior: 'smooth', block: 'center' })
       }
     })
-    await page.waitForTimeout(500)
+    // Wait for personal projects section to be in viewport
+    await page.waitForFunction(
+      () => {
+        const projectsSection = Array.from(document.querySelectorAll('h2')).find(
+          (h2) =>
+            h2.textContent?.toLowerCase().includes('personal projects') ||
+            h2.textContent?.toLowerCase().includes('proyectos personales') ||
+            h2.textContent?.toLowerCase().includes('projets personnels'),
+        )
+        if (!projectsSection) return false
+        const rect = projectsSection.getBoundingClientRect()
+        return rect.top >= 0 && rect.top <= window.innerHeight
+      },
+      { timeout: 2000 },
+    )
 
     // Check Personal projects section heading
     await expect(
@@ -266,7 +381,21 @@ test.describe('CV Homepage', () => {
         recSection.scrollIntoView({ behavior: 'smooth', block: 'center' })
       }
     })
-    await page.waitForTimeout(500)
+    // Wait for recommendations section to be in viewport
+    await page.waitForFunction(
+      () => {
+        const recSection = Array.from(document.querySelectorAll('h2')).find(
+          (h2) =>
+            h2.textContent?.includes('Recommendations') ||
+            h2.textContent?.includes('Recomendaciones') ||
+            h2.textContent?.includes('Recommandations'),
+        )
+        if (!recSection) return false
+        const rect = recSection.getBoundingClientRect()
+        return rect.top >= 0 && rect.top <= window.innerHeight
+      },
+      { timeout: 2000 },
+    )
 
     // Check Recommendations section heading
     await expect(

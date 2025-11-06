@@ -23,4 +23,3 @@ config.global.plugins = [i18n, pinia]
 config.global.stubs = {
   RouterLink: true,
 }
-

@@ -58,8 +58,11 @@ export const useLanguageStore = defineStore('language', () => {
 
     // Sync i18n with store's locale using the global i18n instance
     // Use globalProperties for legacy mode or direct access for composition mode
-    if (i18n && i18n.global) {
-      i18n.global.locale.value = locale
+    if (i18n && i18n.global && i18n.global.locale) {
+      const localeRef = i18n.global.locale
+      if (typeof localeRef === 'object' && 'value' in localeRef) {
+        localeRef.value = locale
+      }
     }
 
     // Try to get i18n composable instance if in component context (for later updates)
@@ -95,8 +98,11 @@ export const useLanguageStore = defineStore('language', () => {
     localStorage.setItem('locale', locale)
 
     // Update i18n locale using global instance (always available)
-    if (i18n && i18n.global) {
-      i18n.global.locale.value = locale
+    if (i18n && i18n.global && i18n.global.locale) {
+      const localeRef = i18n.global.locale
+      if (typeof localeRef === 'object' && 'value' in localeRef) {
+        localeRef.value = locale
+      }
     }
 
     // Also update i18n composable instance if available (for component reactivity)

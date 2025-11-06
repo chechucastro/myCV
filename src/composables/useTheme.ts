@@ -35,7 +35,7 @@ const applyTheme = (dark: boolean): void => {
   if (typeof document === 'undefined') {
     return
   }
-  
+
   if (dark) {
     document.documentElement.classList.add('dark')
   } else {
@@ -63,7 +63,7 @@ export function useTheme() {
     if (typeof window === 'undefined') {
       return
     }
-    
+
     try {
       localStorage.setItem(THEME_STORAGE_KEY, dark ? 'dark' : 'light')
     } catch (error) {
@@ -85,4 +85,3 @@ export function useTheme() {
     toggleDark,
   }
 }
-

@@ -44,7 +44,7 @@ const currentLocale = computed<Locale>({
   get: () => languageStore.currentLocale,
   set: (value: Locale) => {
     const previousLocale = languageStore.currentLocale
-    
+
     // Update store first (this updates i18n.global.locale.value)
     languageStore.setLocale(value)
     // Immediately update component's locale for instant reactivity

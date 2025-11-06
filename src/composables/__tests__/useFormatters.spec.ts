@@ -12,16 +12,11 @@ const TestComponent = defineComponent({
 })
 
 describe('useFormatters', () => {
-  let formatDate: (iso: string | undefined) => string
-  let formatHierarchyMode: (mode: HierarchyMode) => string
-  let getLanguageLevelNumber: (level: LanguageLevel) => number
-  let getLanguageLevelColor: (level: LanguageLevel) => string
-
   const wrapper = mount(TestComponent)
-  formatDate = wrapper.vm.formatDate
-  formatHierarchyMode = wrapper.vm.formatHierarchyMode
-  getLanguageLevelNumber = wrapper.vm.getLanguageLevelNumber
-  getLanguageLevelColor = wrapper.vm.getLanguageLevelColor
+  const formatDate = wrapper.vm.formatDate
+  const formatHierarchyMode = wrapper.vm.formatHierarchyMode
+  const getLanguageLevelNumber = wrapper.vm.getLanguageLevelNumber
+  const getLanguageLevelColor = wrapper.vm.getLanguageLevelColor
 
   describe('formatDate', () => {
     it('should format valid ISO date', () => {

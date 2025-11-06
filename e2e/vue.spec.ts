@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('Vue App', () => {
   test('visits the app root url', async ({ page }) => {
     await page.goto('/')
-    await page.waitForLoadState('networkidle')
+    await page.waitForLoadState('load')
 
     // Check that the page loads correctly
     await expect(page).toHaveTitle(/CV|Chechu/i)
@@ -27,7 +27,8 @@ test.describe('Vue App', () => {
     await page.evaluate(() => {
       window.scrollTo(0, 200)
     })
-    await page.waitForTimeout(500)
+    // Wait for navigation to become visible
+    await expect(navigation).toBeVisible({ timeout: 2000 })
     
     // Now navigation should be visible
     await expect(navigation).toBeVisible()

@@ -10,4 +10,3 @@
 <script setup lang="ts">
 // Single Responsibility: Accessibility - Skip to main content link
 </script>
-

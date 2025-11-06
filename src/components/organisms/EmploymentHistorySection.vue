@@ -40,7 +40,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import type { CompanyHistory } from '@/types'
+import type { CompanyHistory, EmploymentPosition } from '@/types'
 import { trackSectionToggle } from '@/composables/useGoogleAnalytics'
 import CompanyHistorySection from './CompanyHistorySection.vue'
 import BaseButton from '@/components/atoms/BaseButton/BaseButton.vue'
@@ -84,7 +84,7 @@ const companyHistory = computed<CompanyHistory[]>(() => {
   // Access locale.value to make this computed reactive to locale changes
   void locale.value // Access to track reactivity, even if unused
 
-  const companiesData = tm('articles.employment.companies')
+  const companiesData = tm('articles.employment.companies') as unknown
 
   if (!companiesData || typeof companiesData !== 'object') {
     return []
@@ -93,9 +93,18 @@ const companyHistory = computed<CompanyHistory[]>(() => {
   return Object.keys(companiesData)
     .filter((companyKey) => COMPANY_LOGOS_MAP[companyKey]) // Only include companies with webp logos
     .map((companyKey) => {
-      const company = (companiesData as Record<string, any>)[companyKey]
+      const company = (companiesData as Record<string, { positions?: EmploymentPosition[] }>)[
+        companyKey
+      ]
+      if (!company) {
+        return {
+          companyKey,
+          companyLogo: `/company-logos/${COMPANY_LOGOS_MAP[companyKey]}`,
+          positions: [],
+        }
+      }
       const positions =
-        company.positions?.map((pos: any) => {
+        company.positions?.map((pos: EmploymentPosition): EmploymentPosition => {
           return {
             startDate: pos.startDate || '',
             endDate: pos.endDate,
@@ -125,7 +134,7 @@ const visibleCompanies = computed<CompanyHistory[]>(() => {
 const toggleShowAll = (): void => {
   const action = showAll.value ? 'show_less' : 'show_all'
   showAll.value = !showAll.value
-  
+
   // Track section toggle
   trackSectionToggle('employment_history', action)
 }

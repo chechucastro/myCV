@@ -37,4 +37,3 @@ export const skillsData: Skill[] = [
   { name: 'Jquery', level: 90 },
   { name: 'Scrum and agile methodologies', level: 85 },
 ]
-
