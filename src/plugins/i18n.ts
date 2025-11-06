@@ -56,11 +56,23 @@ const getSavedLocale = (): Locale => {
     return 'en'
   }
 
+  // First, detect browser language
+  const detectedLocale = detectBrowserLocale()
+
   try {
     const savedLocale = localStorage.getItem('locale') as Locale | null
 
-    // If there's a saved locale and it's valid, use it (user preference takes priority)
+    // If there's a saved locale and it's valid
     if (savedLocale && VALID_LOCALES.includes(savedLocale)) {
+      // If saved locale is 'en' (default) but browser language is different,
+      // prefer browser language (likely the user's actual preference)
+      if (savedLocale === 'en' && detectedLocale !== 'en') {
+        console.log('[i18n] Saved locale is "en" (default), but browser language is different. Using browser language:', detectedLocale)
+        return detectedLocale
+      }
+      
+      // Otherwise, use saved locale (user's manual preference)
+      console.log('[i18n] Using saved locale from localStorage:', savedLocale)
       return savedLocale
     }
   } catch (error) {
@@ -68,8 +80,9 @@ const getSavedLocale = (): Locale => {
     console.warn('Could not retrieve locale from localStorage:', error)
   }
 
-  // If no saved locale, detect browser language
-  return detectBrowserLocale()
+  // If no saved locale, use detected browser language
+  console.log('[i18n] No saved locale found, detected browser language:', detectedLocale, 'from:', navigator.language)
+  return detectedLocale
 }
 
 // i18n configuration options

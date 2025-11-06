@@ -54,11 +54,26 @@ const getSavedLocale = (): Locale => {
     return 'en'
   }
 
+  // First, detect browser language
+  const detectedLocale = detectBrowserLocale()
+
   try {
     const savedLocale = localStorage.getItem('locale') as Locale | null
 
-    // If there's a saved locale and it's valid, use it (user preference takes priority)
+    // If there's a saved locale and it's valid
     if (savedLocale && VALID_LOCALES.includes(savedLocale)) {
+      // If saved locale is 'en' (default) but browser language is different,
+      // prefer browser language (likely the user's actual preference)
+      if (savedLocale === 'en' && detectedLocale !== 'en') {
+        console.log(
+          '[Language] Saved locale is "en" (default), but browser language is different. Using browser language:',
+          detectedLocale,
+        )
+        return detectedLocale
+      }
+
+      // Otherwise, use saved locale (user's manual preference)
+      console.log('[Language] Using saved locale from localStorage:', savedLocale)
       return savedLocale
     }
   } catch (error) {
@@ -66,8 +81,14 @@ const getSavedLocale = (): Locale => {
     console.warn('Could not retrieve locale from localStorage:', error)
   }
 
-  // If no saved locale, detect browser language
-  return detectBrowserLocale()
+  // If no saved locale, use detected browser language
+  console.log(
+    '[Language] No saved locale found, detected browser language:',
+    detectedLocale,
+    'from:',
+    navigator.language,
+  )
+  return detectedLocale
 }
 
 /**
@@ -88,7 +109,7 @@ export const useLanguageStore = defineStore('language', () => {
    * Syncs with i18n and updates document lang attribute
    */
   const initialize = () => {
-    // Get the current locale from store state (already initialized from localStorage)
+    // Get the current locale from store state (already initialized from localStorage or browser detection)
     const locale = currentLocale.value
 
     // Sync i18n with store's locale using the global i18n instance
@@ -113,13 +134,9 @@ export const useLanguageStore = defineStore('language', () => {
       document.documentElement.setAttribute('lang', locale)
     }
 
-    // Ensure localStorage has the current locale (in case it was missing or invalid)
-    if (typeof window !== 'undefined') {
-      const existingLocale = localStorage.getItem('locale')
-      if (!existingLocale || !VALID_LOCALES.includes(existingLocale as Locale)) {
-        localStorage.setItem('locale', locale)
-      }
-    }
+    // Note: We don't save the detected locale to localStorage here
+    // Only save when user manually selects a language via setLocale()
+    // This allows browser language detection to work on every visit if no manual preference exists
   }
 
   /**
