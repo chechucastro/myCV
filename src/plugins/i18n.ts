@@ -11,9 +11,44 @@ export type Locale = 'en' | 'es' | 'fr'
 const VALID_LOCALES: readonly Locale[] = ['en', 'es', 'fr'] as const
 
 /**
- * Retrieves the saved locale from localStorage
+ * Detects the browser language and returns a supported locale
+ * @returns A supported locale based on browser language, or 'en' as default
+ */
+const detectBrowserLocale = (): Locale => {
+  // Check if we're in a browser environment
+  if (typeof window === 'undefined' || !navigator || !navigator.language) {
+    return 'en'
+  }
+
+  // Get browser language (e.g., 'en', 'en-US', 'es-ES', 'fr-FR')
+  const browserLang = navigator.language.toLowerCase()
+
+  // Extract the base language code (e.g., 'en' from 'en-US')
+  const baseLang = browserLang.split('-')[0] as string
+
+  // Check if the base language is in our supported locales
+  if (VALID_LOCALES.includes(baseLang as Locale)) {
+    return baseLang as Locale
+  }
+
+  // Check all browser languages (navigator.languages) if available
+  if (navigator.languages && Array.isArray(navigator.languages)) {
+    for (const lang of navigator.languages) {
+      const base = lang.toLowerCase().split('-')[0]
+      if (VALID_LOCALES.includes(base as Locale)) {
+        return base as Locale
+      }
+    }
+  }
+
+  // Default to English if no supported language is found
+  return 'en'
+}
+
+/**
+ * Retrieves the saved locale from localStorage or detects browser language
  * Falls back to 'en' if no valid locale is found
- * @returns The saved locale or 'en' as default
+ * @returns The saved locale, detected browser locale, or 'en' as default
  */
 const getSavedLocale = (): Locale => {
   // Check if we're in a browser environment
@@ -24,7 +59,7 @@ const getSavedLocale = (): Locale => {
   try {
     const savedLocale = localStorage.getItem('locale') as Locale | null
 
-    // Validate that the saved locale is one of the supported locales
+    // If there's a saved locale and it's valid, use it (user preference takes priority)
     if (savedLocale && VALID_LOCALES.includes(savedLocale)) {
       return savedLocale
     }
@@ -33,8 +68,8 @@ const getSavedLocale = (): Locale => {
     console.warn('Could not retrieve locale from localStorage:', error)
   }
 
-  // Default to English if no valid locale is found
-  return 'en'
+  // If no saved locale, detect browser language
+  return detectBrowserLocale()
 }
 
 // i18n configuration options
