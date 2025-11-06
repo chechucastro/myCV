@@ -18,6 +18,8 @@ export interface Language {
 export interface EmploymentPosition {
   startDate: string // ISO date (YYYY-MM-DD) recommended
   endDate?: string // optional -> present if missing
+  city?: string // City where the position is located
+  workType?: 'remote' | 'hybrid' | 'on-site' // Type of work arrangement
 }
 
 export interface CompanyHistory {

@@ -79,7 +79,12 @@
   },
   "employment": {
     "present": "Present",
-    "techStack": "Tech Stack"
+    "techStack": "Tech Stack",
+    "workType": {
+      "remote": "Remote",
+      "hybrid": "Hybrid",
+      "on-site": "On Site"
+    }
   },
   "hierarchy": {
     "client": "Chechu was my client",
@@ -119,7 +124,9 @@
               ],
               "techStack": "Vue 3 • Nuxt 4 • Nuxt Layers • Quasar • Tailwind CSS • Tailwind Variants • Sass • Reka UI • TypeScript • Vue Query • Axios • Vite • i18n • mjml • AWS/S3 • Zod • Swagger • Postman • RESTful APIs • Responsive Design • Git • Figma • Jira • Scrum and agile methodologies",
               "startDate": "2023-10-01",
-              "endDate": "2025-10-31"
+              "endDate": "2025-10-31",
+              "city": "Paris",
+              "workType": "remote"
             }
           ]
         },
@@ -136,7 +143,9 @@
               ],
               "techStack": "Vue 2 • Vue 3 • Vuex • Webpack • i18n • JavaScript (ES6+) • Jira • Figma",
               "startDate": "2023-03-01",
-              "endDate": "2023-07-31"
+              "endDate": "2023-07-31",
+              "city": "Milano, Italy",
+              "workType": "remote"
             }
           ]
         },
@@ -153,7 +162,9 @@
               ],
               "techStack": "Vue 3 • Vite • Pinia • Bootstrap Vue • Bootstrap 5 • Sass • HTML5 • ES6+ • AWS S3 • Python • DynamoDB • AWS Lambda • Jest • Vue Test Utils • Vitest • Agile • Kanban",
               "startDate": "2022-04-01",
-              "endDate": "2023-02-28"
+              "endDate": "2023-02-28",
+              "city": "Hamburg, Germany",
+              "workType": "remote"
             }
           ]
         },
@@ -170,7 +181,9 @@
               ],
               "techStack": "Vue.js • Vuex • VuePersist • Vuetify • Quasar • VueMaterial • Webpack • Vue CLI • i18n • Sass • Swagger • Postman • RESTful APIs • Responsive Design • Git • Figma • Sketch • Jira",
               "startDate": "2019-01-01",
-              "endDate": "2021-12-31"
+              "endDate": "2021-12-31",
+              "city": "Paris, Antony",
+              "workType": "remote"
             }
           ]
         },
@@ -187,7 +200,9 @@
               ],
               "techStack": "Vue.js • VueMaterial • HTML5 • Sass • CSS3 • JavaScript (ES6+) • RESTful APIs • Gulp • Webpack • Git • Jira • Swagger • Postman • Service Workers • PWA • Responsive Web Design",
               "startDate": "2016-11-01",
-              "endDate": "2018-12-31"
+              "endDate": "2018-12-31",
+              "city": "Paris",
+              "workType": "remote"
             }
           ]
         },
@@ -203,7 +218,9 @@
               ],
               "techStack": "HTML5 • CSS3 • NPM • Gulp • jQuery • JSON • AJAX • Responsive Design • Git • Twig • Symfony 2 • Trello",
               "startDate": "2016-11-01",
-              "endDate": "2016-12-31"
+              "endDate": "2016-12-31",
+              "city": "Paris",
+              "workType": "on-site"
             }
           ]
         },
@@ -220,7 +237,9 @@
               ],
               "techStack": "HTML5 • CSS3 • NPM • Gulp • Stylus • Less • Zepto • jQuery • JSON • Responsive Web Design (RWD) • SVN • Smarty",
               "startDate": "2015-09-01",
-              "endDate": "2016-10-31"
+              "endDate": "2016-10-31",
+              "city": "Paris",
+              "workType": "on-site"
             }
           ]
         },
@@ -238,7 +257,9 @@
               ],
               "techStack": "HTML • CSS • Gulp • Grunt • Stylus • Less • Zepto • jQuery • JavaScript • Ender • Responsive Web Design (RWD) • SVN • Git • Smarty • PHP • Jira",
               "startDate": "2014-03-01",
-              "endDate": "2015-08-31"
+              "endDate": "2015-08-31",
+              "city": "Paris",
+              "workType": "on-site"
             }
           ]
         },
@@ -255,7 +276,9 @@
               ],
               "techStack": "HTML5 • SASS • CSS3 • Zepto • jQuery • Hammer.js • Responsive Design • SVN • Twig • eZ Publish CMS",
               "startDate": "2013-12-01",
-              "endDate": "2014-01-31"
+              "endDate": "2014-01-31",
+              "city": "Paris",
+              "workType": "on-site"
             }
           ]
         },
@@ -273,7 +296,9 @@
               ],
               "techStack": "CSS3 • HTML5 • JSON • jQuery • jQuery UI • AJAX • Responsive Design",
               "startDate": "2012-10-01",
-              "endDate": "2013-10-31"
+              "endDate": "2013-10-31",
+              "city": "Paris",
+              "workType": "on-site"
             }
           ]
         },
@@ -292,7 +317,9 @@
               ],
               "techStack": "CSS3 • HTML5 • JSON • JSONP • jQuery 1.7 • jQuery UI • AJAX • Apache • WinCVS • JSP • JSTL • CMS NOHETO • XITI • Open AdStream • SWFObject",
               "startDate": "2009-01-01",
-              "endDate": "2012-05-31"
+              "endDate": "2012-05-31",
+              "city": "Paris",
+              "workType": "on-site"
             }
           ]
         },
@@ -307,7 +334,9 @@
               ],
               "techStack": "WAMP • CSS • XHTML • JavaScript • AJAX • PHP • Apache • MySQL • Putty",
               "startDate": "2008-10-01",
-              "endDate": "2009-01-31"
+              "endDate": "2009-01-31",
+              "city": "Paris",
+              "workType": "on-site"
             }
           ]
         },
@@ -324,7 +353,9 @@
               ],
               "techStack": "CSS • XHTML • JavaScript • AJAX • ASP.NET • PHP 5 • SQL Server • MySQL • IIS Server • Apache • Visual Studio 2005 • Google Maps API • JSON",
               "startDate": "2007-10-01",
-              "endDate": "2008-10-31"
+              "endDate": "2008-10-31",
+              "city": "Paris",
+              "workType": "on-site"
             }
           ]
         }

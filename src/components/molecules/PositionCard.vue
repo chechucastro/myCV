@@ -20,9 +20,19 @@
           class="h-full w-full object-contain"
         />
       </div>
-      <h3 class="text-xl font-bold text-gray-900 dark:text-white">
-        {{ props.data.company.name }}
-      </h3>
+      <div class="flex flex-col">
+        <h3 class="text-xl font-bold text-gray-900 dark:text-white">
+          {{ props.data.company.name }}
+        </h3>
+        <div
+          v-if="translatedCity || translatedWorkType"
+          class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"
+        >
+          <span v-if="translatedCity">{{ translatedCity }}</span>
+          <span v-if="translatedCity && translatedWorkType" aria-hidden="true">•</span>
+          <span v-if="translatedWorkType">{{ translatedWorkType }}</span>
+        </div>
+      </div>
     </div>
     <h4 class="mb-3 text-lg font-semibold text-gray-900 dark:text-white">
       {{ translatedPosition }}
@@ -43,13 +53,16 @@
           d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
         />
       </svg>
-      <time :datetime="props.data.position.startDate">{{
+      <time :datetime="props.data.position.startDate" class="capitalize">{{
         formatDate(props.data.position.startDate)
       }}</time>
       <span aria-hidden="true">—</span>
-      <time v-if="props.data.position.endDate" :datetime="props.data.position.endDate">{{
-        formatDate(props.data.position.endDate)
-      }}</time>
+      <time
+        v-if="props.data.position.endDate"
+        :datetime="props.data.position.endDate"
+        class="capitalize"
+        >{{ formatDate(props.data.position.endDate) }}</time
+      >
       <span
         v-else
         class="rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900 dark:text-green-200"
@@ -130,6 +143,21 @@ const translatedTechStack = computed(() => {
     return t(
       `articles.employment.companies.${props.data.company.key}.positions.${props.data.idx}.techStack`,
     )
+  }
+  return ''
+})
+
+const translatedCity = computed(() => {
+  if (props.data.company.key !== undefined && props.data.idx !== undefined) {
+    const city = props.data.position.city
+    return city || ''
+  }
+  return ''
+})
+
+const translatedWorkType = computed(() => {
+  if (props.data.position.workType) {
+    return t(`employment.workType.${props.data.position.workType}`)
   }
   return ''
 })
