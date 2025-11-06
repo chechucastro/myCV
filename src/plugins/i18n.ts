@@ -67,10 +67,13 @@ const getSavedLocale = (): Locale => {
       // If saved locale is 'en' (default) but browser language is different,
       // prefer browser language (likely the user's actual preference)
       if (savedLocale === 'en' && detectedLocale !== 'en') {
-        console.log('[i18n] Saved locale is "en" (default), but browser language is different. Using browser language:', detectedLocale)
+        console.log(
+          '[i18n] Saved locale is "en" (default), but browser language is different. Using browser language:',
+          detectedLocale,
+        )
         return detectedLocale
       }
-      
+
       // Otherwise, use saved locale (user's manual preference)
       console.log('[i18n] Using saved locale from localStorage:', savedLocale)
       return savedLocale
@@ -81,7 +84,12 @@ const getSavedLocale = (): Locale => {
   }
 
   // If no saved locale, use detected browser language
-  console.log('[i18n] No saved locale found, detected browser language:', detectedLocale, 'from:', navigator.language)
+  console.log(
+    '[i18n] No saved locale found, detected browser language:',
+    detectedLocale,
+    'from:',
+    navigator.language,
+  )
   return detectedLocale
 }
 
