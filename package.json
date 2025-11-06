@@ -18,7 +18,8 @@
     "test:e2e:report": "playwright show-report",
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "prepare": "husky"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.16",
@@ -50,6 +51,7 @@
     "eslint": "^9.39.1",
     "eslint-plugin-playwright": "^2.3.0",
     "eslint-plugin-vue": "~10.5.1",
+    "husky": "^9.1.7",
     "jiti": "^2.6.1",
     "jsdom": "^27.1.0",
     "npm-run-all2": "^8.0.4",
