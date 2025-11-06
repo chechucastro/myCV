@@ -96,6 +96,10 @@
       "title": "Competencias Principales",
       "body": "Desarrollo Front-End • Vue.js 2/3 • Nuxt 3/4 • Tailwind CSS • Tailwind variants • Bootstrap • Vuetify • TypeScript • JavaScript (ES6+) • Diseño Web Responsive (RWD) • Implementación UI • Librerías de Componentes • Atomic Design • Principios SOLID • Metodologías Ágiles • RESTful APIs • Figma • Git • Pruebas Unitarias • Cypress • Vitest • Playwright • Vite • Vue Query • Axios • Sass • Less • Stylus • Html • Mjml • Plantillas Email • Twig • AWS/S3 • Lighthouse • Swagger • Jira • Scrum y metodologías ágiles"
     },
+    "editorsIDE": {
+      "title": "Editores/IDE",
+      "body": "VS Code • WebStorm • Zed • Windsurf • Cursor"
+    },
     "employment": {
       "title": "Historial laboral",
       "companies": {

@@ -28,6 +28,16 @@
     <template v-if="section.title === 'Core Competencies' && !section.companyHistory">
       <ProfileSection :body="translatedBody || section.body || ''" />
 
+      <!-- Editors/IDE section -->
+      <div class="mt-8">
+        <h2
+          class="relative mb-6 text-2xl font-bold text-gray-900 after:absolute after:left-0 after:mt-2 after:block after:h-1 after:w-12 after:rounded-full after:bg-gradient-to-r after:from-blue-500 after:to-purple-500 after:content-[''] dark:text-white"
+        >
+          {{ t('articles.editorsIDE.title') }}
+        </h2>
+        <ProfileSection :body="t('articles.editorsIDE.body')" />
+      </div>
+
       <!-- Skills in two columns on larger screens -->
       <div class="mt-8">
         <h2
