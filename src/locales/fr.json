@@ -86,8 +86,8 @@
       "on-site": "Sur site"
     },
     "contractType": {
-      "freelance": "Contrat freelance",
-      "permanent": "Mission en CDI"
+      "freelance": "Freelance",
+      "permanent": "CDI"
     }
   },
   "hierarchy": {

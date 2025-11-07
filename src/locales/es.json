@@ -86,8 +86,8 @@
       "on-site": "Presencial"
     },
     "contractType": {
-      "freelance": "Contrato freelance",
-      "permanent": "Contrato indefinido"
+      "freelance": "Autónomo",
+      "permanent": "CDI"
     }
   },
   "hierarchy": {
