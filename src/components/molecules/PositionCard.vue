@@ -28,7 +28,12 @@
           v-if="translatedCity || translatedWorkType || translatedContractType"
           class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"
         >
-          <span v-if="translatedCity">{{ translatedCity }}</span>
+          <span v-if="translatedCity" class="flex items-center gap-1.5">
+            <span v-if="countryFlag" class="text-base leading-none" aria-hidden="true">{{
+              countryFlag
+            }}</span>
+            <span>{{ translatedCity }}</span>
+          </span>
           <span
             v-if="translatedCity && (translatedWorkType || translatedContractType)"
             aria-hidden="true"
@@ -173,5 +178,44 @@ const translatedContractType = computed(() => {
     return t(`employment.contractType.${props.data.position.contractType}`)
   }
   return ''
+})
+
+/**
+ * Map city names to country codes for flag display
+ * Handles different language variations of city names
+ */
+const getCountryCodeFromCity = (city: string): string | null => {
+  const cityToCountry: Record<string, string> = {
+    // Paris variations
+    paris: 'FR',
+    parís: 'FR',
+    // Milan variations
+    milan: 'IT',
+    milano: 'IT',
+    milán: 'IT',
+    // Hamburg variations
+    hamburg: 'DE',
+    hambourg: 'DE',
+    hamburgo: 'DE',
+  }
+  return cityToCountry[city.toLowerCase()] || null
+}
+
+/**
+ * Get flag emoji for a country code
+ */
+const getFlagEmoji = (countryCode: string): string => {
+  const flagMap: Record<string, string> = {
+    FR: '🇫🇷',
+    IT: '🇮🇹',
+    DE: '🇩🇪',
+  }
+  return flagMap[countryCode] || ''
+}
+
+const countryFlag = computed(() => {
+  if (!translatedCity.value) return null
+  const countryCode = getCountryCodeFromCity(translatedCity.value)
+  return countryCode ? getFlagEmoji(countryCode) : null
 })
 </script>
