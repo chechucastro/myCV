@@ -99,7 +99,7 @@
     },
     "coreCompetencies": {
       "title": "Compétences Principales",
-      "body": "Développement Front-End • Vue.js 2/3 • Nuxt 3/4 • Tailwind CSS • Tailwind variants • Bootstrap • Vuetify • TypeScript • JavaScript (ES6+) • Design Web Responsive (RWD) • Implémentation UI • Bibliothèques de Composants • Atomic Design • Principes SOLID • Méthodologies Agiles • RESTful APIs • Figma • Git • Tests Unitaires • Cypress • Vitest • Playwright • Vite • Vue Query • Axios • Sass • Less • Stylus • Html • Mjml • Templates Email • Twig • AWS/S3 • Lighthouse • Swagger • Jira • Scrum et méthodologies agiles"
+      "body": "Développement Front-End • Vue.js 2/3 • Nuxt 3/4 • Tailwind CSS • Tailwind variants • Bootstrap • Vuetify • TypeScript • JavaScript (ES6+) • Design Web Responsive (RWD) • Implémentation UI • Bibliothèques de Composants • Atomic Design • Principes SOLID • Méthodologies Agiles • RESTful APIs • Figma • Git • Tests Unitaires • Cypress • Vitest • Playwright • Vite • Axios • Sass • Less • Stylus • Html • Mjml • Templates Email • Twig • AWS/S3 • Lighthouse • Swagger • Jira • Scrum et méthodologies agiles"
     },
     "editorsIDE": {
       "title": "Éditeurs/IDE",
@@ -114,7 +114,7 @@
             {
               "position": "Développeur Front-End (Vue.js / Nuxt / Quasar framework / Tailwind / Reka UI)",
               "description": [
-                "Conçu une architecture modulaire partagée avec Nuxt Layers et Vue Query, permettant à 3 applications web d'entreprise de partager plus de 70% du code UI, accélérant les cycles de publication de 40%",
+                "Conçu une architecture modulaire partagée avec Nuxt Layers, permettant à 3 applications web d'entreprise de partager plus de 70% du code UI, accélérant les cycles de publication de 40%",
                 "Construit et maintenu un système Atomic Design évolutif avec plus de 100 composants Vue 3 réutilisables, améliorant la cohérence du design et réduisant le retravail entre les équipes produit",
                 "Optimisé les performances UI grâce au lazy loading, au code-splitting et aux variants Tailwind, obtenant des scores Lighthouse supérieurs à 90 et des interactions utilisateur plus rapides",
                 "Collaboré avec les designers et ingénieurs backend pour aligner les objectifs UX/UI avec les exigences métier, améliorant le time-to-market et l'efficacité globale de développement",
@@ -122,7 +122,7 @@
                 "Développement de templates email responsives avec Mjml, Node, Litmus, Testi et Amazon SES pour la livraison d'emails",
                 "Intégration avec AWS S3 pour le stockage et la livraison de fichiers"
               ],
-              "techStack": "Vue 3 • Nuxt 4 • Nuxt Layers • Quasar • Tailwind CSS • Tailwind Variants • Sass • Reka UI • TypeScript • Vue Query • Axios • Vite • i18n • mjml • AWS/S3 • Zod • Swagger • Postman • RESTful APIs • Design Responsive • Git • Figma • Jira • Scrum et méthodologies agiles",
+              "techStack": "Vue 3 • Nuxt 4 • Nuxt Layers • Quasar • Tailwind CSS • Tailwind Variants • Sass • Reka UI • TypeScript • Axios • Vite • i18n • mjml • AWS/S3 • Zod • Swagger • Postman • RESTful APIs • Design Responsive • Git • Figma • Jira • Scrum et méthodologies agiles",
               "startDate": "2023-10-01",
               "endDate": "2025-10-31",
               "city": "Paris",
