@@ -36,9 +36,7 @@ describe('PositionCard', () => {
     })
 
     // Check for actual description items from i18n translations
-    expect(wrapper.text()).toContain(
-      'Engineered a shared modular architecture with Nuxt Layers',
-    )
+    expect(wrapper.text()).toContain('Engineered a shared modular architecture with Nuxt Layers')
     expect(wrapper.text()).toContain('Built and maintained a scalable Atomic Design system')
     expect(wrapper.text()).toContain('Optimized UI performance through lazy loading')
   })
