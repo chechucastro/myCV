@@ -197,6 +197,7 @@ interface Props {
   iconFill?: string
   iconClasses?: string
   iconBgClass: string
+  cardBgClass?: string
   showArrow?: boolean
   alignment?: ButtonDetailsVariants['alignment']
   hoverColor?: ButtonDetailsVariants['hoverColor']
@@ -211,6 +212,7 @@ const props = withDefaults(defineProps<Props>(), {
   iconPath: '',
   iconFill: 'currentColor',
   iconClasses: 'text-white',
+  cardBgClass: '',
   showArrow: false,
   alignment: 'center',
   hoverColor: 'purple',
@@ -237,7 +239,10 @@ const styles = computed(() =>
   }),
 )
 
-const cardClasses = computed(() => styles.value.base())
+const cardClasses = computed(() => {
+  const baseClasses = styles.value.base()
+  return props.cardBgClass ? `${baseClasses} ${props.cardBgClass}` : baseClasses
+})
 const iconContainerClasses = computed(() => `${styles.value.iconContainer()} ${props.iconBgClass}`)
 const contentClasses = computed(() => styles.value.content())
 const valueClasses = computed(() => styles.value.value())

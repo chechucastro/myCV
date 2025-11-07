@@ -5,7 +5,7 @@
       <div class="mb-8">
         <div class="mb-5 flex items-center gap-3">
           <div
-            class="h-px flex-1 bg-linear-to-r from-transparent via-purple-500/30 to-transparent"
+            class="h-px flex-1 bg-gradient-to-r from-transparent via-purple-500/30 to-transparent"
           ></div>
           <h3 class="text-xs font-bold tracking-widest text-gray-600 uppercase dark:text-gray-300">
             {{ t('details.social') }}
@@ -18,10 +18,11 @@
           <!-- LinkedIn -->
           <ButtonDetails
             :label="t('details.linkedin')"
-            :value="contactInfo.linkedin.handle"
-            :href="contactInfo.linkedin.url"
+            :value="CONTACT_INFO.linkedin.handle"
+            :href="CONTACT_INFO.linkedin.url"
             :aria-label="t('aria.linkedinProfile')"
             icon-bg-class="bg-gradient-to-br from-[#0A66C2] to-[#004182] shadow-lg shadow-blue-500/30"
+            card-bg-class="!bg-transparent dark:!bg-transparent"
             icon-fill="white"
             :icon-path="ICONS.linkedin"
             :show-arrow="false"
@@ -31,60 +32,16 @@
           <!-- GitHub -->
           <ButtonDetails
             :label="t('details.github')"
-            :value="contactInfo.github.handle"
-            :href="contactInfo.github.url"
+            :value="CONTACT_INFO.github.handle"
+            :href="CONTACT_INFO.github.url"
             :aria-label="t('aria.githubProfile')"
             icon-bg-class="bg-gradient-to-br from-gray-900 to-gray-700 dark:from-gray-100 dark:to-white shadow-lg shadow-gray-500/30"
+            card-bg-class="!bg-transparent dark:!bg-transparent"
             icon-classes="text-white dark:text-gray-900"
             :icon-path="ICONS.github"
             hover-color="gray"
             :show-arrow="false"
           />
-        </div>
-      </div>
-
-      <!-- Contact Section -->
-      <div class="mb-8">
-        <div class="mb-5 flex items-center gap-3">
-          <div
-            class="h-px flex-1 bg-gradient-to-r from-transparent via-blue-500/30 to-transparent"
-          ></div>
-          <h3 class="text-xs font-bold tracking-widest text-gray-600 uppercase dark:text-gray-300">
-            {{ t('details.contact') }}
-          </h3>
-          <div
-            class="h-px flex-1 bg-gradient-to-r from-transparent via-blue-500/30 to-transparent"
-          ></div>
-        </div>
-        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <ButtonDetails
-            :label="t('details.email')"
-            :value="contactInfo.email"
-            :href="`mailto:${contactInfo.email}`"
-            :aria-label="t('aria.sendEmail')"
-            icon-bg-class="bg-gradient-to-br from-blue-500 via-purple-600 to-purple-700 shadow-lg shadow-purple-500/30"
-            :icon-path="ICONS.email"
-            alignment="start"
-            hover-color="purple"
-          />
-          <ButtonDetails
-            :label="t('details.hireMe')"
-            :value="t('details.hireMe')"
-            href="https://www.malt.es/profile/chechucastro"
-            :aria-label="t('aria.hireMeProfile')"
-            icon-bg-class="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-700 shadow-lg shadow-red-500/20"
-            hover-color="purple"
-            :show-arrow="false"
-          >
-            <template #icon>
-              <img
-                src="/company-logos/malt.svg"
-                alt="Malt logo"
-                class="h-6 w-auto object-contain transition-transform duration-500 group-hover:scale-110"
-                aria-hidden="true"
-              />
-            </template>
-          </ButtonDetails>
         </div>
       </div>
 
@@ -108,6 +65,7 @@
             href="/docs/Chechu-Castro-CV-EN-2025-full.pdf"
             :aria-label="t('aria.downloadCVFull')"
             icon-bg-class="bg-gradient-to-br from-indigo-600 via-purple-600 to-blue-600 shadow-lg shadow-indigo-500/30"
+            card-bg-class="!bg-transparent dark:!bg-transparent"
             :icon-path="ICONS.download"
             hover-color="purple"
             :show-arrow="false"
@@ -119,11 +77,59 @@
             href="/docs/Chechu-Castro-CV-EN-2025-light.pdf"
             :aria-label="t('aria.downloadCVLight')"
             icon-bg-class="bg-gradient-to-br from-teal-500 via-cyan-600 to-blue-500 shadow-lg shadow-teal-500/30"
+            card-bg-class="!bg-transparent dark:!bg-transparent"
             :icon-path="ICONS.download"
             hover-color="blue"
             :show-arrow="false"
             download="Chechu-Castro-CV-EN-2025-light.pdf"
           />
+        </div>
+      </div>
+
+      <!-- Contact Section -->
+      <div class="mb-8">
+        <div class="mb-5 flex items-center gap-3">
+          <div
+            class="h-px flex-1 bg-gradient-to-r from-transparent via-blue-500/30 to-transparent"
+          ></div>
+          <h3 class="text-xs font-bold tracking-widest text-gray-600 uppercase dark:text-gray-300">
+            {{ t('details.contact') }}
+          </h3>
+          <div
+            class="h-px flex-1 bg-gradient-to-r from-transparent via-blue-500/30 to-transparent"
+          ></div>
+        </div>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <ButtonDetails
+            :label="t('details.email')"
+            :value="CONTACT_INFO.email"
+            :href="`mailto:${CONTACT_INFO.email}`"
+            :aria-label="t('aria.sendEmail')"
+            icon-bg-class="bg-gradient-to-br from-blue-500 via-purple-600 to-purple-700 shadow-lg shadow-purple-500/30"
+            card-bg-class="!bg-transparent dark:!bg-transparent"
+            :icon-path="ICONS.email"
+            alignment="start"
+            hover-color="purple"
+          />
+          <ButtonDetails
+            :label="t('details.hireMe')"
+            :value="t('details.hireMe')"
+            href="https://www.malt.es/profile/chechucastro"
+            :aria-label="t('aria.hireMeProfile')"
+            icon-bg-class="bg-gradient-to-br from-red-500 via-red-600 to-orange-600 shadow-lg shadow-red-500/50 dark:shadow-red-600/50"
+            card-bg-class="!bg-gradient-to-br !from-red-50/90 !via-orange-50/90 !to-red-50/90 dark:!from-red-950/80 dark:!via-orange-950/80 dark:!to-red-950/80 !border-red-300/60 dark:!border-red-700/60 !shadow-red-200/50 dark:!shadow-red-900/50"
+            hover-color="purple"
+            :show-arrow="false"
+          >
+            <template #icon>
+              <img
+                src="/company-logos/malt.svg"
+                alt="Malt logo"
+                class="h-6 w-auto object-contain transition-transform duration-500 group-hover:scale-110"
+                aria-hidden="true"
+              />
+            </template>
+          </ButtonDetails>
         </div>
       </div>
     </address>
@@ -134,8 +140,9 @@
 import { useI18n } from 'vue-i18n'
 import ButtonDetails from '@/components/molecules/ButtonDetails.vue'
 import { CONTACT_INFO } from '@/config/constants'
+import type { ContactInfo } from '@/types'
 
-const contactInfo = CONTACT_INFO
+const contactInfo: ContactInfo = CONTACT_INFO
 const { t } = useI18n()
 
 defineExpose({ contactInfo })

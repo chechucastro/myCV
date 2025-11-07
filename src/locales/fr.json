@@ -84,6 +84,10 @@
       "remote": "Télétravail",
       "hybrid": "Hybride",
       "on-site": "Sur site"
+    },
+    "contractType": {
+      "freelance": "Contrat freelance",
+      "permanent": "Mission en CDI"
     }
   },
   "hierarchy": {
@@ -126,7 +130,8 @@
               "startDate": "2023-10-01",
               "endDate": "2025-10-31",
               "city": "Paris, France",
-              "workType": "remote"
+              "workType": "remote",
+              "contractType": "freelance"
             }
           ]
         },
@@ -145,7 +150,8 @@
               "startDate": "2023-03-01",
               "endDate": "2023-07-31",
               "city": "Milan, Italie",
-              "workType": "remote"
+              "workType": "remote",
+              "contractType": "freelance"
             }
           ]
         },
@@ -164,7 +170,8 @@
               "startDate": "2022-04-01",
               "endDate": "2023-02-28",
               "city": "Hambourg, Allemagne",
-              "workType": "remote"
+              "workType": "remote",
+              "contractType": "freelance"
             }
           ]
         },
@@ -183,7 +190,8 @@
               "startDate": "2019-01-01",
               "endDate": "2021-12-31",
               "city": "Paris, Antony, France",
-              "workType": "remote"
+              "workType": "remote",
+              "contractType": "freelance"
             }
           ]
         },
@@ -202,7 +210,8 @@
               "startDate": "2016-11-01",
               "endDate": "2018-12-31",
               "city": "Paris, France",
-              "workType": "remote"
+              "workType": "remote",
+              "contractType": "freelance"
             }
           ]
         },
@@ -220,7 +229,8 @@
               "startDate": "2016-11-01",
               "endDate": "2016-12-31",
               "city": "Paris, France",
-              "workType": "on-site"
+              "workType": "on-site",
+              "contractType": "freelance"
             }
           ]
         },
@@ -239,7 +249,8 @@
               "startDate": "2015-09-01",
               "endDate": "2016-10-31",
               "city": "Paris, France",
-              "workType": "on-site"
+              "workType": "on-site",
+              "contractType": "freelance"
             }
           ]
         },
@@ -259,7 +270,8 @@
               "startDate": "2014-03-01",
               "endDate": "2015-08-31",
               "city": "Paris, France",
-              "workType": "on-site"
+              "workType": "on-site",
+              "contractType": "permanent"
             }
           ]
         },
@@ -278,7 +290,8 @@
               "startDate": "2013-12-01",
               "endDate": "2014-01-31",
               "city": "Paris, France",
-              "workType": "on-site"
+              "workType": "on-site",
+              "contractType": "permanent"
             }
           ]
         },
@@ -298,7 +311,8 @@
               "startDate": "2012-10-01",
               "endDate": "2013-10-31",
               "city": "Paris, France",
-              "workType": "on-site"
+              "workType": "on-site",
+              "contractType": "permanent"
             }
           ]
         },
@@ -319,7 +333,8 @@
               "startDate": "2009-01-01",
               "endDate": "2012-05-31",
               "city": "Paris, France",
-              "workType": "on-site"
+              "workType": "on-site",
+              "contractType": "permanent"
             }
           ]
         },
@@ -336,7 +351,8 @@
               "startDate": "2008-10-01",
               "endDate": "2009-01-31",
               "city": "Paris, France",
-              "workType": "on-site"
+              "workType": "on-site",
+              "contractType": "permanent"
             }
           ]
         },
@@ -355,7 +371,8 @@
               "startDate": "2007-10-01",
               "endDate": "2008-10-31",
               "city": "Paris, France",
-              "workType": "on-site"
+              "workType": "on-site",
+              "contractType": "permanent"
             }
           ]
         }

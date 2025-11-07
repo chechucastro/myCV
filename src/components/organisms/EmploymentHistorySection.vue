@@ -110,6 +110,7 @@ const companyHistory = computed<CompanyHistory[]>(() => {
             endDate: pos.endDate,
             city: pos.city,
             workType: pos.workType,
+            contractType: pos.contractType,
           }
         }) || []
 

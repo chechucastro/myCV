@@ -20,6 +20,7 @@ export interface EmploymentPosition {
   endDate?: string // optional -> present if missing
   city?: string // City where the position is located
   workType?: 'remote' | 'hybrid' | 'on-site' // Type of work arrangement
+  contractType?: 'freelance' | 'permanent' // Type of contract
 }
 
 export interface CompanyHistory {

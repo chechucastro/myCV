@@ -25,12 +25,18 @@
           {{ props.data.company.name }}
         </h3>
         <div
-          v-if="translatedCity || translatedWorkType"
+          v-if="translatedCity || translatedWorkType || translatedContractType"
           class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"
         >
           <span v-if="translatedCity">{{ translatedCity }}</span>
-          <span v-if="translatedCity && translatedWorkType" aria-hidden="true">•</span>
+          <span
+            v-if="translatedCity && (translatedWorkType || translatedContractType)"
+            aria-hidden="true"
+            >•</span
+          >
           <span v-if="translatedWorkType">{{ translatedWorkType }}</span>
+          <span v-if="translatedWorkType && translatedContractType" aria-hidden="true">•</span>
+          <span v-if="translatedContractType">{{ translatedContractType }}</span>
         </div>
       </div>
     </div>
@@ -158,6 +164,13 @@ const translatedCity = computed(() => {
 const translatedWorkType = computed(() => {
   if (props.data.position.workType) {
     return t(`employment.workType.${props.data.position.workType}`)
+  }
+  return ''
+})
+
+const translatedContractType = computed(() => {
+  if (props.data.position.contractType) {
+    return t(`employment.contractType.${props.data.position.contractType}`)
   }
   return ''
 })
