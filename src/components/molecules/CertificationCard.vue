@@ -65,7 +65,7 @@
           <div>
             <span class="font-semibold text-gray-700 dark:text-gray-300">Date</span>
             <p class="mt-0.5 text-gray-600 dark:text-gray-400">
-              <time :datetime="props.certification.issuedDate">{{
+              <time :datetime="props.certification.issuedDate" class="capitalize">{{
                 formatDate(props.certification.issuedDate)
               }}</time>
             </p>
@@ -82,7 +82,7 @@
           color="purple"
           size="md"
           :full-width="true"
-          :aria-label="`View ${props.certification.title} certificate (opens in new tab)`"
+          :aria-label="ariaLabel"
         >
           <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
@@ -92,7 +92,7 @@
               d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
             />
           </svg>
-          View Certificate
+          {{ t('common.viewCertificate') }}
         </BaseButton>
       </div>
     </div>
@@ -100,6 +100,8 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import type { Certification } from '@/types'
 import { useFormatters } from '@/composables/useFormatters'
 import BaseCard from '@/components/atoms/BaseCard/BaseCard.vue'
@@ -110,5 +112,10 @@ interface Props {
 }
 
 const props = defineProps<Props>()
+const { t } = useI18n()
 const { formatDate } = useFormatters()
+
+const ariaLabel = computed(() => {
+  return t('aria.viewCertificate', { title: props.certification.title })
+})
 </script>

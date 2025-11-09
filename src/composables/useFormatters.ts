@@ -1,5 +1,6 @@
 import { useI18n } from 'vue-i18n'
 import type { LanguageLevel, HierarchyMode } from '@/types'
+import { getLanguageLevelColor as getLanguageLevelColorVariant } from './languageLevel.variants'
 
 /**
  * Composable for formatting utility functions
@@ -14,7 +15,7 @@ export function useFormatters() {
     if (!iso) return ''
     try {
       const d = new Date(iso)
-      // e.g. "Jun 2020"
+      // e.g. "Jun 2020" or "ene 1994" (capitalization handled by Tailwind CSS)
       return d.toLocaleString(undefined, { year: 'numeric', month: 'short' })
     } catch {
       return iso ?? ''
@@ -45,16 +46,10 @@ export function useFormatters() {
   /**
    * Get color for language level bar and badges
    * Uses white text with darker backgrounds for WCAG AA compliance (4.5:1 contrast ratio)
+   * Delegates to Tailwind variants for styling
    */
   const getLanguageLevelColor = (level: LanguageLevel): string => {
-    const colorMap: Record<LanguageLevel, string> = {
-      Native: 'bg-red-700 text-white dark:bg-red-600 dark:text-white',
-      Fluent: 'bg-orange-800 text-white dark:bg-orange-700 dark:text-white',
-      Professional: 'bg-yellow-800 text-white dark:bg-yellow-700 dark:text-white',
-      Conversational: 'bg-cyan-800 text-white dark:bg-cyan-700 dark:text-white',
-      Basic: 'bg-blue-700 text-white dark:bg-blue-600 dark:text-white',
-    }
-    return colorMap[level]
+    return getLanguageLevelColorVariant(level)
   }
 
   return {

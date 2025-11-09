@@ -33,6 +33,7 @@
     "hireMeProfile": "Open Malt profile to hire me (opens in a new tab)",
     "downloadCVFull": "Download full CV (PDF)",
     "downloadCVLight": "Download light CV (PDF)",
+    "viewCertificate": "View {title} certificate (opens in new tab)",
     "languageProficiency": "{language} proficiency: {level}",
     "levelOutOf": "Level {current} out of {total}",
     "mainLayout": "Main layout",
@@ -69,6 +70,7 @@
     "showMore": "Show more",
     "showLess": "Show less",
     "viewProject": "View Project",
+    "viewCertificate": "View Certificate",
     "github": "GitHub",
     "privateRepo": "Private"
   },
@@ -385,7 +387,12 @@
           "degree": "Tourism and Travel Services Management",
           "institution": "IATA Training and Development Institute",
           "fieldOfStudy": "Tourism and Travel Services Management",
-          "location": "1 Butterwick\nLondon W6 8DL\nUnited Kingdom"
+          "location": "1 Butterwick\nLondon W6 8DL\nUnited Kingdom",
+          "highlights": [
+            "Travel agencies & tour operations Management.",
+            "Advanced Skills in Journey Pricing and Ticketing",
+            "Galileo & Amadeus CRS systems"
+          ]
         }
       ]
     },

@@ -33,6 +33,7 @@
     "hireMeProfile": "Ouvrir le profil Malt pour m'embaucher (s'ouvre dans un nouvel onglet)",
     "downloadCVFull": "Télécharger CV complet (PDF)",
     "downloadCVLight": "Télécharger CV mini (PDF)",
+    "viewCertificate": "Voir le certificat {title} (s'ouvre dans un nouvel onglet)",
     "languageProficiency": "Niveau de {language}: {level}",
     "levelOutOf": "Niveau {current} sur {total}",
     "mainLayout": "Mise en page principale",
@@ -69,6 +70,7 @@
     "showMore": "Afficher plus",
     "showLess": "Afficher moins",
     "viewProject": "Voir le Projet",
+    "viewCertificate": "Voir le Certificat",
     "github": "GitHub",
     "privateRepo": "Privé"
   },
@@ -385,7 +387,12 @@
           "degree": "Gestion des Services de Tourisme et Voyages",
           "institution": "Institut de Formation et de Développement IATA",
           "fieldOfStudy": "Gestion des Services de Tourisme et Voyages",
-          "location": "1 Butterwick\nLondon W6 8DL\nRoyaume-Uni"
+          "location": "1 Butterwick\nLondon W6 8DL\nRoyaume-Uni",
+          "highlights": [
+            "Gestion des agences de voyage et opérateurs touristiques.",
+            "Compétences Avancées en Tarification de Voyages et Émission de Billets",
+            "Systèmes CRS Galileo et Amadeus"
+          ]
         }
       ]
     },

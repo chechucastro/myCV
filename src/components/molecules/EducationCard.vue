@@ -11,6 +11,14 @@
       <p v-if="translatedFieldOfStudy" class="mt-1 text-sm text-gray-600 dark:text-gray-300">
         {{ translatedFieldOfStudy }}
       </p>
+      <ul
+        v-if="translatedHighlights && translatedHighlights.length > 0"
+        class="mt-2 list-inside list-disc space-y-1 text-sm text-gray-600 dark:text-gray-300"
+      >
+        <li v-for="(highlight, index) in translatedHighlights" :key="index">
+          {{ highlight }}
+        </li>
+      </ul>
     </div>
 
     <!-- Education Details -->
@@ -29,9 +37,11 @@
             d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
           />
         </svg>
-        <time :datetime="education.startDate">{{ formatDate(education.startDate) }}</time>
+        <time :datetime="education.startDate" class="capitalize">{{
+          formatDate(education.startDate)
+        }}</time>
         <span aria-hidden="true">—</span>
-        <time v-if="education.endDate" :datetime="education.endDate">{{
+        <time v-if="education.endDate" :datetime="education.endDate" class="capitalize">{{
           formatDate(education.endDate)
         }}</time>
         <span
@@ -83,7 +93,7 @@ interface Props {
 }
 
 const props = defineProps<Props>()
-const { t } = useI18n()
+const { t, tm } = useI18n()
 const { formatDate } = useFormatters()
 
 const educationKey = computed(() => {
@@ -120,5 +130,20 @@ const translatedLocation = computed(() => {
     return loc || ''
   }
   return ''
+})
+
+const translatedHighlights = computed(() => {
+  if (educationKey.value !== undefined) {
+    const translationKey = `articles.education.items.${educationKey.value}.highlights`
+    try {
+      // Use tm() for returning message objects/arrays in vue-i18n v9
+      const highlights = tm(translationKey)
+      return Array.isArray(highlights) ? highlights : []
+    } catch (error) {
+      console.error('Error fetching highlights translation:', error, translationKey)
+      return []
+    }
+  }
+  return []
 })
 </script>

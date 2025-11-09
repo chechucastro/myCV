@@ -151,7 +151,8 @@ describe('useFormatters', () => {
       const result = getLanguageLevelColor('Native')
       expect(result).toContain('dark:')
       expect(result).toContain('dark:bg-red-600')
-      expect(result).toContain('dark:text-white')
+      // text-white in base applies to both light and dark modes, so dark:text-white is not needed
+      expect(result).toContain('text-white')
     })
 
     it('should ensure WCAG AA compliance by using white text on darker backgrounds', () => {

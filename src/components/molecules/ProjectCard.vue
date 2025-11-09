@@ -23,16 +23,16 @@
             />
           </svg>
           <template v-if="isSameMonth">
-            <time v-if="project.startDate" :datetime="project.startDate">{{
+            <time v-if="project.startDate" :datetime="project.startDate" class="capitalize">{{
               formatDate(project.startDate)
             }}</time>
           </template>
           <template v-else>
-            <time v-if="project.startDate" :datetime="project.startDate">{{
+            <time v-if="project.startDate" :datetime="project.startDate" class="capitalize">{{
               formatDate(project.startDate)
             }}</time>
             <span v-if="project.startDate && project.endDate" aria-hidden="true">—</span>
-            <time v-if="project.endDate" :datetime="project.endDate">{{
+            <time v-if="project.endDate" :datetime="project.endDate" class="capitalize">{{
               formatDate(project.endDate)
             }}</time>
           </template>
