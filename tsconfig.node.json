@@ -1,5 +1,10 @@
 {
   "extends": "@tsconfig/node22/tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "incremental": false,
+    "composite": false
+  },
   "include": [
     "vite.config.*",
     "vitest.config.*",

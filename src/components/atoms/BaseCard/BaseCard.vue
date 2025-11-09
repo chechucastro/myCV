@@ -23,7 +23,7 @@ const props = withDefaults(defineProps<Props>(), {
   tag: 'article',
 })
 
-const cardClasses = computed(() => {
+const cardClasses = computed<string>(() => {
   const baseClasses = card({
     borderColor: props.borderColor,
     padding: props.padding,

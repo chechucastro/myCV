@@ -19,12 +19,12 @@ import { computed } from 'vue'
 import type { ButtonVariant, ButtonColor, ButtonSize, ButtonTag } from './BaseButton.const'
 import { button } from './BaseButton.variants'
 
+// Re-export types for external use
+export type { ButtonVariant, ButtonColor, ButtonSize, ButtonTag }
+
 defineOptions({
   name: 'BaseButton',
 })
-
-// Re-export types for external use
-export type { ButtonVariant, ButtonColor, ButtonSize, ButtonTag }
 
 interface Props {
   variant?: ButtonVariant
@@ -52,7 +52,7 @@ const props = withDefaults(defineProps<Props>(), {
   buttonType: 'button',
 })
 
-const buttonClasses = computed(() => {
+const buttonClasses = computed<string>(() => {
   const baseClasses = button({
     variant: props.variant,
     color: props.color,

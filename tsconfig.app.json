@@ -20,7 +20,9 @@
     },
 
     /* --- Output --- */
-    "noEmit": true
+    "noEmit": true,
+    "incremental": false,
+    "composite": false
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue", "env.d.ts"]
 }

@@ -16,8 +16,10 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:report": "playwright show-report",
+    "lighthouse:ci": "lhci autorun",
+    "lighthouse:ci:full": "npm run build && (npm run preview &) && sleep 5 && npm run lighthouse:ci && pkill -f 'vite preview' || true",
     "checks": "npm run type-check && npm run lint && npm run format",
-    "type-check": "vue-tsc --build",
+    "type-check": "vue-tsc --build && rm -f ./*.tsbuildinfo || true",
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
     "prepare": "husky"
@@ -34,6 +36,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.11.0",
+    "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.56.1",
     "@tailwindcss/postcss": "^4.1.16",
     "@tsconfig/node22": "^22.0.2",
