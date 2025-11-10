@@ -99,7 +99,7 @@
             class="h-px flex-1 bg-gradient-to-r from-transparent via-blue-500/30 to-transparent"
           ></div>
         </div>
-        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-4 sm:items-stretch">
           <ButtonDetails
             :label="t('details.email')"
             :value="CONTACT_INFO.email"
@@ -108,8 +108,9 @@
             icon-bg-class="bg-gradient-to-br from-blue-500 via-purple-600 to-purple-700 shadow-lg shadow-purple-500/30"
             card-bg-class="!bg-transparent dark:!bg-transparent"
             :icon-path="ICONS.email"
-            alignment="start"
+            alignment="center"
             hover-color="purple"
+            class="sm:col-span-2"
           />
           <ButtonDetails
             :label="t('details.hireMe')"
@@ -120,6 +121,7 @@
             card-bg-class="!bg-gradient-to-br !from-red-50/90 !via-orange-50/90 !to-red-50/90 dark:!from-red-950/80 dark:!via-orange-950/80 dark:!to-red-950/80 !border-red-300/60 dark:!border-red-700/60 !shadow-red-200/50 dark:!shadow-red-900/50"
             hover-color="purple"
             :show-arrow="false"
+            class="sm:col-span-1"
           >
             <template #icon>
               <img
@@ -130,6 +132,9 @@
               />
             </template>
           </ButtonDetails>
+          <div class="flex h-full w-full sm:col-span-1">
+            <CalendlyButton />
+          </div>
         </div>
       </div>
     </address>
@@ -139,6 +144,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import ButtonDetails from '@/components/molecules/ButtonDetails.vue'
+import CalendlyButton from '@/components/molecules/CalendlyButton.vue'
 import { CONTACT_INFO } from '@/config/constants'
 import type { ContactInfo } from '@/types'
 
