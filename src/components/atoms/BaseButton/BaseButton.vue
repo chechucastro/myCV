@@ -19,7 +19,7 @@ import { computed } from 'vue'
 import type { ButtonVariant, ButtonColor, ButtonSize, ButtonTag } from './BaseButton.const'
 import { button } from './BaseButton.variants'
 
-// Re-export types for external use
+// Re-export
 export type { ButtonVariant, ButtonColor, ButtonSize, ButtonTag }
 
 defineOptions({

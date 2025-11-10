@@ -9,7 +9,7 @@
     <div class="mb-6 flex items-center gap-4">
       <div
         v-if="props.data.company.logo"
-        class="flex h-16 w-16 flex-shrink-0 items-center justify-center overflow-hidden rounded-lg border border-gray-200 bg-white p-2 shadow-sm dark:border-gray-700 dark:bg-white"
+        class="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-gray-200 bg-white p-2 shadow-sm dark:border-gray-700 dark:bg-white"
       >
         <img
           :src="props.data.company.logo"
@@ -87,7 +87,7 @@
     >
       <li v-for="(d, dIdx) in translatedDescription" :key="dIdx" class="flex items-start gap-2">
         <span
-          class="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-purple-500 dark:bg-purple-400"
+          class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-purple-500 dark:bg-purple-400"
         ></span>
         <span>{{ d }}</span>
       </li>

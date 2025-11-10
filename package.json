@@ -18,9 +18,9 @@
     "test:e2e:report": "playwright show-report",
     "lighthouse:ci": "lhci autorun",
     "lighthouse:ci:full": "npm run build && (npm run preview &) && sleep 5 && npm run lighthouse:ci && pkill -f 'vite preview' || true",
-    "checks": "npm run type-check && npm run lint && npm run format",
     "type-check": "vue-tsc --build && rm -f ./*.tsbuildinfo || true",
     "lint": "eslint . --fix",
+    "test:all": "npm run type-check && npm run lint && npm run format && npm run test:unit && npm run test:e2e && npm run lighthouse:ci:full",
     "format": "prettier --write src/",
     "prepare": "husky"
   },

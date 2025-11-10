@@ -50,7 +50,7 @@
 
     <svg
       v-if="props.showArrow"
-      class="ml-auto h-5 w-5 flex-shrink-0 text-gray-500 transition-all duration-500 group-hover:translate-x-2 group-hover:text-purple-500 dark:text-gray-400 dark:group-hover:text-purple-400"
+      class="ml-auto h-5 w-5 shrink-0 text-gray-500 transition-all duration-500 group-hover:translate-x-2 group-hover:text-purple-500 dark:text-gray-400 dark:group-hover:text-purple-400"
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"
@@ -223,7 +223,7 @@ const isExternal = computed<boolean>(() => {
   return Boolean(props.href && (props.href.startsWith('http') || props.href.startsWith('mailto:')))
 })
 
-const componentType = computed<string>(() => {
+const componentType = computed<'a' | 'div'>(() => {
   return props.href ? 'a' : 'div'
 })
 

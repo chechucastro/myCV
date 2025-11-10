@@ -5,13 +5,13 @@
       <div class="mb-8">
         <div class="mb-5 flex items-center gap-3">
           <div
-            class="h-px flex-1 bg-gradient-to-r from-transparent via-purple-500/30 to-transparent"
+            class="h-px flex-1 bg-linear-to-r from-transparent via-purple-500/30 to-transparent"
           ></div>
           <h3 class="text-xs font-bold tracking-widest text-gray-600 uppercase dark:text-gray-300">
             {{ t('details.social') }}
           </h3>
           <div
-            class="h-px flex-1 bg-gradient-to-r from-transparent via-purple-500/30 to-transparent"
+            class="h-px flex-1 bg-linear-to-r from-transparent via-purple-500/30 to-transparent"
           ></div>
         </div>
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -49,13 +49,13 @@
       <div class="mb-8">
         <div class="mb-5 flex items-center gap-3">
           <div
-            class="h-px flex-1 bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent"
+            class="h-px flex-1 bg-linear-to-r from-transparent via-indigo-500/30 to-transparent"
           ></div>
           <h3 class="text-xs font-bold tracking-widest text-gray-600 uppercase dark:text-gray-300">
             {{ t('details.downloads') }}
           </h3>
           <div
-            class="h-px flex-1 bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent"
+            class="h-px flex-1 bg-linear-to-r from-transparent via-indigo-500/30 to-transparent"
           ></div>
         </div>
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -90,13 +90,13 @@
       <div class="mb-8">
         <div class="mb-5 flex items-center gap-3">
           <div
-            class="h-px flex-1 bg-gradient-to-r from-transparent via-blue-500/30 to-transparent"
+            class="h-px flex-1 bg-linear-to-r from-transparent via-blue-500/30 to-transparent"
           ></div>
           <h3 class="text-xs font-bold tracking-widest text-gray-600 uppercase dark:text-gray-300">
             {{ t('details.contact') }}
           </h3>
           <div
-            class="h-px flex-1 bg-gradient-to-r from-transparent via-blue-500/30 to-transparent"
+            class="h-px flex-1 bg-linear-to-r from-transparent via-blue-500/30 to-transparent"
           ></div>
         </div>
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-4 sm:items-stretch">

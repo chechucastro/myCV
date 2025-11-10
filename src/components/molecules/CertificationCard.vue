@@ -29,7 +29,7 @@
       <div class="space-y-3 text-sm">
         <div class="flex items-start gap-3">
           <svg
-            class="mt-0.5 h-5 w-5 flex-shrink-0 text-purple-500 dark:text-purple-400"
+            class="mt-0.5 h-5 w-5 shrink-0 text-purple-500 dark:text-purple-400"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -50,7 +50,7 @@
         </div>
         <div class="flex items-start gap-3">
           <svg
-            class="mt-0.5 h-5 w-5 flex-shrink-0 text-purple-500 dark:text-purple-400"
+            class="mt-0.5 h-5 w-5 shrink-0 text-purple-500 dark:text-purple-400"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
