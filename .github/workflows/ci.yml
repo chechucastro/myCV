@@ -80,8 +80,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install rolldown native bindings for Linux
-        run: npm install --no-save @rolldown/binding-linux-x64-gnu@1.0.0-beta.47 || npm install --no-save @rolldown/binding-linux-x64-gnu
+      - name: Install native bindings for Linux
+        run: |
+          npm install --no-save @rolldown/binding-linux-x64-gnu@1.0.0-beta.47 || npm install --no-save @rolldown/binding-linux-x64-gnu
+          npm install --no-save lightningcss-linux-x64-gnu@1.30.2 || npm install --no-save lightningcss-linux-x64-gnu
 
       - name: Run Vitest unit tests
         run: npm run test:unit
@@ -127,8 +129,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install rolldown native bindings for Linux
-        run: npm install --no-save @rolldown/binding-linux-x64-gnu@1.0.0-beta.47 || npm install --no-save @rolldown/binding-linux-x64-gnu
+      - name: Install native bindings for Linux
+        run: |
+          npm install --no-save @rolldown/binding-linux-x64-gnu@1.0.0-beta.47 || npm install --no-save @rolldown/binding-linux-x64-gnu
+          npm install --no-save lightningcss-linux-x64-gnu@1.30.2 || npm install --no-save lightningcss-linux-x64-gnu
 
       - name: Build application
         run: npm run build
@@ -176,8 +180,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install rolldown native bindings for Linux
-        run: npm install --no-save @rolldown/binding-linux-x64-gnu@1.0.0-beta.47 || npm install --no-save @rolldown/binding-linux-x64-gnu
+      - name: Install native bindings for Linux
+        run: |
+          npm install --no-save @rolldown/binding-linux-x64-gnu@1.0.0-beta.47 || npm install --no-save @rolldown/binding-linux-x64-gnu
+          npm install --no-save lightningcss-linux-x64-gnu@1.30.2 || npm install --no-save lightningcss-linux-x64-gnu
 
       - name: Build application
         run: npm run build
