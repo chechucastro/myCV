@@ -17,6 +17,8 @@
         j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
         f.parentNode.insertBefore(j, f)
       })(window, document, 'script', 'dataLayer', 'GTM-5PZSPQJ5')
+      // Ensure dataLayer is always available, even if GTM script hasn't loaded yet
+      window.dataLayer = window.dataLayer || []
     </script>
     <!-- End Google Tag Manager -->
     <!-- Prevent flash of light mode before Vue loads -->
@@ -37,10 +39,6 @@
     <!-- Preconnect to external domains early for faster loading -->
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-    <link rel="preconnect" href="https://assets.calendly.com" crossorigin />
-    <link rel="dns-prefetch" href="https://assets.calendly.com" />
-    <!-- Calendly CSS -->
-    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
     <!-- Preload critical resources -->
     <link
       rel="preload"
@@ -81,8 +79,6 @@
       ></iframe
     ></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <!-- Calendly JS -->
-    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

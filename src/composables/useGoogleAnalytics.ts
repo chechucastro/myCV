@@ -19,12 +19,34 @@ declare global {
 }
 
 /**
+ * Initialize dataLayer if it doesn't exist
+ * This ensures dataLayer is available even if GTM script hasn't loaded yet
+ */
+function ensureDataLayer(): void {
+  if (typeof window !== 'undefined' && !window.dataLayer) {
+    window.dataLayer = []
+  }
+}
+
+// Initialize dataLayer immediately when module loads
+if (typeof window !== 'undefined') {
+  ensureDataLayer()
+}
+
+/**
  * Track a custom event with GTM
  * @param eventName - Event name (snake_case recommended)
  * @param parameters - Event parameters
  */
 export function trackEvent(eventName: string, parameters?: Record<string, unknown>): void {
-  if (typeof window === 'undefined' || !window.dataLayer) {
+  if (typeof window === 'undefined') {
+    return
+  }
+
+  // Ensure dataLayer exists
+  ensureDataLayer()
+
+  if (!window.dataLayer) {
     if (import.meta.env.DEV) {
       console.warn('[GTM] dataLayer not available, event not tracked:', eventName, parameters)
     }

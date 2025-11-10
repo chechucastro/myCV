@@ -47,7 +47,6 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import ButtonDetails from '@/components/molecules/ButtonDetails.vue'
 
@@ -76,33 +75,76 @@ const isCalendlyLoaded = (): boolean => {
 }
 
 /**
- * Open Calendly popup widget
+ * Check if Calendly CSS is loaded
  */
-const openCalendly = (): void => {
-  if (!isCalendlyLoaded()) {
-    console.warn('Calendly script not loaded yet')
-    return
-  }
-
-  if (window.Calendly) {
-    window.Calendly.initPopupWidget({
-      url: 'https://calendly.com/chechu-castro/30min?hide_gdpr_banner=1',
-    })
-  }
+const isCalendlyCSSLoaded = (): boolean => {
+  if (typeof document === 'undefined') return false
+  return Array.from(document.getElementsByTagName('link')).some(
+    (link) => link.href === 'https://assets.calendly.com/assets/external/widget.css',
+  )
 }
 
-onMounted(() => {
-  // Script is loaded in index.html, just verify it's available
-  if (!isCalendlyLoaded()) {
-    // If not loaded, wait a bit for async script to load
-    const checkInterval = setInterval(() => {
-      if (isCalendlyLoaded()) {
-        clearInterval(checkInterval)
-      }
-    }, 100)
+/**
+ * Load Calendly CSS dynamically
+ */
+const loadCalendlyCSS = (): void => {
+  if (isCalendlyCSSLoaded()) return
 
-    // Clear interval after 5 seconds
-    setTimeout(() => clearInterval(checkInterval), 5000)
+  const link = document.createElement('link')
+  link.rel = 'stylesheet'
+  link.href = 'https://assets.calendly.com/assets/external/widget.css'
+  document.head.appendChild(link)
+}
+
+/**
+ * Load Calendly script dynamically
+ */
+const loadCalendlyScript = (): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    if (isCalendlyLoaded()) {
+      resolve()
+      return
+    }
+
+    // Check if script is already being loaded
+    const existingScript = document.querySelector(
+      'script[src="https://assets.calendly.com/assets/external/widget.js"]',
+    )
+    if (existingScript) {
+      // Wait for it to load
+      existingScript.addEventListener('load', () => resolve())
+      existingScript.addEventListener('error', reject)
+      return
+    }
+
+    // Create and load script
+    const script = document.createElement('script')
+    script.src = 'https://assets.calendly.com/assets/external/widget.js'
+    script.async = true
+    script.type = 'text/javascript'
+    script.onload = () => resolve()
+    script.onerror = reject
+    document.body.appendChild(script)
+  })
+}
+
+/**
+ * Open Calendly popup widget
+ * Loads Calendly resources dynamically on first click to avoid third-party cookies on page load
+ */
+const openCalendly = async (): Promise<void> => {
+  try {
+    // Load CSS and JS on first click
+    loadCalendlyCSS()
+    await loadCalendlyScript()
+
+    if (window.Calendly) {
+      window.Calendly.initPopupWidget({
+        url: 'https://calendly.com/chechu-castro/30min?hide_gdpr_banner=1',
+      })
+    }
+  } catch (error) {
+    console.error('Failed to load Calendly:', error)
   }
-})
+}
 </script>
