@@ -5,7 +5,9 @@
         ? 'profile-section'
         : section.title === 'Languages'
           ? 'languages-section'
-          : undefined
+          : section.title === 'Details'
+            ? 'details-section'
+            : undefined
     "
     :aria-labelledby="'section-title-' + sectionIndex"
     role="region"

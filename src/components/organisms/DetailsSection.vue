@@ -58,8 +58,9 @@
             class="h-px flex-1 bg-linear-to-r from-transparent via-indigo-500/30 to-transparent"
           ></div>
         </div>
-        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div id="download-buttons-container" class="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <ButtonDetails
+            id="download-cv-full-button"
             :label="t('details.downloadCVFull')"
             :value="t('details.downloadCVFull')"
             href="/docs/Chechu-Castro-CV-EN-2025-full.pdf"
@@ -72,6 +73,7 @@
             download="Chechu-Castro-CV-EN-2025-full.pdf"
           />
           <ButtonDetails
+            id="download-cv-light-button"
             :label="t('details.downloadCVLight')"
             :value="t('details.downloadCVLight')"
             href="/docs/Chechu-Castro-CV-EN-2025-light.pdf"

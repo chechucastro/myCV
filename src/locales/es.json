@@ -26,7 +26,8 @@
     "country": "País",
     "downloads": "Descargas",
     "downloadCVFull": "Descargar CV (Completo)",
-    "downloadCVLight": "Descargar CV (Mini)"
+    "downloadCVLight": "Descargar CV (Mini)",
+    "ribbonText": "Descargar"
   },
   "aria": {
     "linkedinProfile": "Abrir perfil de LinkedIn (se abre en una nueva pestaña)",

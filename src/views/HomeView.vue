@@ -14,6 +14,9 @@
       :profile-image="contactInfo?.profileImage || '/chechuLinkedInOpentoWork.webp'"
     />
 
+    <!-- Floating ribbon to download CV -->
+    <FloatingRibbon :show-nav="showNav" />
+
     <main
       id="maincontent"
       role="main"
@@ -40,6 +43,7 @@ import SkipToContent from '@/components/atoms/SkipToContent/SkipToContent.vue'
 import AppHeader from '@/components/organisms/AppHeader.vue'
 import AppFooter from '@/components/organisms/AppFooter.vue'
 import CVArticle from '@/components/organisms/CVArticle.vue'
+import FloatingRibbon from '@/components/atoms/FloatingRibbon/FloatingRibbon.vue'
 import { useScroll } from '@/composables/useScroll'
 import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
 import { CONTACT_INFO } from '@/config/constants'

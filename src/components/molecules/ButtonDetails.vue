@@ -1,6 +1,7 @@
 <template>
   <component
     :is="componentType"
+    :id="props.id"
     :href="props.href"
     :target="isExternal ? '_blank' : undefined"
     :rel="isExternal ? 'noopener noreferrer' : undefined"
@@ -188,6 +189,7 @@ const buttonDetails = tv({
 type ButtonDetailsVariants = VariantProps<typeof buttonDetails>
 
 interface Props {
+  id?: string
   label: string
   value?: string
   secondaryValue?: string
@@ -280,3 +282,44 @@ const extractDomainFromUrl = (url: string): string => {
   }
 }
 </script>
+
+<style>
+/* Highlight effect for download buttons when scrolled to from ribbon */
+/* Global style to work with dynamically added class */
+.highlight-download {
+  transform: scale(1.03) translateY(-4px) !important;
+  box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.2) !important;
+  transition:
+    transform 0.5s ease-out,
+    box-shadow 0.5s ease-out !important;
+}
+
+.highlight-download::before {
+  opacity: 1 !important;
+  background: linear-gradient(
+    to bottom right,
+    rgba(139, 92, 246, 0.05),
+    rgba(59, 130, 246, 0.05)
+  ) !important;
+  transition:
+    opacity 0.5s ease-out,
+    background 0.5s ease-out !important;
+}
+
+.dark .highlight-download {
+  box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.3) !important;
+}
+
+.dark .highlight-download::before {
+  background: linear-gradient(
+    to bottom right,
+    rgba(139, 92, 246, 0.1),
+    rgba(59, 130, 246, 0.1)
+  ) !important;
+}
+
+.highlight-download > div:first-child {
+  transform: scale(1.1) rotate(3deg) !important;
+  transition: transform 0.5s ease-out !important;
+}
+</style>

@@ -26,7 +26,8 @@
     "country": "Country",
     "downloads": "Downloads",
     "downloadCVFull": "Download CV (Full)",
-    "downloadCVLight": "Download CV (Light)"
+    "downloadCVLight": "Download CV (Light)",
+    "ribbonText": "Download"
   },
   "aria": {
     "linkedinProfile": "Open LinkedIn profile (opens in a new tab)",
