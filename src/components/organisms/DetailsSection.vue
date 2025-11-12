@@ -114,13 +114,16 @@
             hover-color="purple"
             class="sm:col-span-2"
           />
+          <div class="flex h-full w-full sm:col-span-1">
+            <CalendlyButton />
+          </div>
           <ButtonDetails
             :label="t('details.hireMe')"
             :value="t('details.hireMe')"
             href="https://www.malt.es/profile/chechucastro"
             :aria-label="t('aria.hireMeProfile')"
-            icon-bg-class="bg-gradient-to-br from-red-500 via-red-600 to-orange-600 shadow-lg shadow-red-500/50 dark:shadow-red-600/50"
-            card-bg-class="!bg-gradient-to-br !from-red-50/90 !via-orange-50/90 !to-red-50/90 dark:!from-red-950/80 dark:!via-orange-950/80 dark:!to-red-950/80 !border-red-300/60 dark:!border-red-700/60 !shadow-red-200/50 dark:!shadow-red-900/50"
+            icon-bg-class="bg-gradient-to-br from-red-500 via-red-600 to-orange-600 shadow-lg shadow-red-500/30"
+            card-bg-class="!bg-transparent dark:!bg-transparent"
             hover-color="purple"
             :show-arrow="false"
             class="sm:col-span-1"
@@ -134,9 +137,6 @@
               />
             </template>
           </ButtonDetails>
-          <div class="flex h-full w-full sm:col-span-1">
-            <CalendlyButton />
-          </div>
         </div>
       </div>
     </address>

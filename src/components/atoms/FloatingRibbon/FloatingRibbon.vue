@@ -11,11 +11,11 @@
   >
     <!-- Triangle ribbon in bottom right corner -->
     <div
-      class="ribbon relative flex h-20 w-20 items-center justify-center overflow-visible bg-linear-to-br from-purple-600 to-blue-600 shadow-lg shadow-purple-500/50 transition-all duration-300 hover:from-purple-700 hover:to-blue-700 dark:from-purple-500 dark:to-blue-500 dark:shadow-purple-400/50 dark:hover:from-purple-600 dark:hover:to-blue-600"
+      class="ribbon relative flex h-14 w-14 items-center justify-center overflow-visible bg-linear-to-br from-purple-600 to-blue-600 shadow-lg shadow-purple-500/50 transition-all duration-300 hover:from-purple-700 hover:to-blue-700 dark:from-purple-500 dark:to-blue-500 dark:shadow-purple-400/50 dark:hover:from-purple-600 dark:hover:to-blue-600"
     >
       <!-- Download icon -->
       <svg
-        class="absolute right-[8%] bottom-[8%] z-10 h-4 w-4 text-white drop-shadow-md"
+        class="absolute right-0 bottom-0 z-10 h-4.5 w-4.5 text-white drop-shadow-md"
         viewBox="0 0 24 24"
         fill="currentColor"
         aria-hidden="true"
@@ -24,17 +24,15 @@
       </svg>
       <!-- Text positioned vertically along the base of the triangle -->
       <span
-        class="pointer-events-none absolute bottom-[2%] left-[32%] z-10 block origin-left -rotate-45 text-[0.625rem] font-bold whitespace-nowrap text-white! opacity-100 drop-shadow-lg"
+        class="pointer-events-none absolute bottom-[6%] left-[50%] z-10 block origin-left -rotate-45 text-[0.75rem] font-bold tracking-wide whitespace-nowrap text-white! opacity-100 drop-shadow-lg"
       >
-        {{ ribbonText }}
+        PDF
       </span>
     </div>
   </BaseButton>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
 import BaseButton from '@/components/atoms/BaseButton/BaseButton.vue'
 
 interface Props {
@@ -48,10 +46,6 @@ const props = withDefaults(defineProps<Props>(), {
   targetId: 'download-buttons-container',
   showNav: false,
 })
-
-const { t } = useI18n()
-
-const ribbonText = computed(() => t('details.ribbonText'))
 
 /**
  * Scroll to the Details section smoothly and highlight download buttons
