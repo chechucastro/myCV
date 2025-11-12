@@ -8,7 +8,7 @@ on:
 
 jobs:
   type-check:
-    name: Type Check
+    name: TS Type Check
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -43,7 +43,7 @@ jobs:
         run: npm run type-check
 
   lint:
-    name: Lint
+    name: Eslint Linter Check
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -78,7 +78,7 @@ jobs:
         run: npx eslint .
 
   format:
-    name: Format Check
+    name: Prettier Format Check
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -181,14 +181,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Cache Playwright browsers
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-playwright-
-
       - name: Install dependencies
         run: npm ci
 
@@ -201,8 +193,18 @@ jobs:
         env:
           NODE_ENV: production
 
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-chromium-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-chromium-
+
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: npx playwright install chromium --with-deps
 
       - name: Run Playwright e2e tests
         run: npm run test:e2e
