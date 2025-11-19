@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "vite",
+    "prebuild": "npm install @rollup/rollup-linux-x64-gnu --save-optional || true",
     "build": "vite build",
     "preview": "vite preview",
     "test": "npm run test:unit && npm run test:e2e",
