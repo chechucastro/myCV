@@ -422,6 +422,11 @@
       "title": "Proyectos personales",
       "items": [
         {
+          "title": "Dog's shelter",
+          "description": "Una aplicación Vue 3 + TypeScript para gestionar y visualizar perros por raza en un refugio. Construida siguiendo principios SOLID y patrones de diseño atómico para desacoplar la lógica de la presentación, haciendo los componentes reutilizables, extensibles y mantenibles.",
+          "techStack": "Vue 3 • TypeScript • Pinia • Vue Router • Element Plus • Tailwind CSS • Vite • Vitest • The Dog API"
+        },
+        {
           "title": "Mi CV",
           "description": "Un sitio web de CV moderno y responsive construido con Vue 3, TypeScript y Tailwind CSS. Características: modo oscuro, soporte multiidioma y un diseño limpio y profesional.",
           "techStack": "Vue 3 • TypeScript • Tailwind CSS • Vite • Pinia • Vue I18n • Vitest • Playwright"
