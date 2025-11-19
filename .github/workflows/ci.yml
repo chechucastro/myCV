@@ -146,7 +146,7 @@ jobs:
 
       - name: Install native bindings for Linux
         run: |
-          npm install @rolldown/binding-linux-x64-gnu@1.0.0-beta.47 lightningcss-linux-x64-gnu@1.30.2 @tailwindcss/oxide-linux-x64-gnu@4.1.17 || npm install @rolldown/binding-linux-x64-gnu lightningcss-linux-x64-gnu @tailwindcss/oxide-linux-x64-gnu
+          npm install @rolldown/binding-linux-x64-gnu@1.0.0-beta.47 lightningcss-linux-x64-gnu@1.30.2 @tailwindcss/oxide-linux-x64-gnu@4.1.17 @rollup/rollup-linux-x64-gnu || npm install @rolldown/binding-linux-x64-gnu lightningcss-linux-x64-gnu @tailwindcss/oxide-linux-x64-gnu @rollup/rollup-linux-x64-gnu
 
       - name: Run Vitest unit tests
         run: npm run test:unit
@@ -186,7 +186,7 @@ jobs:
 
       - name: Install native bindings for Linux
         run: |
-          npm install @rolldown/binding-linux-x64-gnu@1.0.0-beta.47 lightningcss-linux-x64-gnu@1.30.2 @tailwindcss/oxide-linux-x64-gnu@4.1.17 || npm install @rolldown/binding-linux-x64-gnu lightningcss-linux-x64-gnu @tailwindcss/oxide-linux-x64-gnu
+          npm install @rolldown/binding-linux-x64-gnu@1.0.0-beta.47 lightningcss-linux-x64-gnu@1.30.2 @tailwindcss/oxide-linux-x64-gnu@4.1.17 @rollup/rollup-linux-x64-gnu || npm install @rolldown/binding-linux-x64-gnu lightningcss-linux-x64-gnu @tailwindcss/oxide-linux-x64-gnu @rollup/rollup-linux-x64-gnu
 
       - name: Build application
         run: npm run build
@@ -246,7 +246,7 @@ jobs:
 
       - name: Install native bindings for Linux
         run: |
-          npm install @rolldown/binding-linux-x64-gnu@1.0.0-beta.47 lightningcss-linux-x64-gnu@1.30.2 @tailwindcss/oxide-linux-x64-gnu@4.1.17 || npm install @rolldown/binding-linux-x64-gnu lightningcss-linux-x64-gnu @tailwindcss/oxide-linux-x64-gnu
+          npm install @rolldown/binding-linux-x64-gnu@1.0.0-beta.47 lightningcss-linux-x64-gnu@1.30.2 @tailwindcss/oxide-linux-x64-gnu@4.1.17 @rollup/rollup-linux-x64-gnu || npm install @rolldown/binding-linux-x64-gnu lightningcss-linux-x64-gnu @tailwindcss/oxide-linux-x64-gnu @rollup/rollup-linux-x64-gnu
 
       - name: Build application
         run: npm run build
