@@ -1,10 +1,42 @@
-import { test, expect } from '@playwright/test'
+import { test, expect, type Page } from '@playwright/test'
 
 test.describe('CV Homepage', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/')
     await page.waitForLoadState('load')
   })
+
+  // Helper function to scroll to a section by heading text
+  async function scrollToSection(
+    page: Page,
+    headingTexts: string[],
+    options?: { timeout?: number },
+  ) {
+    await page.evaluate(
+      (texts: string[]) => {
+        const heading = Array.from(document.querySelectorAll('h2')).find((h2) =>
+          texts.some((text) => h2.textContent?.toLowerCase().includes(text.toLowerCase())),
+        )
+        if (heading) {
+          heading.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        }
+      },
+      headingTexts,
+    )
+
+    await page.waitForFunction(
+      (texts: string[]) => {
+        const heading = Array.from(document.querySelectorAll('h2')).find((h2) =>
+          texts.some((text) => h2.textContent?.toLowerCase().includes(text.toLowerCase())),
+        )
+        if (!heading) return false
+        const rect = heading.getBoundingClientRect()
+        return rect.top >= 0 && rect.top <= window.innerHeight
+      },
+      headingTexts,
+      { timeout: options?.timeout || 3000 },
+    )
+  }
 
   test('should display hero section with profile information', async ({ page }) => {
     // Check hero section is visible
@@ -57,33 +89,7 @@ test.describe('CV Homepage', () => {
 
   test('should display sidebar with skills', async ({ page }) => {
     // Skills are displayed in the "Core Competencies" section under "Other Skills" heading
-    // Scroll to find the Core Competencies section or Other Skills heading
-    await page.evaluate(() => {
-      const skillsHeading = Array.from(document.querySelectorAll('h2')).find(
-        (h2) =>
-          h2.textContent?.toLowerCase().includes('other skills') ||
-          h2.textContent?.toLowerCase().includes('otras habilidades') ||
-          h2.textContent?.toLowerCase().includes('autres compétences'),
-      )
-      if (skillsHeading) {
-        skillsHeading.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      }
-    })
-    // Wait for scroll and animations
-    await page.waitForFunction(
-      () => {
-        const skillsHeading = Array.from(document.querySelectorAll('h2')).find(
-          (h2) =>
-            h2.textContent?.toLowerCase().includes('other skills') ||
-            h2.textContent?.toLowerCase().includes('otras habilidades') ||
-            h2.textContent?.toLowerCase().includes('autres compétences'),
-        )
-        if (!skillsHeading) return false
-        const rect = skillsHeading.getBoundingClientRect()
-        return rect.top >= 0 && rect.top <= window.innerHeight
-      },
-      { timeout: 3000 },
-    )
+    await scrollToSection(page, ['other skills', 'otras habilidades', 'autres compétences'])
 
     // Check that skills are visible in the article content (not sidebar)
     // Skills are sorted by level descending, so top skills should be visible
@@ -107,33 +113,7 @@ test.describe('CV Homepage', () => {
   })
 
   test('should expand skills when show more button is clicked', async ({ page }) => {
-    // Scroll to skills section
-    await page.evaluate(() => {
-      const skillsHeading = Array.from(document.querySelectorAll('h2')).find(
-        (h2) =>
-          h2.textContent?.toLowerCase().includes('other skills') ||
-          h2.textContent?.toLowerCase().includes('otras habilidades') ||
-          h2.textContent?.toLowerCase().includes('autres compétences'),
-      )
-      if (skillsHeading) {
-        skillsHeading.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      }
-    })
-    // Wait for scroll and animations
-    await page.waitForFunction(
-      () => {
-        const skillsHeading = Array.from(document.querySelectorAll('h2')).find(
-          (h2) =>
-            h2.textContent?.toLowerCase().includes('other skills') ||
-            h2.textContent?.toLowerCase().includes('otras habilidades') ||
-            h2.textContent?.toLowerCase().includes('autres compétences'),
-        )
-        if (!skillsHeading) return false
-        const rect = skillsHeading.getBoundingClientRect()
-        return rect.top >= 0 && rect.top <= window.innerHeight
-      },
-      { timeout: 3000 },
-    )
+    await scrollToSection(page, ['other skills', 'otras habilidades', 'autres compétences'])
 
     // Check for Show More button (skills are shown in columns, may need to expand)
     const showMoreButton = page.getByRole('button', {
@@ -149,33 +129,7 @@ test.describe('CV Homepage', () => {
   })
 
   test('should display sidebar with languages', async ({ page }) => {
-    // Scroll to languages section to ensure it's in viewport
-    await page.evaluate(() => {
-      const languagesHeading = Array.from(document.querySelectorAll('h2')).find(
-        (h2) =>
-          h2.textContent?.includes('Languages') ||
-          h2.textContent?.includes('Idiomas') ||
-          h2.textContent?.includes('Langues'),
-      )
-      if (languagesHeading) {
-        languagesHeading.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      }
-    })
-    // Wait for languages section to be in viewport
-    await page.waitForFunction(
-      () => {
-        const languagesHeading = Array.from(document.querySelectorAll('h2')).find(
-          (h2) =>
-            h2.textContent?.includes('Languages') ||
-            h2.textContent?.includes('Idiomas') ||
-            h2.textContent?.includes('Langues'),
-        )
-        if (!languagesHeading) return false
-        const rect = languagesHeading.getBoundingClientRect()
-        return rect.top >= 0 && rect.top <= window.innerHeight
-      },
-      { timeout: 3000 },
-    )
+    await scrollToSection(page, ['Languages', 'Idiomas', 'Langues'])
 
     // Check languages section heading (handles translations)
     await expect(page.getByRole('heading', { name: /Languages|Idiomas|Langues/i })).toBeVisible()
@@ -215,33 +169,7 @@ test.describe('CV Homepage', () => {
   })
 
   test('should display education section', async ({ page }) => {
-    // Scroll to education section if needed
-    await page.evaluate(() => {
-      const educationSection = Array.from(document.querySelectorAll('h2')).find(
-        (h2) =>
-          h2.textContent?.includes('Education') ||
-          h2.textContent?.includes('Educación') ||
-          h2.textContent?.includes('Formation'),
-      )
-      if (educationSection) {
-        educationSection.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      }
-    })
-    // Wait for education section to be in viewport
-    await page.waitForFunction(
-      () => {
-        const educationSection = Array.from(document.querySelectorAll('h2')).find(
-          (h2) =>
-            h2.textContent?.includes('Education') ||
-            h2.textContent?.includes('Educación') ||
-            h2.textContent?.includes('Formation'),
-        )
-        if (!educationSection) return false
-        const rect = educationSection.getBoundingClientRect()
-        return rect.top >= 0 && rect.top <= window.innerHeight
-      },
-      { timeout: 2000 },
-    )
+    await scrollToSection(page, ['Education', 'Educación', 'Formation'], { timeout: 2000 })
 
     // Check Education section heading
     await expect(
@@ -250,31 +178,9 @@ test.describe('CV Homepage', () => {
   })
 
   test('should display employment history section', async ({ page }) => {
-    // Scroll to employment section if needed
-    await page.evaluate(() => {
-      const employmentSection = Array.from(document.querySelectorAll('h2')).find(
-        (h2) =>
-          h2.textContent?.includes('Employment history') ||
-          h2.textContent?.includes('Historial de empleo') ||
-          h2.textContent?.includes('Historique'),
-      )
-      if (employmentSection) {
-        employmentSection.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      }
-    })
-    // Wait for employment section to be in viewport
-    await page.waitForFunction(
-      () => {
-        const employmentSection = Array.from(document.querySelectorAll('h2')).find(
-          (h2) =>
-            h2.textContent?.includes('Employment history') ||
-            h2.textContent?.includes('Historial de empleo') ||
-            h2.textContent?.includes('Historique'),
-        )
-        if (!employmentSection) return false
-        const rect = employmentSection.getBoundingClientRect()
-        return rect.top >= 0 && rect.top <= window.innerHeight
-      },
+    await scrollToSection(
+      page,
+      ['Employment history', 'Historial de empleo', 'Historique'],
       { timeout: 2000 },
     )
 
@@ -292,27 +198,7 @@ test.describe('CV Homepage', () => {
   })
 
   test('should display certifications section', async ({ page }) => {
-    // Scroll to certifications section if needed
-    await page.evaluate(() => {
-      const certSection = Array.from(document.querySelectorAll('h2')).find((h2) =>
-        h2.textContent?.includes('certifications'),
-      )
-      if (certSection) {
-        certSection.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      }
-    })
-    // Wait for certifications section to be in viewport
-    await page.waitForFunction(
-      () => {
-        const certSection = Array.from(document.querySelectorAll('h2')).find((h2) =>
-          h2.textContent?.includes('certifications'),
-        )
-        if (!certSection) return false
-        const rect = certSection.getBoundingClientRect()
-        return rect.top >= 0 && rect.top <= window.innerHeight
-      },
-      { timeout: 2000 },
-    )
+    await scrollToSection(page, ['certifications'], { timeout: 2000 })
 
     // Check Certifications section heading
     await expect(
@@ -332,31 +218,9 @@ test.describe('CV Homepage', () => {
   })
 
   test('should display personal projects section', async ({ page }) => {
-    // Scroll to personal projects section if needed
-    await page.evaluate(() => {
-      const projectsSection = Array.from(document.querySelectorAll('h2')).find(
-        (h2) =>
-          h2.textContent?.toLowerCase().includes('personal projects') ||
-          h2.textContent?.toLowerCase().includes('proyectos personales') ||
-          h2.textContent?.toLowerCase().includes('projets personnels'),
-      )
-      if (projectsSection) {
-        projectsSection.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      }
-    })
-    // Wait for personal projects section to be in viewport
-    await page.waitForFunction(
-      () => {
-        const projectsSection = Array.from(document.querySelectorAll('h2')).find(
-          (h2) =>
-            h2.textContent?.toLowerCase().includes('personal projects') ||
-            h2.textContent?.toLowerCase().includes('proyectos personales') ||
-            h2.textContent?.toLowerCase().includes('projets personnels'),
-        )
-        if (!projectsSection) return false
-        const rect = projectsSection.getBoundingClientRect()
-        return rect.top >= 0 && rect.top <= window.innerHeight
-      },
+    await scrollToSection(
+      page,
+      ['personal projects', 'proyectos personales', 'projets personnels'],
       { timeout: 2000 },
     )
 
@@ -369,31 +233,9 @@ test.describe('CV Homepage', () => {
   })
 
   test('should display recommendations section', async ({ page }) => {
-    // Scroll to recommendations section if needed
-    await page.evaluate(() => {
-      const recSection = Array.from(document.querySelectorAll('h2')).find(
-        (h2) =>
-          h2.textContent?.includes('Recommendations') ||
-          h2.textContent?.includes('Recomendaciones') ||
-          h2.textContent?.includes('Recommandations'),
-      )
-      if (recSection) {
-        recSection.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      }
-    })
-    // Wait for recommendations section to be in viewport
-    await page.waitForFunction(
-      () => {
-        const recSection = Array.from(document.querySelectorAll('h2')).find(
-          (h2) =>
-            h2.textContent?.includes('Recommendations') ||
-            h2.textContent?.includes('Recomendaciones') ||
-            h2.textContent?.includes('Recommandations'),
-        )
-        if (!recSection) return false
-        const rect = recSection.getBoundingClientRect()
-        return rect.top >= 0 && rect.top <= window.innerHeight
-      },
+    await scrollToSection(
+      page,
+      ['Recommendations', 'Recomendaciones', 'Recommandations'],
       { timeout: 2000 },
     )
 
