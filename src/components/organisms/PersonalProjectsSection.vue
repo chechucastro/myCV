@@ -1,10 +1,6 @@
 <template>
   <div>
-    <TransitionGroup
-      name="project"
-      tag="div"
-      class="grid grid-cols-1 gap-6 sm:grid-cols-2"
-    >
+    <TransitionGroup name="project" tag="div" class="grid grid-cols-1 gap-6 sm:grid-cols-2">
       <ProjectCard
         v-for="(project, projectIdx) in visibleProjects"
         :key="project.projectKey ?? projectIdx"
@@ -23,7 +19,7 @@
         :aria-label="allProjectsShown ? t('common.showLess') : t('common.showMore')"
         @click="toggleShowMore"
       >
-        <span>{{ allProjectsShown ? t("common.showLess") : t("common.showMore") }}</span>
+        <span>{{ allProjectsShown ? t('common.showLess') : t('common.showMore') }}</span>
         <svg
           class="h-4 w-4 transition-transform duration-200"
           :class="{ 'rotate-180': allProjectsShown }"
@@ -45,70 +41,70 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
-import { useI18n } from "vue-i18n";
-import type { PersonalProject } from "@/types";
-import ProjectCard from "@/components/molecules/ProjectCard.vue";
-import BaseButton from "@/components/atoms/BaseButton/BaseButton.vue";
+import { computed, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import type { PersonalProject } from '@/types'
+import ProjectCard from '@/components/molecules/ProjectCard.vue'
+import BaseButton from '@/components/atoms/BaseButton/BaseButton.vue'
 
-const INITIAL_PROJECTS_COUNT = 2;
-const PROJECTS_INCREMENT = 2;
+const INITIAL_PROJECTS_COUNT = 2
+const PROJECTS_INCREMENT = 2
 
-const visibleProjectsCount = ref(INITIAL_PROJECTS_COUNT);
+const visibleProjectsCount = ref(INITIAL_PROJECTS_COUNT)
 
 /**
  * Personal projects metadata (URLs and dates)
  */
 const personalProjectsMetadata: Array<{
-  projectUrl?: string;
-  githubUrl?: string;
-  githubIsPrivate?: boolean;
-  startDate?: string;
-  endDate?: string;
+  projectUrl?: string
+  githubUrl?: string
+  githubIsPrivate?: boolean
+  startDate?: string
+  endDate?: string
 }> = [
   {
-    projectUrl: "https://dogs-shelter.pages.dev/",
-    githubUrl: "https://github.com/chechucastro/dogs-shelter",
-    startDate: "2025-11-01",
-    endDate: "2025-11-30",
+    projectUrl: 'https://dogs-shelter.pages.dev/',
+    githubUrl: 'https://github.com/chechucastro/dogs-shelter',
+    startDate: '2025-11-01',
+    endDate: '2025-11-30',
   },
   {
     projectUrl: window.location.origin,
-    githubUrl: "https://github.com/chechucastro/myCV",
-    startDate: "2025-10-01",
-    endDate: "2025-10-31",
+    githubUrl: 'https://github.com/chechucastro/myCV',
+    startDate: '2025-10-01',
+    endDate: '2025-10-31',
   },
   {
-    githubUrl: "https://github.com/chechucastro/temper",
-    startDate: "2022-03-01",
-    endDate: "2022-03-31",
+    githubUrl: 'https://github.com/chechucastro/temper',
+    startDate: '2022-03-01',
+    endDate: '2022-03-31',
   },
   {
-    projectUrl: "https://nemonon.com",
-    githubUrl: "https://github.com/chechucastro/nemonon",
+    projectUrl: 'https://nemonon.com',
+    githubUrl: 'https://github.com/chechucastro/nemonon',
     githubIsPrivate: true,
-    startDate: "2015-09-01",
+    startDate: '2015-09-01',
   },
   {
-    projectUrl: "https://xemacon.com",
-    githubUrl: "https://github.com/chechucastro/xemacon",
+    projectUrl: 'https://xemacon.com',
+    githubUrl: 'https://github.com/chechucastro/xemacon',
     githubIsPrivate: true,
-    startDate: "2014-01-01",
+    startDate: '2014-01-01',
   },
   {
-    githubUrl: "https://github.com/chechucastro/CookieLaw",
-    startDate: "2013-01-01",
-    endDate: "2013-01-31",
+    githubUrl: 'https://github.com/chechucastro/CookieLaw',
+    startDate: '2013-01-01',
+    endDate: '2013-01-31',
   },
   {
-    projectUrl: "https://maurolomba.com",
-    githubUrl: "https://github.com/chechucastro/maurolomba",
+    projectUrl: 'https://maurolomba.com',
+    githubUrl: 'https://github.com/chechucastro/maurolomba',
     githubIsPrivate: true,
-    startDate: "2010-01-01",
+    startDate: '2010-01-01',
   },
-];
+]
 
-const { tm, locale, t } = useI18n();
+const { tm, locale, t } = useI18n()
 
 /**
  * Build personal projects from translations and metadata
@@ -117,20 +113,20 @@ const { tm, locale, t } = useI18n();
 const personalProjects = computed<PersonalProject[]>(() => {
   // Access locale.value to make this computed reactive to locale changes
   // Ensure reactivity on locale
-  void locale.value;
+  void locale.value
 
   // Get translated items, fall back to empty array if result is not an array
-  const itemsRaw = tm("articles.personalProjects.items") as unknown;
-  const items = Array.isArray(itemsRaw) ? (itemsRaw as Record<string, unknown>[]) : [];
+  const itemsRaw = tm('articles.personalProjects.items') as unknown
+  const items = Array.isArray(itemsRaw) ? (itemsRaw as Record<string, unknown>[]) : []
 
   // Return early if no items found
   if (items.length === 0) {
-    return [];
+    return []
   }
 
-  const result: PersonalProject[] = [];
+  const result: PersonalProject[] = []
   for (let idx = 0; idx < items.length; idx++) {
-    const metadata = personalProjectsMetadata[idx] || {};
+    const metadata = personalProjectsMetadata[idx] || {}
     result.push({
       projectKey: idx,
       projectUrl: metadata.projectUrl,
@@ -138,24 +134,24 @@ const personalProjects = computed<PersonalProject[]>(() => {
       githubIsPrivate: metadata.githubIsPrivate,
       startDate: metadata.startDate,
       endDate: metadata.endDate,
-    });
+    })
   }
-  return result;
-});
+  return result
+})
 
 /**
  * Projects visible based on current count
  */
 const visibleProjects = computed(() => {
-  return personalProjects.value.slice(0, visibleProjectsCount.value);
-});
+  return personalProjects.value.slice(0, visibleProjectsCount.value)
+})
 
 /**
  * Check if all projects are shown
  */
 const allProjectsShown = computed(() => {
-  return visibleProjectsCount.value >= personalProjects.value.length;
-});
+  return visibleProjectsCount.value >= personalProjects.value.length
+})
 
 /**
  * Toggle show more/less functionality
@@ -163,15 +159,15 @@ const allProjectsShown = computed(() => {
 const toggleShowMore = () => {
   if (allProjectsShown.value) {
     // Show less - reset to initial count
-    visibleProjectsCount.value = INITIAL_PROJECTS_COUNT;
+    visibleProjectsCount.value = INITIAL_PROJECTS_COUNT
   } else {
     // Show more - add increment, but cap at total projects
     visibleProjectsCount.value = Math.min(
       visibleProjectsCount.value + PROJECTS_INCREMENT,
-      personalProjects.value.length
-    );
+      personalProjects.value.length,
+    )
   }
-};
+}
 </script>
 
 <style scoped>
