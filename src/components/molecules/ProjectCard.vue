@@ -57,8 +57,27 @@
       </div>
 
       <div v-if="hasLinks" class="mt-auto flex flex-wrap gap-3 pt-4">
+        <div v-if="project.googlePlayUrl" class="flex items-center gap-3">
+          <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
+            {{ t('common.download') }}:
+          </span>
+          <a
+            :href="project.googlePlayUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            :aria-label="`Download ${translatedTitle} on Google Play (opens in new tab)`"
+            class="inline-block"
+            @click="() => trackExternalLink(translatedTitle || 'Project', project.googlePlayUrl!)"
+          >
+            <img
+              src="/company-logos/google-play-badge.png"
+              alt="Get it on Google Play"
+              class="h-15 w-auto"
+            />
+          </a>
+        </div>
         <BaseButton
-          v-if="project.projectUrl"
+          v-else-if="project.projectUrl"
           tag="a"
           :href="project.projectUrl"
           variant="outline"
@@ -78,7 +97,7 @@
           {{ t('common.viewProject') }}
         </BaseButton>
         <BaseButton
-          v-if="project.githubUrl || project.githubIsPrivate"
+          v-if="!project.googlePlayUrl && (project.githubUrl || project.githubIsPrivate)"
           :tag="project.githubIsPrivate ? 'button' : 'a'"
           :href="project.githubIsPrivate ? undefined : project.githubUrl"
           variant="outline"
@@ -177,6 +196,6 @@ const isSameMonth = computed(() => {
 })
 
 const hasLinks = computed(() => {
-  return !!(props.project.projectUrl || props.project.githubUrl)
+  return !!(props.project.projectUrl || props.project.googlePlayUrl || props.project.githubUrl)
 })
 </script>

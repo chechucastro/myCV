@@ -45,6 +45,7 @@ export interface Certification {
 
 export interface PersonalProject {
   projectUrl?: string
+  googlePlayUrl?: string // Google Play Store URL for Android apps
   githubUrl?: string
   githubIsPrivate?: boolean // Whether the GitHub repository is private
   projectKey?: number // Index to look up project data in i18n translations

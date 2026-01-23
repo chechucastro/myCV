@@ -57,11 +57,17 @@ const visibleProjectsCount = ref(INITIAL_PROJECTS_COUNT)
  */
 const personalProjectsMetadata: Array<{
   projectUrl?: string
+  googlePlayUrl?: string
   githubUrl?: string
   githubIsPrivate?: boolean
   startDate?: string
   endDate?: string
 }> = [
+  {
+    googlePlayUrl: 'https://play.google.com/store/apps/details?id=com.clima.weather',
+    startDate: '2025-01-01',
+    endDate: '2026-01-15',
+  },
   {
     projectUrl: 'https://dogs-shelter.pages.dev/',
     githubUrl: 'https://github.com/chechucastro/dogs-shelter',
@@ -130,6 +136,7 @@ const personalProjects = computed<PersonalProject[]>(() => {
     result.push({
       projectKey: idx,
       projectUrl: metadata.projectUrl,
+      googlePlayUrl: metadata.googlePlayUrl,
       githubUrl: metadata.githubUrl,
       githubIsPrivate: metadata.githubIsPrivate,
       startDate: metadata.startDate,

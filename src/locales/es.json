@@ -75,7 +75,8 @@
     "viewProject": "Ver Proyecto",
     "viewCertificate": "Ver Certificado",
     "github": "GitHub",
-    "privateRepo": "Privado"
+    "privateRepo": "Privado",
+    "download": "Descargar"
   },
   "footer": {
     "madeWithLove": "Hecho con",
@@ -421,6 +422,11 @@
     "personalProjects": {
       "title": "Proyectos personales",
       "items": [
+        {
+          "title": "Clima",
+          "description": "Clima es una app meteorológica moderna para Android. Consulta el tiempo en tiempo real, guarda ciudades favoritas, recibe notificaciones persistentes y disfruta de un diseño elegante. Multiidioma y con autenticación segura.",
+          "techStack": "Vue 3 • TypeScript • Vite • Vue Router • Pinia • Tailwind CSS • Element Plus • Firebase • SendGrid • Capacitor • Leaflet • turf • Chart.js • Playwright • Vitest • Cloudflare R2 • Firebase: Cloud Functions, Firestore, Authentication"
+        },
         {
           "title": "Dog's shelter",
           "description": "Una aplicación Vue 3 + TypeScript para gestionar y visualizar perros por raza en un refugio. Construida siguiendo principios SOLID y patrones de diseño atómico para desacoplar la lógica de la presentación, haciendo los componentes reutilizables, extensibles y mantenibles.",
