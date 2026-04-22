@@ -12,6 +12,7 @@
       :job-title="contactInfo?.jobTitle || 'UI Frontend Web Developer'"
       :tech-stack="contactInfo?.techStack || 'VueJS • Quasar • Nuxt • TailwindCSS'"
       :profile-image="contactInfo?.profileImage || '/chechuLinkedInOpentoWork.webp'"
+      @collapse-hero="handleCollapseHero"
     />
 
     <!-- Floating ribbon to download CV -->
@@ -49,7 +50,7 @@ import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
 import { CONTACT_INFO } from '@/config/constants'
 
 // Use scroll composable
-const { isScrolled } = useScroll()
+const { isScrolled, setIsScrolled } = useScroll()
 
 // Use shared contactInfo constant
 const contactInfo = computed(() => CONTACT_INFO)
@@ -68,6 +69,13 @@ const isHeroVisible: Ref<boolean> = ref<boolean>(true)
 
 // Show navigation only after first scroll and when hero is not visible
 const showNav = computed(() => hasScrolled.value && !isHeroVisible.value)
+
+const handleCollapseHero = (): void => {
+  setIsScrolled(true)
+  hasScrolled.value = true
+  isHeroVisible.value = false
+  showNameInNav.value = true
+}
 
 // Track scroll to detect first scroll
 const handleScroll = (): void => {

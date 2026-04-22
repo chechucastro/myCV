@@ -51,6 +51,7 @@
       :job-title="jobTitle"
       :tech-stack="techStack"
       :profile-image="profileImage"
+      @collapse-hero="emit('collapseHero')"
     />
   </header>
 </template>
@@ -78,6 +79,10 @@ withDefaults(defineProps<Props>(), {
   profileImage: '/chechuLinkedInOpentoWork.webp',
   showNav: false,
 })
+
+const emit = defineEmits<{
+  collapseHero: []
+}>()
 </script>
 
 <style scoped>

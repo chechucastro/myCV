@@ -9,6 +9,10 @@ export function useScroll() {
   const isScrolled: Ref<boolean> = ref<boolean>(false)
   let isScrollListenerActive = false
 
+  const setIsScrolled = (value: boolean): void => {
+    isScrolled.value = value
+  }
+
   const handleScroll = (): void => {
     const scrollY = window.scrollY
     isScrolled.value = scrollY > 50 // Start collapsing after 50px scroll
@@ -70,5 +74,6 @@ export function useScroll() {
 
   return {
     isScrolled,
+    setIsScrolled,
   }
 }

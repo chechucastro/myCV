@@ -63,28 +63,80 @@
             id="download-cv-full-button"
             :label="t('details.downloadCVFull')"
             :value="t('details.downloadCVFull')"
-            href="/docs/Chechu-Castro-CV-EN-2025-full.pdf"
+            :href="`/docs/${buildCvFileName('pdf')}`"
             :aria-label="t('aria.downloadCVFull')"
             icon-bg-class="bg-gradient-to-br from-indigo-600 via-purple-600 to-blue-600 shadow-lg shadow-indigo-500/30"
             card-bg-class="!bg-transparent dark:!bg-transparent"
             :icon-path="ICONS.download"
             hover-color="purple"
             :show-arrow="false"
-            download="Chechu-Castro-CV-EN-2025-full.pdf"
-          />
+            :download="buildCvFileName('pdf')"
+          >
+            <template #content="{ valueClasses }">
+              <div class="flex min-w-0 flex-1 items-center justify-between gap-3">
+                <div class="flex min-w-0 flex-col gap-1">
+                  <span
+                    class="text-xs font-medium tracking-wide text-gray-500 uppercase dark:text-gray-400"
+                  >
+                    {{ t('details.downloadCVFull') }}
+                  </span>
+                  <span :class="valueClasses">{{ t('details.downloadCVFull') }}</span>
+                </div>
+                <span
+                  class="inline-flex items-center gap-1 rounded-md border border-red-200 bg-red-50 px-2 py-1 text-xs font-semibold text-red-700 dark:border-red-500/40 dark:bg-red-500/15 dark:text-red-300"
+                >
+                  <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                    />
+                    <path d="M14 3v6h6" stroke="currentColor" stroke-width="1.8" />
+                  </svg>
+                  PDF
+                </span>
+              </div>
+            </template>
+          </ButtonDetails>
           <ButtonDetails
             id="download-cv-light-button"
             :label="t('details.downloadCVLight')"
             :value="t('details.downloadCVLight')"
-            href="/docs/Chechu-Castro-CV-EN-2025-light.pdf"
+            :href="`/docs/${buildCvFileName('docx')}`"
             :aria-label="t('aria.downloadCVLight')"
             icon-bg-class="bg-gradient-to-br from-teal-500 via-cyan-600 to-blue-500 shadow-lg shadow-teal-500/30"
             card-bg-class="!bg-transparent dark:!bg-transparent"
             :icon-path="ICONS.download"
             hover-color="blue"
             :show-arrow="false"
-            download="Chechu-Castro-CV-EN-2025-light.pdf"
-          />
+            :download="buildCvFileName('docx')"
+          >
+            <template #content="{ valueClasses }">
+              <div class="flex min-w-0 flex-1 items-center justify-between gap-3">
+                <div class="flex min-w-0 flex-col gap-1">
+                  <span
+                    class="text-xs font-medium tracking-wide text-gray-500 uppercase dark:text-gray-400"
+                  >
+                    {{ t('details.downloadCVLight') }}
+                  </span>
+                  <span :class="valueClasses">{{ t('details.downloadCVLight') }}</span>
+                </div>
+                <span
+                  class="inline-flex items-center gap-1 rounded-md border border-blue-200 bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-700 dark:border-blue-500/40 dark:bg-blue-500/15 dark:text-blue-300"
+                >
+                  <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                    />
+                    <path d="M14 3v6h6" stroke="currentColor" stroke-width="1.8" />
+                  </svg>
+                  DOCX
+                </span>
+              </div>
+            </template>
+          </ButtonDetails>
         </div>
       </div>
 
@@ -151,9 +203,18 @@ import { CONTACT_INFO } from '@/config/constants'
 import type { ContactInfo } from '@/types'
 
 const contactInfo: ContactInfo = CONTACT_INFO
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
 defineExpose({ contactInfo })
+
+const getLanguageCode = (): string => {
+  const localeValue = locale.value ?? 'en'
+  return (localeValue.split('-')[0] ?? 'EN').toUpperCase()
+}
+
+const buildCvFileName = (format: 'pdf' | 'docx'): string => {
+  return `Chechu-Castro-CV-${getLanguageCode()}-last-mini.${format}`
+}
 
 const ICONS = {
   linkedin:

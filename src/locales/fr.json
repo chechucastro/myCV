@@ -25,8 +25,8 @@
     "address": "Adresse",
     "country": "Pays",
     "downloads": "Téléchargements",
-    "downloadCVFull": "Télécharger CV (Full)",
-    "downloadCVLight": "Télécharger CV (Mini)"
+    "downloadCVFull": "Télécharger CV (PDF)",
+    "downloadCVLight": "Télécharger CV (DOCX)"
   },
   "aria": {
     "linkedinProfile": "Ouvrir le profil LinkedIn (s'ouvre dans un nouvel onglet)",
@@ -34,8 +34,8 @@
     "sendEmail": "Envoyer un e-mail",
     "hireMeProfile": "Ouvrir le profil Malt pour m'embaucher (s'ouvre dans un nouvel onglet)",
     "scheduleMeeting": "Réserver un rendez-vous avec moi",
-    "downloadCVFull": "Télécharger CV complet (PDF)",
-    "downloadCVLight": "Télécharger CV mini (PDF)",
+    "downloadCVFull": "Télécharger le CV en PDF",
+    "downloadCVLight": "Télécharger le CV en DOCX",
     "viewCertificate": "Voir le certificat {title} (s'ouvre dans un nouvel onglet)",
     "languageProficiency": "Niveau de {language}: {level}",
     "levelOutOf": "Niveau {current} sur {total}",
@@ -80,8 +80,8 @@
   },
   "footer": {
     "madeWithLove": "Fait avec",
-    "downloadCVFull": "Télécharger CV (Full)",
-    "downloadCVLight": "Télécharger CV (Mini)"
+    "downloadCVFull": "Télécharger CV (PDF)",
+    "downloadCVLight": "Télécharger CV (DOCX)"
   },
   "employment": {
     "present": "Actuel",
@@ -416,6 +416,13 @@
           "issuedDate": "2025-10-16",
           "certificateImage": "/linkedin-learning-logo.svg",
           "certificateLink": "https://www.linkedin.com/learning/certificates/bedaa6d32d983da28513d82821c0a493708d52189c39aa36c715eddadd1c5eef"
+        },
+        {
+          "title": "Vibe Coding Your First Agent with Google Gemini",
+          "issuedBy": "LinkedIn",
+          "issuedDate": "2026-04-17",
+          "certificateImage": "/linkedin-learning-logo.svg",
+          "certificateLink": "https://www.linkedin.com/learning/certificates/3a3af2ab148c7a6540f2ba1673523ebf64a50a8434399411351b5f1d9be8d76d"
         }
       ]
     },

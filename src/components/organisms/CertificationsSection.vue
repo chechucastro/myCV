@@ -1,20 +1,37 @@
 <template>
   <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
     <CertificationCard
-      v-for="(cert, certIdx) in certifications"
+      v-for="(cert, certIdx) in visibleCertifications"
       :key="cert.title + '-' + certIdx"
       :certification="cert"
     />
   </div>
+  <div v-if="hasCertificationToggle" class="mt-6 flex justify-center">
+    <BaseButton
+      variant="outline"
+      color="purple"
+      size="md"
+      button-type="button"
+      centered
+      :aria-label="isExpanded ? t('common.showLess') : t('common.showMore')"
+      :aria-expanded="isExpanded"
+      @click="toggleCertifications"
+    >
+      {{ isExpanded ? t('common.showLess') : t('common.showMore') }}
+    </BaseButton>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { Certification } from '@/types'
 import CertificationCard from '@/components/molecules/CertificationCard.vue'
+import BaseButton from '@/components/atoms/BaseButton/BaseButton.vue'
 
-const { tm, locale } = useI18n()
+const { tm, locale, t } = useI18n()
+const DEFAULT_VISIBLE_CERTIFICATIONS = 2
+const isExpanded = ref(false)
 
 /**
  * Build certifications from translations
@@ -30,7 +47,7 @@ const certifications = computed<Certification[]>(() => {
     return []
   }
 
-  return (items as Array<Record<string, unknown>>).map(
+  const mappedCertifications = (items as Array<Record<string, unknown>>).map(
     (cert): Certification => ({
       title: cert.title as string,
       issuedBy: cert.issuedBy as string,
@@ -39,5 +56,25 @@ const certifications = computed<Certification[]>(() => {
       certificateLink: cert.certificateLink as string,
     }),
   )
+
+  return mappedCertifications.sort((a, b) => {
+    return new Date(b.issuedDate).getTime() - new Date(a.issuedDate).getTime()
+  })
 })
+
+const visibleCertifications = computed(() => {
+  if (isExpanded.value) {
+    return certifications.value
+  }
+
+  return certifications.value.slice(0, DEFAULT_VISIBLE_CERTIFICATIONS)
+})
+
+const hasCertificationToggle = computed(() => {
+  return certifications.value.length > DEFAULT_VISIBLE_CERTIFICATIONS
+})
+
+const toggleCertifications = (): void => {
+  isExpanded.value = !isExpanded.value
+}
 </script>
