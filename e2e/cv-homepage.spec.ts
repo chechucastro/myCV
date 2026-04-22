@@ -201,16 +201,24 @@ test.describe('CV Homepage', () => {
     await scrollToSection(page, ['certifications'], { timeout: 2000 })
 
     // Check Certifications section heading
-    await expect(
-      page.getByRole('heading', {
-        name: /Licenses & certifications|Licencias y certificaciones|Licences et certifications/i,
-      }),
-    ).toBeVisible()
+    const certificationsHeading = page.getByRole('heading', {
+      name: /Licenses & certifications|Licencias y certificaciones|Licences et certifications/i,
+    })
+    await expect(certificationsHeading).toBeVisible()
+    const certificationsSection = page
+      .locator('section[role="region"]')
+      .filter({ has: certificationsHeading })
 
-    // Check certification titles (scroll into view if needed)
-    // Based on actual data: "Tailwind CSS 4 Essential Training" and "TypeScript Essential Training"
-    await expect(page.getByText(/Tailwind CSS 4 Essential Training/i)).toBeVisible()
+    // Certifications are sorted by date and only a subset is shown by default.
+    await expect(page.getByText(/Vibe Coding Your First Agent with Google Gemini/i)).toBeVisible()
     await expect(page.getByText(/TypeScript Essential Training/i)).toBeVisible()
+
+    // Expand certifications and verify older entries become visible.
+    const showMoreButton = certificationsSection.getByRole('button', {
+      name: /show more|mostrar más|afficher plus/i,
+    })
+    await showMoreButton.click({ timeout: 3000 })
+    await expect(page.getByText(/Tailwind CSS 4 Essential Training/i)).toBeVisible()
 
     // Check View Certificate links exist
     const certLinks = page.getByRole('link', { name: /view.*certificate/i })
